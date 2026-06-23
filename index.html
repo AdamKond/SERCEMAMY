@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Serce Mamy — Stowarzyszenie Wspierające Mamy i Wcześniaki</title>
+  <meta name="description" content="Serce Mamy to stowarzyszenie wspierające mamy wcześniaków, rodziny na oddziałach noworodkowych i kobiety w trudnych momentach macierzyństwa.">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Inter+Tight:wght@700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rose:       #c0788a;
+      --rose-dim:   rgba(192,120,138,0.10);
+      --rose-dim2:  rgba(192,120,138,0.20);
+      --rose-light: #f7eaed;
+      --dark:       #2e1f2c;
+      --dark2:      #3d2a38;
+      --body-bg:    #fdfaf8;
+      --white:      #ffffff;
+      --text:       #3d2a38;
+      --muted:      #866272;
+      --muted2:     #b09aa8;
+      --border:     #e4d0d8;
+      --border2:    #eddde5;
+      --card-bg:    #ffffff;
+      --card-shadow: 0 4px 24px rgba(192,120,138,0.09), 0 1px 4px rgba(192,120,138,0.06);
+      --card-shadow-hover: 0 10px 44px rgba(192,120,138,0.18), 0 2px 8px rgba(192,120,138,0.10);
+      --radius:     16px;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-serif:   'Playfair Display', Georgia, serif;
+      --font-tight:   'Inter Tight', 'Inter', sans-serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+      --nav-h:      clamp(50px, 5.5vw, 60px);
+      --ease:       cubic-bezier(.16,1,.3,1);
+    }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 74px; }
+    body { background: var(--body-bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--body-bg); }
+    ::-webkit-scrollbar-thumb { background: var(--rose); border-radius: 3px; }
+    ::selection { background: var(--rose); color: #fff; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--rose); outline-offset: 3px; border-radius: 4px; }
+
+    /* ══ LOADER ══ */
+    #page-loader {
+      position: fixed; inset: 0; z-index: 9999; background: var(--body-bg);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.5rem;
+      transition: opacity 0.8s var(--ease), visibility 0.8s;
+    }
+    #page-loader.loaded { opacity: 0; visibility: hidden; pointer-events: none; }
+    .loader-logo-wrap { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; animation: loaderPulse 2.2s ease-in-out infinite; }
+    .loader-name { font-family: var(--font-display); font-size: clamp(2rem,5vw,3.2rem); letter-spacing: 0.16em; color: var(--rose); line-height: 1; }
+    .loader-sub-text { font-size: 9px; letter-spacing: 0.48em; font-weight: 700; color: var(--muted2); text-transform: uppercase; }
+    @keyframes loaderPulse { 0%,100%{opacity:.18} 50%{opacity:1} }
+    .loader-bar { width: 100px; height: 2px; background: var(--border2); border-radius: 2px; overflow: hidden; }
+    .loader-bar-fill { height: 100%; background: linear-gradient(90deg, var(--rose), #d9a0b0); border-radius: 2px; animation: loaderFill 1.5s var(--ease) forwards; }
+    @keyframes loaderFill { from{width:0} to{width:100%} }
+
+    /* ══ SCROLL PROGRESS ══ */
+    #scroll-progress { position: fixed; top: 0; left: 0; height: 2px; background: linear-gradient(90deg, var(--rose), #d9a0b0); z-index: 200; width: 0%; transition: width 0.08s linear; box-shadow: 0 0 8px rgba(192,120,138,0.5); }
+
+    /* ══ FLOATING MICRO-DECO ══ */
+    .fdl { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+    .fdl-el { position: absolute; color: var(--rose); opacity: 0; transition: opacity 1s ease; }
+    .fdl-el.pk { color: #d9a0b0; }
+    .fdl-el.visible { opacity: 1; }
+    @keyframes microFloat {
+      0%,100% { transform: translateY(0)   rotate(0deg)   scale(1); }
+      33%      { transform: translateY(-9px) rotate(7deg)  scale(1.06); }
+      67%      { transform: translateY(5px)  rotate(-4deg) scale(0.95); }
+    }
+
+    /* ══ FLOATING CTA ══ */
+    #float-cta {
+      position: fixed; right: 24px; bottom: 36px; z-index: 500;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.8rem 1.6rem; background: var(--rose); color: #fff;
+      font-family: var(--font-body); font-size: 13px; font-weight: 700; letter-spacing: 0.04em;
+      text-decoration: none; border-radius: 999px; border: 1px solid rgba(255,255,255,0.2);
+      box-shadow: 0 4px 22px rgba(192,120,138,0.5);
+      transform: translateX(140%); transition: transform 0.5s var(--ease), box-shadow 0.25s, opacity 0.5s;
+      opacity: 0; isolation: isolate;
+    }
+    #float-cta.visible { transform: translateX(0); opacity: 1; }
+    #float-cta:hover { background: #a8607a; box-shadow: 0 6px 28px rgba(192,120,138,0.65); transform: translateX(0) translateY(-2px); }
+    @media (pointer: fine) {
+      #float-cta::after { content: ''; position: absolute; inset: -4px; border-radius: 999px; border: 1px solid rgba(192,120,138,0.3); animation: ctaPulse 3s ease-in-out infinite; pointer-events: none; }
+    }
+    @keyframes ctaPulse { 0%,100%{transform:scale(1);opacity:.6} 50%{transform:scale(1.08);opacity:0} }
+
+    /* ══ PAGE NAME VERTICAL ══ */
+    .page-name-vert { position: fixed; right: 16px; top: 50%; transform: translateY(-50%); writing-mode: vertical-rl; z-index: 50; font-family: var(--font-display); font-size: 11px; letter-spacing: 0.28em; color: rgba(61,42,56,0.38); white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity 0.6s var(--ease); }
+    .page-name-vert.visible { opacity: 1; }
+
+    /* ══ CURSOR GLOW ══ */
+    .cursor-glow { position: fixed; pointer-events: none; z-index: 0; width: 360px; height: 360px; border-radius: 50%; background: radial-gradient(circle, rgba(192,120,138,0.055) 0%, transparent 70%); transform: translate(-50%,-50%); }
+
+    /* ══ NAV ══ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 66px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(20px,4vw,56px);
+      background: rgba(253,250,248,0.90); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
+      border-bottom: 1px solid rgba(192,120,138,0.12);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; transition: transform 0.3s var(--ease); }
+    .nav-logo:hover { transform: scale(1.03); }
+    .nav-heart-icon { color: var(--rose); flex-shrink: 0; }
+    @keyframes heartBeat { 0%,100%{transform:scale(1)} 14%{transform:scale(1.2)} 28%{transform:scale(1)} 42%{transform:scale(1.12)} 70%{transform:scale(1)} }
+    .nav-heart-inner { animation: heartBeat 2.8s ease-in-out infinite; transform-origin: 50% 50%; }
+    .nav-logo-text { display: flex; flex-direction: column; line-height: 1; }
+    .nav-logo-main { font-family: var(--font-display); font-size: clamp(18px,2vw,24px); letter-spacing: 0.08em; color: #9e5068; line-height: 1; animation: navDropIn 0.65s var(--ease) both 0.05s; }
+    .nav-logo-sub { font-family: var(--font-body); font-size: clamp(7px,0.65vw,9px); letter-spacing: 0.36em; font-weight: 600; color: var(--muted); text-transform: uppercase; margin-top: 3px; animation: navDropIn 0.65s var(--ease) both 0.12s; }
+    @keyframes navDropIn { from{opacity:0;transform:translateY(-18px)} to{opacity:1;transform:translateY(0)} }
+    .nav-links-wrap { display: flex; align-items: center; background: rgba(192,120,138,0.07); border: 1px solid rgba(192,120,138,0.14); border-radius: 999px; padding: 4px 5px; }
+    .nav-links { display: flex; align-items: center; gap: 0; list-style: none; }
+    .nav-links a { display: flex; align-items: center; gap: 4px; padding: 6px clamp(9px,1.1vw,16px); font-size: clamp(11px,0.8vw,13px); font-weight: 500; color: rgba(61,42,56,0.52); text-decoration: none; letter-spacing: 0.02em; border-radius: 999px; transition: color 0.2s, background 0.2s; }
+    .nav-links a:hover { color: var(--dark2); background: rgba(0,0,0,0.06); }
+    .nav-links a.active { color: var(--dark2); background: #fff; box-shadow: 0 1px 6px rgba(0,0,0,0.09); }
+    .nav-links a .num { font-size: 0.68em; color: var(--rose); font-weight: 700; opacity: 0; max-width: 0; overflow: hidden; display: inline-block; transition: opacity 0.25s, max-width 0.25s; }
+    .nav-links a.active .num, .nav-links a:hover .num { opacity: 1; max-width: 2em; }
+    .nav-links li:nth-child(1){animation:navDropIn .55s var(--ease) both .28s}
+    .nav-links li:nth-child(2){animation:navDropIn .55s var(--ease) both .34s}
+    .nav-links li:nth-child(3){animation:navDropIn .55s var(--ease) both .40s}
+    .nav-links li:nth-child(4){animation:navDropIn .55s var(--ease) both .46s}
+    .nav-links li:nth-child(5){animation:navDropIn .55s var(--ease) both .52s}
+    .nav-links li:nth-child(6){animation:navDropIn .55s var(--ease) both .58s}
+    .nav-links li:nth-child(7){animation:navDropIn .55s var(--ease) both .64s}
+    .nav-links li:nth-child(8){animation:navDropIn .55s var(--ease) both .70s}
+    .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .nav-toggle span { display: block; width: 22px; height: 1.5px; background: var(--dark2); border-radius: 2px; }
+
+    /* ══ HERO ══ */
+    #home { position: relative; height: 100svh; min-height: 600px; background: linear-gradient(155deg, #fdf0f3 0%, #fdfaf8 55%, #f8f0f5 100%); overflow: hidden; display: flex; flex-direction: column; }
+    .hero-name-tag { position: absolute; top: calc(var(--nav-h) + clamp(14px,2.5vh,28px)); left: 50%; transform: translateX(-50%); font-size: 12px; letter-spacing: 0.1em; color: rgba(61,42,56,0.44); white-space: nowrap; z-index: 3; font-weight: 500; }
+    .hero-split { display: flex; align-items: center; flex: 1; padding-top: var(--nav-h); min-height: 0; }
+    .hero-split-text { flex: 1; padding: clamp(24px,4vw,56px) clamp(28px,6.5vw,96px); z-index: 2; }
+    .hero-split-label { font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(61,42,56,0.4); margin-bottom: 1.75rem; }
+    .hero-split-headline { font-family: var(--font-tight); font-size: clamp(1.85rem,4vw,4.8rem); font-weight: 800; line-height: 1.07; color: var(--dark); letter-spacing: -0.025em; max-width: 640px; }
+    .hero-lead { margin-top: 1.5rem; font-size: clamp(14px,1.2vw,16px); color: var(--muted); line-height: 1.85; max-width: 480px; }
+    .hero-trust-bar { display: flex; align-items: center; gap: 1.5rem; margin-top: 2.5rem; flex-wrap: wrap; }
+    .hero-trust-item { display: flex; align-items: center; gap: 0.65rem; font-size: 12px; font-weight: 600; color: rgba(61,42,56,0.58); letter-spacing: 0.03em; }
+    .hero-trust-icon { width: 34px; height: 34px; border-radius: 50%; background: var(--rose-dim); border: 1px solid var(--rose-dim2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--rose); }
+    .hero-trust-icon svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+    .hero-trust-sep { width: 1px; height: 22px; background: rgba(192,120,138,0.2); }
+    .hero-split-photo { width: 42%; height: calc(100svh - var(--nav-h)); flex-shrink: 0; overflow: hidden; align-self: flex-end; }
+    .hero-photo-placeholder {
+      width: 100%; height: 100%;
+      background: linear-gradient(160deg, #fce8ef 0%, #fdf3f7 40%, #f0eaf8 100%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      position: relative; overflow: hidden; gap: 1rem;
+    }
+    .hero-photo-placeholder::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 55% 60% at 50% 45%, rgba(192,120,138,0.14) 0%, transparent 70%); }
+    .hero-photo-placeholder svg { opacity: 0.2; color: var(--rose); position: relative; z-index: 1; }
+    .hero-photo-label { font-size: 10px; letter-spacing: 0.34em; text-transform: uppercase; color: var(--muted2); font-weight: 600; position: relative; z-index: 1; }
+    .hero-marquee-wrap { position: absolute; bottom: 0; left: 0; right: 0; z-index: 2; overflow: hidden; pointer-events: none; padding-bottom: clamp(14px,2vw,26px); }
+    .hero-marquee-track { display: flex; width: max-content; animation: marqueeScroll 44s linear infinite; }
+    .hero-marquee-text { font-family: var(--font-display); font-size: clamp(3.5rem,8.5vw,8rem); line-height: 1; color: rgba(61,42,56,0.06); white-space: nowrap; padding-right: 0.35em; letter-spacing: 0.015em; }
+    @keyframes marqueeScroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+    .hero-cta-br { position: absolute; bottom: clamp(20px,4vh,52px); right: clamp(24px,4vw,60px); z-index: 3; }
+    .btn-resume { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; min-height: 44px; background: rgba(253,250,248,0.88); color: var(--dark); font-family: var(--font-body); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; border-radius: 999px; border: 1px solid rgba(192,120,138,0.22); backdrop-filter: blur(10px); transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease; }
+    .btn-resume:hover { background: rgba(255,255,255,0.96); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(192,120,138,0.18); }
+    @keyframes heroPhotoIn { from{opacity:0;transform:scale(1.04)} to{opacity:1;transform:scale(1)} }
+    @keyframes heroCTAIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+
+    /* ══ BIG HEADLINE SECTION ══ */
+    .big-headline-section { background: var(--dark); overflow: hidden; padding: clamp(70px,10vw,120px) clamp(20px,5vw,60px); position: relative; }
+    .big-headline-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 80% at 30% 50%, rgba(192,120,138,0.18) 0%, transparent 65%); pointer-events: none; }
+    .big-headline-inner { max-width: 1100px; margin: 0 auto; }
+    .big-headline-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(192,120,138,0.7); margin-bottom: 2rem; display: flex; align-items: center; gap: 0.6rem; }
+    .big-headline-eyebrow::before { content: ''; display: inline-block; width: 24px; height: 2px; background: var(--rose); border-radius: 2px; }
+    .headline-line { overflow: hidden; }
+    .headline-line-inner { font-family: var(--font-tight); font-size: clamp(2.4rem,6vw,6.5rem); font-weight: 900; line-height: 1.06; letter-spacing: -0.02em; color: #fff; display: block; transform: translateY(110%); }
+    .headline-line-inner.rose { color: var(--rose); }
+    .headline-line-inner.muted { color: rgba(255,255,255,0.28); }
+    .big-headline-sub { font-size: clamp(14px,1.4vw,17px); color: rgba(255,255,255,0.45); line-height: 1.8; max-width: 480px; margin-top: 2.5rem; }
+
+    /* ══ SHARED SECTION ══ */
+    .light-section { background: var(--white); padding: clamp(60px,8vw,110px) clamp(20px,5vw,60px); }
+    .light-section.alt { background: #faf5f7; }
+    .section-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
+    .section-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rose); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.6rem; }
+    .section-eyebrow::before { content: ''; display: inline-block; width: 24px; height: 2px; background: var(--rose); border-radius: 2px; flex-shrink: 0; }
+    .section-heading { font-family: var(--font-serif); font-size: clamp(2rem,3.5vw,3rem); font-weight: 700; line-height: 1.15; color: var(--text); margin-bottom: 0.75rem; }
+    .section-sub { font-size: 15px; color: var(--muted); max-width: 520px; line-height: 1.75; margin-bottom: 3rem; }
+
+    /* ══ LETTER-SWAP ══ */
+    .ls-section { padding: clamp(4.5rem,9vh,7rem) clamp(1.5rem,5vw,4rem); background: var(--body-bg); display: flex; justify-content: center; }
+    .ls-block { display: flex; flex-direction: column; align-items: center; text-align: center; gap: clamp(0.5rem,1.4vw,1.1rem); opacity: 0; transform: translateY(32px); transition: opacity 1s ease, transform 1s cubic-bezier(.16,1,.3,1); }
+    .ls-block.ls-in { opacity: 1; transform: translateY(0); }
+    .ls-line { display: flex; align-items: center; justify-content: center; cursor: default; user-select: none; position: relative; }
+    .ls-char { position: relative; display: inline-flex; overflow: hidden; line-height: 1.15; }
+    .ls-sp { display: inline-block; }
+    .ls-a { display: block; transform: translateY(0); transition: transform 0.55s cubic-bezier(.16,1,.3,1); transition-delay: calc(var(--d)*1ms); }
+    .ls-b { position: absolute; inset: 0; transform: translateY(-100%); transition: transform 0.55s cubic-bezier(.16,1,.3,1); transition-delay: calc(var(--d)*1ms); color: var(--rose); }
+    .ls-line:hover .ls-a { transform: translateY(105%); }
+    .ls-line:hover .ls-b { transform: translateY(0); }
+    .ls-main { font-family: var(--font-display); font-size: clamp(2rem,5vw,4rem); letter-spacing: 0.06em; color: var(--dark); }
+    .ls-curly { font-family: var(--font-serif); font-style: italic; font-size: clamp(1.7rem,4.2vw,3.4rem); color: var(--rose); }
+    .ls-mid { font-family: var(--font-display); font-size: clamp(1.4rem,3.5vw,2.8rem); letter-spacing: 0.12em; color: var(--muted); }
+    .ls-small { font-family: var(--font-serif); font-size: clamp(1.1rem,2.8vw,2.2rem); letter-spacing: 0.06em; color: var(--muted2); font-style: italic; }
+
+    /* ══ ABOUT BENTO ══ */
+    .about-bento { display: grid; grid-template-columns: 1fr 380px; gap: 1.5rem; max-width: 1200px; margin: 3.5rem auto 0; padding: 0 clamp(20px,5vw,60px); }
+    .about-bento-main { background: var(--white); border: 1px solid var(--border); border-radius: 24px; padding: 3rem; box-shadow: var(--card-shadow); position: relative; overflow: hidden; }
+    .about-bento-main::before { content: '"'; position: absolute; top: -1rem; left: 1.5rem; font-family: var(--font-serif); font-size: 12rem; line-height: 1; color: rgba(192,120,138,0.07); pointer-events: none; user-select: none; }
+    .about-bento-quote { font-family: var(--font-serif); font-size: clamp(1rem,1.6vw,1.25rem); line-height: 1.9; color: var(--muted); position: relative; z-index: 1; }
+    .about-bento-quote strong { color: var(--dark); font-weight: 700; }
+    .about-bento-side { display: flex; flex-direction: column; gap: 1.5rem; }
+    .about-feat { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 2rem 1.75rem; box-shadow: var(--card-shadow); display: flex; flex-direction: column; gap: 1rem; flex: 1; transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease; }
+    .about-feat:hover { transform: translateY(-3px); box-shadow: var(--card-shadow-hover); border-color: var(--rose-dim2); }
+    .about-feat-icon { width: 48px; height: 48px; border-radius: 14px; background: var(--rose-dim); display: flex; align-items: center; justify-content: center; color: var(--rose); }
+    .about-feat-icon svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .about-feat h3 { font-family: var(--font-serif); font-size: 1.05rem; font-weight: 700; color: var(--dark); line-height: 1.25; }
+    .about-feat p { font-size: 13px; color: var(--muted); line-height: 1.75; }
+
+    /* ══ "BO CZASEM" DARK STRIP ══ */
+    .times-strip { background: var(--dark); padding: clamp(56px,8vw,90px) clamp(20px,5vw,60px); position: relative; overflow: hidden; }
+    .times-strip::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 80% at 80% 50%, rgba(192,120,138,0.15) 0%, transparent 65%); pointer-events: none; }
+    .times-inner { max-width: 900px; margin: 0 auto; }
+    .times-eyebrow { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; font-weight: 700; color: rgba(192,120,138,0.6); margin-bottom: 2.5rem; }
+    .times-line { font-family: var(--font-serif); font-size: clamp(1.4rem,3vw,2.4rem); color: rgba(255,255,255,0.25); line-height: 1.55; font-style: italic; transition: color 0.4s; cursor: default; padding: 0.2rem 0; }
+    .times-line strong { color: #fff; font-weight: 700; }
+    .times-line:hover { color: rgba(255,255,255,0.55); }
+
+    /* ══ PATH SECTION ══ */
+    .path-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.25rem; margin-top: 3rem; }
+    .path-card { background: var(--white); border: 1px solid var(--border); border-radius: 18px; padding: 2rem 2rem 2rem 1.75rem; box-shadow: var(--card-shadow); transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease; display: flex; flex-direction: column; text-decoration: none; color: inherit; position: relative; overflow: hidden; min-height: 200px; }
+    .path-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--rose); transition: width 0.25s ease; }
+    .path-card:nth-child(2)::before { background: #8b9eb0; }
+    .path-card:nth-child(3)::before { background: #90a882; }
+    .path-card:nth-child(4)::before { background: #a892be; }
+    .path-card:hover { box-shadow: var(--card-shadow-hover); transform: translateY(-4px); border-color: var(--rose-dim2); }
+    .path-card:hover::before { width: 5px; }
+    .path-card-num { font-family: var(--font-display); font-size: 2rem; color: rgba(192,120,138,0.10); line-height: 1; margin-bottom: 1rem; letter-spacing: 0.02em; }
+    .path-card-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--rose-dim); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; flex-shrink: 0; transition: background 0.25s ease; }
+    .path-card:nth-child(2) .path-card-icon { background: rgba(139,158,176,0.12); }
+    .path-card:nth-child(3) .path-card-icon { background: rgba(144,168,130,0.12); }
+    .path-card:nth-child(4) .path-card-icon { background: rgba(168,146,190,0.12); }
+    .path-card-icon svg { width: 22px; height: 22px; stroke-width: 1.8; fill: none; stroke: var(--rose); stroke-linecap: round; stroke-linejoin: round; }
+    .path-card:nth-child(2) .path-card-icon svg { stroke: #6e8a9c; }
+    .path-card:nth-child(3) .path-card-icon svg { stroke: #6e8a62; }
+    .path-card:nth-child(4) .path-card-icon svg { stroke: #8a6ea8; }
+    .path-card:hover .path-card-icon { background: var(--rose-dim2); }
+    .path-card-title { font-family: var(--font-serif); font-size: clamp(1rem,1.4vw,1.15rem); font-weight: 700; color: var(--text); line-height: 1.3; margin-bottom: 0.6rem; }
+    .path-card-desc { font-size: 13.5px; color: var(--muted); line-height: 1.8; margin-bottom: 1.25rem; flex: 1; }
+    .path-card-cta { font-size: 12px; font-weight: 700; color: var(--rose); letter-spacing: 0.06em; display: flex; align-items: center; gap: 0.35rem; transition: gap 0.2s ease; }
+    .path-card:hover .path-card-cta { gap: 0.6rem; }
+    .path-card-cta svg { width: 12px; height: 12px; flex-shrink: 0; }
+
+    /* ══ PROJECTS (spec-panel) ══ */
+    .spec-stack { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 3.5rem; }
+    .spec-panel { display: grid; grid-template-columns: 340px 1fr; min-height: 280px; border-radius: 20px; overflow: hidden; border: 1px solid var(--border); box-shadow: var(--card-shadow); transition: box-shadow 0.25s ease, transform 0.25s ease; --mx: 50%; --my: 50%; position: relative; }
+    .spec-panel::after { content: ''; position: absolute; inset: 0; background: radial-gradient(320px circle at var(--mx) var(--my), rgba(192,120,138,0.06) 0%, transparent 60%); pointer-events: none; opacity: 0; transition: opacity 0.3s ease; border-radius: 20px; z-index: 2; }
+    .spec-panel:hover::after { opacity: 1; }
+    .spec-panel:hover { box-shadow: var(--card-shadow-hover); transform: translateY(-3px); }
+    .spec-panel.flip { grid-template-columns: 1fr 340px; }
+    .spec-panel.flip .spec-accent { order: 2; }
+    .spec-accent { padding: 2.75rem 2.5rem; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+    .spec-accent-rose { background: linear-gradient(145deg, #b87288 0%, #c9849a 100%); }
+    .spec-accent-plum { background: linear-gradient(145deg, #6b4d5e 0%, #8a6678 100%); }
+    .spec-accent-dark { background: var(--dark); }
+    .spec-accent::before { content: attr(data-num); position: absolute; bottom: -28px; right: -8px; font-family: var(--font-display); font-size: 11rem; line-height: 1; color: rgba(255,255,255,0.07); pointer-events: none; user-select: none; }
+    .spec-accent-label { font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.55); z-index: 1; position: relative; }
+    .spec-accent-title { font-family: var(--font-serif); font-size: clamp(1.6rem,2.5vw,2.4rem); font-weight: 700; color: #fff; line-height: 1.1; z-index: 1; position: relative; }
+    .spec-content { background: #fff; padding: 2.75rem 2.5rem; display: flex; flex-direction: column; justify-content: center; gap: 1.5rem; }
+    .spec-content-desc { font-size: 14px; color: var(--muted); line-height: 1.85; }
+    .spec-content-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .spec-tag { padding: 0.38rem 0.9rem; background: var(--rose-dim); border: 1px solid var(--rose-dim2); border-radius: 999px; font-size: 11.5px; color: var(--rose); font-weight: 500; transition: background 0.2s, color 0.2s; }
+    .spec-tag:hover { background: var(--rose); color: #fff; }
+    .spec-cta-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 12px; font-weight: 700; color: var(--rose); text-decoration: none; letter-spacing: 0.06em; margin-top: 0.5rem; transition: gap 0.2s ease, color 0.2s ease; min-height: 44px; }
+    .spec-cta-link:hover { gap: 0.75rem; color: #9a5070; }
+    .spec-cta-link::after { content: '→'; font-size: 1em; }
+
+    /* ══ STORIES CAROUSEL ══ */
+    .carousel-header-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.75rem; }
+    .carousel-arrows { display: flex; gap: 0.5rem; }
+    .carousel-btn { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border); background: var(--white); box-shadow: var(--card-shadow); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease; color: var(--text); flex-shrink: 0; }
+    .carousel-btn:hover { background: var(--rose); border-color: var(--rose); color: #fff; transform: scale(1.08); }
+    .carousel-viewport { overflow: hidden; border-radius: 18px; }
+    .carousel-track { display: flex; transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); will-change: transform; }
+    .carousel-slide { min-width: 100%; background: var(--white); border-radius: 18px; overflow: hidden; border: 1px solid var(--border); box-shadow: var(--card-shadow); }
+    .carousel-slide-body { padding: 2.75rem 2.5rem; }
+    .carousel-slide-num { font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rose); margin-bottom: 0.75rem; }
+    .carousel-slide-quote { font-family: var(--font-serif); font-style: italic; font-size: clamp(1.05rem,2vw,1.45rem); color: var(--dark); line-height: 1.65; margin-bottom: 1.5rem; position: relative; padding-left: 1.5rem; }
+    .carousel-slide-quote::before { content: '"'; position: absolute; left: 0; top: -0.2rem; font-size: 3rem; color: rgba(192,120,138,0.3); font-family: var(--font-serif); line-height: 1; }
+    .carousel-slide-author { font-size: 13px; color: var(--muted); font-weight: 600; }
+    .carousel-indicators { display: flex; justify-content: center; gap: 0.45rem; margin-top: 1.5rem; }
+    .carousel-dot { height: 8px; width: 8px; border-radius: 999px; background: var(--border2); border: none; cursor: pointer; padding: 0; transition: width 0.35s var(--ease), background 0.35s var(--ease); }
+    .carousel-dot.active { width: 28px; background: var(--rose); }
+
+    /* ══ MATERIALS ══ */
+    .pub-stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 3rem; }
+    .pub-stat { background: var(--white); padding: 1.75rem 1.5rem; text-align: center; transition: background 0.25s; }
+    .pub-stat:hover { background: var(--body-bg); }
+    .pub-stat-num { font-family: var(--font-display); font-size: clamp(2.4rem,4vw,3.5rem); line-height: 1; color: var(--rose); letter-spacing: 0.02em; margin-bottom: 0.4rem; }
+    .pub-stat-label { font-size: 12px; color: var(--muted); font-weight: 500; line-height: 1.4; }
+    .pub-list { display: flex; flex-direction: column; gap: 1rem; }
+    .pub-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem 1.75rem; box-shadow: var(--card-shadow); display: grid; grid-template-columns: 56px 1fr; gap: 1.25rem; align-items: start; transition: box-shadow 0.3s, transform 0.3s var(--ease), border-color 0.3s; border-left: 3px solid transparent; }
+    .pub-card:hover { box-shadow: var(--card-shadow-hover); transform: translateY(-2px); border-left-color: var(--rose); }
+    .pub-type { font-family: var(--font-tight); font-size: 1.5rem; font-weight: 900; color: var(--border2); line-height: 1; padding-top: 2px; }
+    .pub-title { font-family: var(--font-serif); font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 0.4rem; line-height: 1.45; }
+    .pub-meta { font-size: 12px; color: var(--muted2); }
+    .pub-tag-label { color: var(--rose); font-style: italic; }
+    .pub-link { font-size: 12px; font-weight: 700; color: var(--rose); text-decoration: none; letter-spacing: 0.06em; }
+    .pub-link:hover { text-decoration: underline; }
+
+    /* ══ BLOG ══ */
+    .blog-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
+    .blog-card { background: var(--white); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; box-shadow: var(--card-shadow); transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease; text-decoration: none; color: inherit; display: flex; flex-direction: column; }
+    .blog-card:hover { box-shadow: var(--card-shadow-hover); transform: translateY(-4px); border-color: var(--rose-dim2); }
+    .blog-card-img { height: 180px; background: linear-gradient(135deg, #fce8ef 0%, #f6eaf5 100%); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; transition: background 0.25s ease; }
+    .blog-card:hover .blog-card-img { background: linear-gradient(135deg, #fad8e5 0%, #f0e0f0 100%); }
+    .blog-card-img svg { opacity: 0.32; color: var(--rose); transition: opacity 0.25s ease, transform 0.25s ease; }
+    .blog-card:hover .blog-card-img svg { opacity: 0.48; transform: scale(1.06); }
+    .blog-card-img .blog-card-cat { position: absolute; top: 1rem; left: 1rem; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rose); background: rgba(255,255,255,0.88); padding: 0.3rem 0.75rem; border-radius: 999px; backdrop-filter: blur(6px); }
+    .blog-card-body { padding: 1.75rem; flex: 1; display: flex; flex-direction: column; gap: 0.75rem; }
+    .blog-card-date { font-size: 11px; color: var(--muted2); letter-spacing: 0.06em; }
+    .blog-card-title { font-family: var(--font-serif); font-size: clamp(1rem,1.3vw,1.15rem); font-weight: 700; color: var(--dark); line-height: 1.35; }
+    .blog-card-excerpt { font-size: 13px; color: var(--muted); line-height: 1.75; flex: 1; }
+    .blog-card-link { font-size: 12px; font-weight: 700; color: var(--rose); letter-spacing: 0.06em; margin-top: auto; }
+
+    /* ══ DONATE ══ */
+    .cert-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+    .cert-grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; margin-top: 1.5rem; }
+    .cert-card { background: #fff; border: 1px solid var(--border); border-radius: 18px; padding: 0; box-shadow: var(--card-shadow); overflow: hidden; transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease; position: relative; }
+    .cert-card:hover { box-shadow: var(--card-shadow-hover); transform: translateY(-4px); border-color: var(--border2); }
+    .cert-top-bar { height: 6px; width: 100%; }
+    .cert-body { padding: 2rem 2.25rem 2.25rem; position: relative; overflow: hidden; }
+    .cert-body::after { content: attr(data-abbr); position: absolute; bottom: -24px; right: 16px; font-family: var(--font-display); font-size: 7rem; line-height: 1; color: rgba(0,0,0,0.035); pointer-events: none; user-select: none; }
+    .cert-amount { font-family: var(--font-display); font-size: clamp(1.1rem,1.5vw,1.35rem); color: var(--muted2); letter-spacing: 0.04em; margin-bottom: 0.5rem; z-index: 1; position: relative; }
+    .cert-name { font-family: var(--font-serif); font-size: clamp(1rem,1.4vw,1.15rem); font-weight: 700; color: var(--text); margin-bottom: 0.4rem; line-height: 1.3; z-index: 1; position: relative; }
+    .cert-issuer { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; z-index: 1; position: relative; }
+    .cert-desc { font-size: 13px; color: var(--muted); line-height: 1.75; z-index: 1; position: relative; }
+    .donate-cta-card { background: linear-gradient(135deg, var(--dark) 0%, #4a3050 100%); border-radius: 20px; padding: 3rem 2.5rem; box-shadow: 0 8px 40px rgba(46,31,44,0.3); text-align: center; margin-top: 3rem; position: relative; overflow: hidden; }
+    .donate-cta-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 70% at 80% 50%, rgba(192,120,138,0.22) 0%, transparent 65%); pointer-events: none; }
+    .donate-cta-card h3 { font-family: var(--font-serif); font-size: clamp(1.5rem,2.5vw,2rem); font-weight: 700; color: #fff; margin-bottom: 0.75rem; position: relative; z-index: 1; }
+    .donate-cta-card p { font-size: 15px; color: rgba(255,255,255,0.65); line-height: 1.75; margin-bottom: 2rem; max-width: 540px; margin-left: auto; margin-right: auto; position: relative; z-index: 1; }
+    .btn-white { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 2.5rem; background: #fff; color: var(--rose); font-family: var(--font-body); font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-decoration: none; border-radius: 999px; transition: opacity 0.25s, transform 0.25s var(--ease); position: relative; z-index: 1; }
+    .btn-white:hover { opacity: 0.92; transform: translateY(-2px); }
+
+    /* ══ CONTACT ══ */
+    .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .contact-items { display: flex; flex-direction: column; gap: 1.5rem; }
+    .contact-row { display: flex; align-items: flex-start; gap: 1rem; }
+    .contact-icon-box { width: 42px; height: 42px; border-radius: 12px; background: var(--rose-dim); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .contact-icon-box svg { width: 18px; height: 18px; fill: none; stroke: var(--rose); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .contact-lbl { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rose); margin-bottom: 3px; }
+    .contact-val { font-size: 15px; color: var(--text); }
+    .contact-val a { color: var(--text); text-decoration: none; }
+    .contact-val a:hover { color: var(--rose); }
+    .contact-form-card { background: linear-gradient(145deg, #3a2438 0%, #4a2c44 55%, #3a2848 100%); border-radius: var(--radius); padding: 2.5rem; box-shadow: 0 8px 40px rgba(46,31,44,0.3); }
+    .contact-form-card h3 { font-family: var(--font-serif); font-size: clamp(1.4rem,2.2vw,1.8rem); font-weight: 700; color: #fff; margin-bottom: 0.6rem; }
+    .contact-form-card > p { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 1.5rem; }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 0.4rem; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.75rem 1rem; background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.18); border-radius: 10px; font-family: var(--font-body); font-size: 14px; color: #fff; outline: none; transition: background 0.2s, border-color 0.2s; }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { background: rgba(255,255,255,0.16); border-color: rgba(192,120,138,0.6); }
+    .form-group textarea { resize: vertical; min-height: 90px; }
+    .form-group select option { background: #3a2438; }
+    .btn-form { width: 100%; padding: 0.85rem 1rem; min-height: 48px; background: var(--rose); color: #fff; font-family: var(--font-body); font-size: 13px; font-weight: 700; letter-spacing: 0.06em; border: none; border-radius: 999px; cursor: pointer; transition: background 0.2s ease, transform 0.2s ease; margin-top: 0.5rem; display: flex; align-items: center; justify-content: center; }
+    .btn-form:hover { background: #a8607a; transform: translateY(-2px); }
+    .btn-form:active { transform: scale(0.98); transition-duration: 0.1s; }
+
+    /* ══ FOOTER ══ */
+    footer { background: #241520; color: rgba(255,255,255,0.38); padding: 2rem clamp(20px,5vw,60px); padding-right: clamp(60px,8vw,100px); display: flex; align-items: center; justify-content: space-between; font-size: 12px; letter-spacing: 0.04em; }
+    footer span:first-child { color: rgba(255,255,255,0.65); font-weight: 500; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { color: rgba(255,255,255,0.38); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: rgba(255,255,255,0.75); }
+
+    /* ══ RIPPLE ══ */
+    .ripple-host { position: relative; overflow: hidden; }
+    .ripple-wave { position: absolute; border-radius: 50%; background: rgba(255,255,255,0.28); transform: scale(0); animation: rippleAnim 0.55s linear; pointer-events: none; }
+    @keyframes rippleAnim { to { transform: scale(4); opacity: 0; } }
+
+    /* ══ TILT CARD ══ */
+    .tilt-card { transform-style: preserve-3d; will-change: transform; }
+    .tilt-card-inner { transform-style: preserve-3d; }
+
+    /* ══ DONATE STATS ══ */
+    .donate-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 3rem; }
+    .donate-stat { background: var(--white); padding: 1.75rem 1.5rem; text-align: center; transition: background 0.2s ease; }
+    .donate-stat:hover { background: var(--body-bg); }
+    .donate-stat-num { font-family: var(--font-display); font-size: clamp(2.2rem,3.5vw,3rem); line-height: 1; color: var(--rose); letter-spacing: 0.02em; margin-bottom: 0.4rem; }
+    .donate-stat-label { font-size: 12px; color: var(--muted); font-weight: 500; line-height: 1.5; }
+
+    /* ══ NAV LINK HOVER UNDERLINE ══ */
+    .nav-links a { position: relative; }
+
+    /* ══ SECTION DIVIDER ══ */
+    .section-divider { height: 1px; background: linear-gradient(90deg, transparent 0%, var(--border) 30%, var(--border) 70%, transparent 100%); margin: 0; }
+
+    /* ══ INFOGRAPHIC SECTION ══ */
+    .infographic-section { background: var(--dark); padding: clamp(60px,8vw,110px) clamp(20px,5vw,60px); position: relative; overflow: hidden; }
+    .infographic-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 70% at 70% 30%, rgba(192,120,138,0.15) 0%, transparent 65%); pointer-events: none; }
+    .infographic-section .section-heading { color: #fff; }
+    .infographic-section .section-eyebrow { color: rgba(192,120,138,0.7); }
+    .infographic-section .section-eyebrow::before { background: rgba(192,120,138,0.5); }
+    .infographic-section .section-sub { color: rgba(255,255,255,0.45); }
+    .infographic-main-stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; overflow: hidden; margin: 3rem 0; }
+    .infographic-stat { background: rgba(255,255,255,0.03); padding: 2rem 1.5rem; text-align: center; transition: background 0.2s; }
+    .infographic-stat:hover { background: rgba(255,255,255,0.07); }
+    .infographic-stat-num { font-family: var(--font-display); font-size: clamp(2.2rem,3.5vw,3.8rem); color: var(--rose); line-height: 1; margin-bottom: 0.5rem; letter-spacing: 0.02em; }
+    .infographic-stat-label { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.6; font-weight: 500; }
+    .infographic-stat-sub { font-size: 10px; color: rgba(192,120,138,0.55); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.3rem; font-weight: 700; }
+    .gestation-section { margin: 3.5rem 0; }
+    .gestation-title { font-family: var(--font-serif); font-size: clamp(1rem,1.6vw,1.2rem); color: rgba(255,255,255,0.7); margin-bottom: 1.5rem; font-style: italic; }
+    .gestation-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .gestation-track { display: flex; align-items: flex-end; gap: 3px; min-width: 480px; height: 110px; }
+    .gestation-week { flex: 1; min-width: 36px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
+    .gestation-bar { width: 100%; border-radius: 4px 4px 0 0; }
+    .gestation-wlabel { font-size: 8px; color: rgba(255,255,255,0.32); margin-top: 0.45rem; text-align: center; white-space: nowrap; font-weight: 600; }
+    .gestation-week.extreme-pre .gestation-bar { background: linear-gradient(0deg, #3d2a38, #6b4d5e); }
+    .gestation-week.very-pre .gestation-bar { background: linear-gradient(0deg, #6b4d5e, #a06288); }
+    .gestation-week.moderate-pre .gestation-bar { background: linear-gradient(0deg, var(--rose), #d9a0b0); }
+    .gestation-week.late-pre .gestation-bar { background: linear-gradient(0deg, #90a882, #b4c8a4); }
+    .gestation-week.term .gestation-bar { background: linear-gradient(0deg, #5a9a6a, #7ab88a); }
+    .gestation-legend { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin-top: 1.25rem; }
+    .gestation-legend-item { font-size: 11px; color: rgba(255,255,255,0.42); display: flex; align-items: center; gap: 0.45rem; }
+    .gestation-legend-item::before { content: ''; display: inline-block; width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+    .gestation-legend-item.extreme-pre::before { background: #6b4d5e; }
+    .gestation-legend-item.very-pre::before { background: #a06288; }
+    .gestation-legend-item.moderate-pre::before { background: var(--rose); }
+    .gestation-legend-item.late-pre::before { background: #90a882; }
+    .gestation-legend-item.term::before { background: #5a9a6a; }
+    .fact-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; margin-top: 3.5rem; }
+    .fact-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 1.75rem; transition: background 0.2s, border-color 0.25s, transform 0.25s; }
+    .fact-card:hover { background: rgba(255,255,255,0.07); border-color: rgba(192,120,138,0.22); transform: translateY(-3px); }
+    .fact-card-icon { font-size: 2rem; margin-bottom: 0.9rem; line-height: 1; }
+    .fact-card-title { font-family: var(--font-serif); font-size: 1rem; font-weight: 700; color: rgba(255,255,255,0.88); margin-bottom: 0.6rem; }
+    .fact-card-text { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.85; }
+    .fact-card-text strong { color: var(--rose); font-weight: 600; }
+    /* ══ PHOTO STRIP ══ */
+    .photo-strip { position: relative; height: clamp(260px,36vw,440px); overflow: hidden; }
+    .photo-strip img { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; display: block; }
+    .photo-strip-overlay { position: absolute; inset: 0; background: linear-gradient(105deg, rgba(46,31,44,0.86) 0%, rgba(46,31,44,0.5) 50%, rgba(46,31,44,0.1) 100%); display: flex; flex-direction: column; justify-content: center; padding: 0 clamp(28px,6vw,96px); }
+    .photo-strip-quote { font-family: var(--font-serif); font-style: italic; font-size: clamp(1.1rem,2.2vw,1.75rem); color: #fff; line-height: 1.55; max-width: 580px; position: relative; padding-left: 1.75rem; }
+    .photo-strip-quote::before { content: '"'; position: absolute; left: 0; top: -0.05em; font-size: 3.5em; color: rgba(192,120,138,0.55); line-height: 1; font-style: normal; }
+    .photo-strip-attr { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; color: rgba(255,255,255,0.42); text-transform: uppercase; margin-top: 1.5rem; }
+
+    /* ══ HERO ART SVG ══ */
+    .hero-art-svg { position: relative; z-index: 1; width: min(380px, 90%); height: auto; flex-shrink: 0; }
+
+    /* ══ INFOGRAPHIC 2-COL LAYOUT ══ */
+    .infographic-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: start; margin: 3.5rem 0; }
+    .infographic-stats-block { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; overflow: hidden; }
+    .infographic-stat-solo { background: rgba(255,255,255,0.03); padding: 2.25rem 1.75rem; display: flex; flex-direction: column; gap: 0.4rem; transition: background 0.2s; }
+    .infographic-stat-solo:hover { background: rgba(255,255,255,0.07); }
+    .infographic-sep { height: 1px; background: rgba(255,255,255,0.07); margin: 4.5rem 0; }
+    .infographic-facts-heading { font-family: var(--font-serif); font-size: clamp(1.1rem,1.8vw,1.35rem); color: rgba(255,255,255,0.6); font-style: italic; margin-bottom: 2.5rem; }
+    .fact-grid { grid-template-columns: repeat(2,1fr) !important; }
+    .fact-card { padding: 2rem 2rem 2.25rem; }
+    @media (max-width: 1024px) { .infographic-cols { grid-template-columns: 1fr; gap: 2.5rem; } }
+    @media (max-width: 640px) { .infographic-stats-block { grid-template-columns: 1fr; } .fact-grid { grid-template-columns: 1fr !important; } .fact-card { padding: 1.75rem; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+      .hero-marquee-track { animation: none; }
+      .tilt-card { transform: none !important; }
+    }
+
+    /* ══ REVEALS ══ */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.72s cubic-bezier(0.16,1,0.3,1), transform 0.72s cubic-bezier(0.16,1,0.3,1); }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-l { opacity: 0; transform: translateX(-48px); transition: opacity 0.72s cubic-bezier(0.16,1,0.3,1), transform 0.72s cubic-bezier(0.16,1,0.3,1); }
+    .reveal-l.visible { opacity: 1; transform: none; }
+    .reveal-r { opacity: 0; transform: translateX(48px); transition: opacity 0.72s cubic-bezier(0.16,1,0.3,1), transform 0.72s cubic-bezier(0.16,1,0.3,1); }
+    .reveal-r.visible { opacity: 1; transform: none; }
+    .reveal-scale { opacity: 0; transform: translateY(20px) scale(0.94); transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1); }
+    .reveal-scale.visible { opacity: 1; transform: none; }
+    .spec-panel.reveal { transform: translateY(18px) scale(0.97); }
+    .spec-panel.reveal.visible { transform: none; }
+    .about-bento-main.reveal-l { transform: translateX(-40px) scale(0.98); }
+    .about-bento-main.reveal-l.visible { transform: none; }
+    .about-feat.reveal-r { transform: translateX(40px) scale(0.98); }
+    .about-feat.reveal-r.visible { transform: none; }
+    .blog-card.reveal-scale { transform: translateY(24px) scale(0.96); }
+    .blog-card.reveal-scale.visible { transform: none; }
+
+    /* ══ RESPONSIVE ══ */
+    @media (max-width: 1024px) {
+      .light-section { padding: clamp(50px,7vw,80px) clamp(16px,4vw,40px); }
+      .about-bento { grid-template-columns: 1fr; padding: 0 clamp(16px,4vw,40px); }
+      .about-bento-side { flex-direction: row; }
+      .spec-panel, .spec-panel.flip { grid-template-columns: 1fr; }
+      .spec-panel.flip .spec-accent { order: 0; }
+      .spec-accent { min-height: 160px; padding: 2rem 1.75rem; }
+      .cert-grid { grid-template-columns: repeat(2,1fr); }
+      .cert-grid-2 { grid-template-columns: 1fr; }
+      .pub-stats { grid-template-columns: repeat(2,1fr); }
+      .contact-layout { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-split-photo { width: 40%; }
+      .blog-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 640px) {
+      nav { padding: 0 16px; height: 60px; }
+      .nav-links-wrap { display: none; position: fixed; top: 68px; right: 12px; left: 12px; background: rgba(253,250,248,0.97); backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: 16px; padding: 0.75rem; box-shadow: 0 8px 32px rgba(0,0,0,0.14); z-index: 99; }
+      .nav-links-wrap.open { display: flex; }
+      .nav-links { flex-direction: column; gap: 2px; width: 100%; }
+      .nav-links a { font-size: 13px; padding: 0.65rem 1rem; width: 100%; text-align: center; justify-content: center; }
+      .nav-links a .num { display: none; }
+      .nav-toggle { display: flex; }
+      #home { height: 100svh; min-height: 520px; }
+      .hero-split { position: relative; flex-direction: column; padding-top: 0; align-items: stretch; }
+      .hero-split-photo { position: absolute; inset: 0; width: 100%; height: 100%; align-self: auto; order: 0; }
+      .hero-split-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(46,31,44,0.93) 0%, rgba(46,31,44,0.55) 40%, transparent 70%); }
+      .hero-split-text { position: absolute; bottom: 80px; left: 0; right: 0; padding: 0 22px; z-index: 2; flex: none; }
+      .hero-split-label { margin-bottom: 0.5rem; font-size: 10px; color: rgba(255,255,255,0.65); letter-spacing: 0.2em; }
+      .hero-split-headline { font-size: clamp(1.6rem,7vw,2.4rem); color: #fff; line-height: 1.12; max-width: 100%; }
+      .hero-lead { color: rgba(255,255,255,0.6); font-size: 13px; }
+      .hero-trust-item { color: rgba(255,255,255,0.75); }
+      .hero-trust-icon { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.9); width: 28px; height: 28px; }
+      .hero-trust-sep { background: rgba(255,255,255,0.2); }
+      .hero-name-tag { display: none; }
+      .hero-cta-br { bottom: 14px; right: 14px; }
+      .big-headline-section { padding: 56px 18px; }
+      .about-bento { margin-top: 2.5rem; }
+      .about-bento-side { flex-direction: column; }
+      .path-grid { grid-template-columns: 1fr; }
+      .cert-grid { grid-template-columns: 1fr; }
+      .cert-grid-2 { grid-template-columns: 1fr; }
+      .pub-stats { grid-template-columns: repeat(2,1fr); }
+      .pub-card { grid-template-columns: 1fr; }
+      .blog-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem 16px; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+      #float-cta { right: 12px; bottom: 20px; }
+      .page-name-vert { display: none; }
+      .ls-main  { font-size: clamp(1.7rem,7.5vw,2.6rem); }
+      .ls-curly { font-size: clamp(1.4rem,6.5vw,2.2rem); }
+      .ls-mid   { font-size: clamp(1.1rem,5.5vw,1.8rem); }
+      .ls-small { font-size: clamp(0.95rem,4.5vw,1.5rem); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- FLOATING MICRO-DECO layer -->
+<div class="fdl" aria-hidden="true">
+  <div class="fdl-el" style="top:18%;left:6%;animation:microFloat 6.2s ease-in-out infinite;animation-delay:0s">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+  </div>
+  <div class="fdl-el pk" style="top:34%;left:92%;animation:microFloat 8s ease-in-out infinite;animation-delay:1.2s">
+    <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+  </div>
+  <div class="fdl-el" style="top:62%;left:4%;animation:microFloat 7.4s ease-in-out infinite;animation-delay:2.5s">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"/></svg>
+  </div>
+  <div class="fdl-el pk" style="top:78%;left:96%;animation:microFloat 9s ease-in-out infinite;animation-delay:0.8s">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+  </div>
+  <div class="fdl-el" style="top:50%;left:88%;animation:microFloat 6.8s ease-in-out infinite;animation-delay:3.5s">
+    <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor" opacity="0.6"><circle cx="12" cy="12" r="10"/></svg>
+  </div>
+</div>
+
+<!-- LOADER -->
+<div id="page-loader">
+  <div class="loader-logo-wrap">
+    <div class="loader-name">Serce Mamy</div>
+    <div class="loader-sub-text">Stowarzyszenie</div>
+  </div>
+  <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+</div>
+
+<div id="scroll-progress"></div>
+
+<a href="#contact" id="float-cta" class="ripple-host">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+  Pomóż nam
+</a>
+
+<div class="page-name-vert" id="pageNameVert">SERCE MAMY</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="#home">
+    <svg class="nav-heart-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+      <path class="nav-heart-inner" d="M14 24s-10-6.5-10-13a6 6 0 0 1 10-4.47A6 6 0 0 1 24 11c0 6.5-10 13-10 13z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"/>
+    </svg>
+    <div class="nav-logo-text">
+      <span class="nav-logo-main">Serce Mamy</span>
+      <span class="nav-logo-sub">Stowarzyszenie</span>
+    </div>
+  </a>
+  <div class="nav-links-wrap">
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" class="active"><span class="num">01</span> Główna</a></li>
+      <li><a href="#about"><span class="num">02</span> O nas</a></li>
+      <li><a href="#path"><span class="num">03</span> Ścieżka</a></li>
+      <li><a href="#projects"><span class="num">04</span> Projekty</a></li>
+      <li><a href="#stories"><span class="num">05</span> Historie</a></li>
+      <li><a href="#blog"><span class="num">06</span> Blog</a></li>
+      <li><a href="#donate"><span class="num">07</span> Pomóż</a></li>
+      <li><a href="#contact"><span class="num">08</span> Kontakt</a></li>
+    </ul>
+  </div>
+  <div class="nav-toggle" id="navToggle"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- ═══ 01 HERO ═══ -->
+<section id="home">
+  <div class="hero-name-tag">Stowarzyszenie Serce Mamy</div>
+  <div class="hero-split">
+    <div class="hero-split-text">
+      <p class="hero-split-label">Stowarzyszenie · Wsparcie · Wcześniaki</p>
+      <h1 class="hero-split-headline">Nie jesteś w tym sama.</h1>
+      <p class="hero-lead">Wspieramy mamy wcześniaków, rodziny na oddziałach noworodkowych i kobiety w najtrudniejszych momentach macierzyństwa.</p>
+      <div class="hero-trust-bar">
+        <div class="hero-trust-item">
+          <div class="hero-trust-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <span>Rodziny objęte&nbsp;opieką</span>
+        </div>
+        <div class="hero-trust-sep"></div>
+        <div class="hero-trust-item">
+          <div class="hero-trust-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+          <span>3 projekty&nbsp;aktywne</span>
+        </div>
+        <div class="hero-trust-sep"></div>
+        <div class="hero-trust-item">
+          <div class="hero-trust-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <span>Czynni&nbsp;całą dobę</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-split-photo">
+      <div class="hero-photo-placeholder">
+        <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(192,120,138,0.08) 1px,transparent 1px);background-size:26px 26px;" aria-hidden="true"></div>
+        <svg class="hero-art-svg" viewBox="0 0 400 480" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <radialGradient id="rg_hero" cx="50%" cy="48%" r="55%">
+              <stop offset="0%" stop-color="#c0788a" stop-opacity="0.22"/>
+              <stop offset="100%" stop-color="#c0788a" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="rg_hero2" cx="50%" cy="50%" r="38%">
+              <stop offset="0%" stop-color="#8a6678" stop-opacity="0.12"/>
+              <stop offset="100%" stop-color="#8a6678" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <ellipse cx="200" cy="235" rx="190" ry="230" fill="url(#rg_hero)"/>
+          <ellipse cx="200" cy="215" rx="125" ry="155" fill="url(#rg_hero2)"/>
+          <circle cx="200" cy="240" r="182" stroke="rgba(192,120,138,0.05)" stroke-width="1" stroke-dasharray="8 14"/>
+          <circle cx="200" cy="240" r="154" stroke="rgba(192,120,138,0.07)" stroke-width="1" stroke-dasharray="5 10"/>
+          <circle cx="200" cy="240" r="122" stroke="rgba(192,120,138,0.09)" stroke-width="1" stroke-dasharray="3 7"/>
+          <circle cx="200" cy="240" r="92" stroke="rgba(192,120,138,0.15)" stroke-width="1.5"/>
+          <circle cx="200" cy="240" r="58" stroke="rgba(192,120,138,0.22)" stroke-width="1.5"/>
+          <path d="M200 295 C177 282 148 263 148 236 C148 220 161 210 175 214 C185 218 196 228 200 236 C204 228 215 218 225 214 C239 210 252 220 252 236 C252 263 223 282 200 295Z" fill="rgba(192,120,138,0.15)" stroke="rgba(192,120,138,0.4)" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M200 272 C188 265 172 255 172 241 C172 232 181 226 190 229 C195 231 199 237 200 241 C201 237 205 231 210 229 C219 226 228 232 228 241 C228 255 212 265 200 272Z" fill="rgba(192,120,138,0.3)" stroke="rgba(192,120,138,0.55)" stroke-width="1.2" stroke-linejoin="round"/>
+          <polyline points="28,240 72,240 86,210 100,272 116,220 132,260 144,240 256,240 268,226 284,254 296,240 330,240 372,240" stroke="rgba(192,120,138,0.3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="200" cy="58" r="5" fill="rgba(192,120,138,0.3)"/>
+          <circle cx="338" cy="143" r="4" fill="rgba(192,120,138,0.22)"/>
+          <circle cx="346" cy="297" r="4" fill="rgba(192,120,138,0.2)"/>
+          <circle cx="200" cy="432" r="3.5" fill="rgba(192,120,138,0.16)"/>
+          <circle cx="54" cy="297" r="4" fill="rgba(192,120,138,0.2)"/>
+          <circle cx="62" cy="143" r="4" fill="rgba(192,120,138,0.22)"/>
+          <line x1="200" y1="63" x2="200" y2="88" stroke="rgba(192,120,138,0.14)" stroke-width="1" stroke-dasharray="3 4"/>
+          <line x1="334" y1="147" x2="318" y2="164" stroke="rgba(192,120,138,0.12)" stroke-width="1" stroke-dasharray="3 4"/>
+          <line x1="342" y1="293" x2="328" y2="276" stroke="rgba(192,120,138,0.12)" stroke-width="1" stroke-dasharray="3 4"/>
+          <line x1="58" y1="293" x2="72" y2="276" stroke="rgba(192,120,138,0.12)" stroke-width="1" stroke-dasharray="3 4"/>
+          <line x1="66" y1="147" x2="82" y2="164" stroke="rgba(192,120,138,0.12)" stroke-width="1" stroke-dasharray="3 4"/>
+          <circle cx="152" cy="102" r="2" fill="rgba(192,120,138,0.16)"/>
+          <circle cx="268" cy="96" r="2" fill="rgba(192,120,138,0.14)"/>
+          <circle cx="360" cy="218" r="1.5" fill="rgba(192,120,138,0.12)"/>
+          <circle cx="354" cy="342" r="2" fill="rgba(192,120,138,0.12)"/>
+          <circle cx="136" cy="390" r="1.5" fill="rgba(192,120,138,0.1)"/>
+          <circle cx="40" cy="218" r="1.5" fill="rgba(192,120,138,0.1)"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="hero-marquee-wrap">
+    <div class="hero-marquee-track">
+      <span class="hero-marquee-text">SERCE MAMY&nbsp;·&nbsp;</span>
+      <span class="hero-marquee-text">WCZEŚNIAKI&nbsp;·&nbsp;</span>
+      <span class="hero-marquee-text">BLISKO DZIECKA&nbsp;·&nbsp;</span>
+      <span class="hero-marquee-text">CICHE NOCE&nbsp;·&nbsp;</span>
+      <span class="hero-marquee-text">AKADEMIA RODZICA&nbsp;·&nbsp;</span>
+      <span class="hero-marquee-text">SERCE MAMY&nbsp;·&nbsp;</span>
+      <span class="hero-marquee-text">WCZEŚNIAKI&nbsp;·&nbsp;</span>
+      <span class="hero-marquee-text">BLISKO DZIECKA&nbsp;·&nbsp;</span>
+      <span class="hero-marquee-text">CICHE NOCE&nbsp;·&nbsp;</span>
+      <span class="hero-marquee-text">AKADEMIA RODZICA&nbsp;·&nbsp;</span>
+    </div>
+  </div>
+  <div class="hero-cta-br"><a href="#projects" class="btn-resume">Poznaj nasze projekty →</a></div>
+</section>
+
+<!-- ═══ BIG HEADLINE (between hero & about) ═══ -->
+<div class="big-headline-section">
+  <div class="big-headline-inner">
+    <p class="big-headline-eyebrow">Misja stowarzyszenia</p>
+    <div class="headline-line"><span class="headline-line-inner">Rozumiemy,</span></div>
+    <div class="headline-line"><span class="headline-line-inner rose">co możesz czuć.</span></div>
+    <div class="headline-line"><span class="headline-line-inner muted">Jesteśmy tu dla Ciebie.</span></div>
+    <p class="big-headline-sub">Najpierw mówimy do mamy — z empatią i spokojem. Dopiero potem do świata, który może pomóc.</p>
+  </div>
+</div>
+
+<!-- ═══ 02 O NAS ═══ -->
+<section id="about">
+  <div class="ls-section">
+    <div class="ls-block" id="ls-block">
+      <div class="ls-line ls-main"  data-ls>Serce Mamy</div>
+      <div class="ls-line ls-curly" data-ls>{dla kobiet i noworodków}</div>
+      <div class="ls-line ls-mid"   data-ls>Ciąża&nbsp;·&nbsp;Poród&nbsp;·&nbsp;Połóg&nbsp;·&nbsp;Wcześniak</div>
+      <div class="ls-line ls-small" data-ls>Bo czasem największą pomocą jest obecność.</div>
+    </div>
+  </div>
+
+  <!-- BENTO -->
+  <div class="about-bento">
+    <div class="about-bento-main reveal-l">
+      <p class="about-bento-quote">
+        <strong>Serce Mamy</strong> to stowarzyszenie stworzone z myślą o kobietach, noworodkach i rodzinach, które potrzebują wsparcia w najważniejszych i najtrudniejszych momentach — w ciąży, przy porodzie, w połogu oraz wtedy, gdy dziecko wymaga specjalistycznej opieki.<br><br>
+        Wspieramy mamy wcześniaków, pomagamy doposażać oddziały noworodkowe, promujemy karmienie piersią, edukujemy rodziców i działamy na rzecz <strong>bezpiecznej, spokojnej opieki okołoporodowej</strong>.
+      </p>
+    </div>
+    <div class="about-bento-side">
+      <div class="about-feat reveal-r" style="transition-delay:0.08s">
+        <div class="about-feat-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <h3>Sprzęt ratujący życie</h3>
+        <p>Inkubatory, respiratory, pompy — finansujemy to, czego brakuje na oddziałach.</p>
+      </div>
+      <div class="about-feat reveal-r" style="transition-delay:0.18s">
+        <div class="about-feat-icon">
+          <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        </div>
+        <h3>Wiedza i edukacja</h3>
+        <p>Warsztaty, poradniki i grupy wsparcia — bezpłatnie, dla każdego rodzica.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- "BO CZASEM" dark strip -->
+  <div class="times-strip" style="margin-top:4rem">
+    <div class="times-inner">
+      <p class="times-eyebrow">Co dajemy</p>
+      <p class="times-line reveal"><strong>Bo czasem największą pomocą jest sprzęt.</strong></p>
+      <p class="times-line reveal" style="transition-delay:0.1s">Czasem wiedza.</p>
+      <p class="times-line reveal" style="transition-delay:0.2s">Czasem rozmowa.</p>
+      <p class="times-line reveal" style="transition-delay:0.3s">A czasem <strong>świadomość, że ktoś naprawdę rozumie.</strong></p>
+    </div>
+  </div>
+
+  <!-- Photo strip -->
+  <div class="photo-strip">
+    <img src="https://d8j0ntlcm91z4.cloudfront.net/user_37ZZKwyNLLPo4MGAhhK607iaU8Q/hf_20260623_094635_d9897ec1-2460-4ea4-97e3-1fd6d62b4513.jpeg" alt="Mama i wcześniak — nadzieja i miłość" loading="lazy">
+    <div class="photo-strip-overlay">
+      <blockquote class="photo-strip-quote">Każde dziecko zasługuje na najlepszy start — nieważne, jak wcześnie przyszło na świat.</blockquote>
+      <span class="photo-strip-attr">Serce Mamy · Stowarzyszenie</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 03 TWOJA ŚCIEŻKA ═══ -->
+<section id="path" class="light-section alt">
+  <div class="section-inner">
+    <p class="section-eyebrow reveal">03</p>
+    <h2 class="section-heading reveal">Na jakim etapie jesteś?</h2>
+    <p class="section-sub reveal">Każda sytuacja jest inna. Wybierz swój etap — pokażemy Ci, jak możemy pomóc.</p>
+    <div class="path-grid">
+      <a href="#about" class="path-card tilt-card reveal-l">
+        <div class="path-card-num">01</div>
+        <div class="path-card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="3"/><path d="M8 9.5c0 0-1.5.8-1.5 3.5h11c0-2.7-1.5-3.5-1.5-3.5"/><ellipse cx="12" cy="16" rx="3.5" ry="4.5"/></svg>
+        </div>
+        <div class="path-card-title">Jestem w ciąży</div>
+        <p class="path-card-desc">Szukasz wsparcia, informacji lub chcesz dowiedzieć się czego się spodziewać. Jesteśmy tu dla Ciebie od pierwszego trymestru.</p>
+        <span class="path-card-cta">Dowiedz się więcej <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+      <a href="#projects" class="path-card tilt-card reveal-r">
+        <div class="path-card-num">02</div>
+        <div class="path-card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <div class="path-card-title">Moje dziecko jest na OIOM-ie</div>
+        <p class="path-card-desc">To jeden z najtrudniejszych momentów. Nasze programy pomagają być blisko dziecka i rozumieć co się dzieje wokół.</p>
+        <span class="path-card-cta">Nasze projekty <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+      <a href="#materials" class="path-card tilt-card reveal-l">
+        <div class="path-card-num">03</div>
+        <div class="path-card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="path-card-title">Wróciliśmy do domu</div>
+        <p class="path-card-desc">Pierwsze tygodnie z wcześniakiem mogą być trudne. Mamy materiały, warsztaty i społeczność, która to rozumie.</p>
+        <span class="path-card-cta">Materiały edukacyjne <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+      <a href="#contact" class="path-card tilt-card reveal-r">
+        <div class="path-card-num">04</div>
+        <div class="path-card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div class="path-card-title">Potrzebuję wsparcia</div>
+        <p class="path-card-desc">Nie musisz wiedzieć czego szukasz. Napisz do nas — pomożemy znaleźć odpowiednią formę pomocy.</p>
+        <span class="path-card-cta">Skontaktuj się <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 04 PROJEKTY ═══ -->
+<section id="projects" class="light-section">
+  <div class="section-inner">
+    <p class="section-eyebrow reveal">04</p>
+    <h2 class="section-heading reveal">Nasze projekty</h2>
+    <p class="section-sub reveal">Trzy programy, które realnie zmieniają jakość życia na oddziale i po powrocie do domu.</p>
+    <div class="spec-stack">
+
+      <div class="spec-panel reveal">
+        <div class="spec-accent spec-accent-rose" data-num="01">
+          <span class="spec-accent-label">Projekt 01</span>
+          <h3 class="spec-accent-title">Blisko Dziecka</h3>
+        </div>
+        <div class="spec-content">
+          <p class="spec-content-desc">Program wspierający kangurowanie i kontakt skóra do skóry na oddziałach intensywnej terapii noworodkowej. Pomagamy rodzicom być jak najbliżej — nawet gdy dziecko jest podłączone do aparatury.</p>
+          <div class="spec-content-tags">
+            <span class="spec-tag">Kangurowanie</span>
+            <span class="spec-tag">OIOM noworodkowy</span>
+            <span class="spec-tag">Kontakt rodzic–dziecko</span>
+            <span class="spec-tag">Wsparcie emocjonalne</span>
+          </div>
+          <a href="projekt-blisko-dziecka.html" class="spec-cta-link">Czytaj więcej o projekcie</a>
+        </div>
+      </div>
+
+      <div class="spec-panel flip reveal">
+        <div class="spec-accent spec-accent-plum" data-num="02">
+          <span class="spec-accent-label">Projekt 02</span>
+          <h3 class="spec-accent-title">Ciche Noce</h3>
+        </div>
+        <div class="spec-content">
+          <p class="spec-content-desc">Program ograniczania nadmiernej stymulacji sensorycznej na oddziałach noworodkowych. Wyciszenie, zasłony, nakładki — wszystko po to, by noworodek mógł spać głębiej i rozwijać się lepiej.</p>
+          <div class="spec-content-tags">
+            <span class="spec-tag">Sen noworodka</span>
+            <span class="spec-tag">Redukcja hałasu</span>
+            <span class="spec-tag">Neuroprotekcja</span>
+            <span class="spec-tag">Zdrowy rozwój</span>
+          </div>
+          <a href="projekt-ciche-noce.html" class="spec-cta-link">Czytaj więcej o projekcie</a>
+        </div>
+      </div>
+
+      <div class="spec-panel reveal">
+        <div class="spec-accent spec-accent-dark" data-num="03">
+          <span class="spec-accent-label">Projekt 03</span>
+          <h3 class="spec-accent-title">Akademia Rodzica</h3>
+        </div>
+        <div class="spec-content">
+          <p class="spec-content-desc">Warsztaty i szkolenia dla rodziców wcześniaków — od pierwszych dni na oddziale po powrót do domu. Uczymy pielęgnacji, karmienia, rozpoznawania sygnałów. Zapewniamy dostęp do psychologa, fizjoterapeuty i laktatorki.</p>
+          <div class="spec-content-tags">
+            <span class="spec-tag">Warsztaty</span>
+            <span class="spec-tag">Karmienie piersią</span>
+            <span class="spec-tag">Pielęgnacja</span>
+            <span class="spec-tag">Grupy wsparcia</span>
+          </div>
+          <a href="projekt-akademia-rodzica.html" class="spec-cta-link">Czytaj więcej o projekcie</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 05 HISTORIE ═══ -->
+<section id="stories" class="light-section alt">
+  <div class="section-inner">
+    <p class="section-eyebrow reveal">05</p>
+    <h2 class="section-heading reveal">Rodziny, które nam zaufały</h2>
+    <p class="section-sub reveal">Każda historia jest inna. Każda jest prawdziwa.</p>
+    <div class="carousel-header-row reveal">
+      <p style="font-size:14px;color:var(--muted)">Historia <span id="cSlideNum">1</span> z 4</p>
+      <div class="carousel-arrows">
+        <button class="carousel-btn" id="cPrev" aria-label="Poprzednia historia"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></button>
+        <button class="carousel-btn" id="cNext" aria-label="Następna historia"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+      </div>
+    </div>
+    <div class="carousel-viewport">
+      <div class="carousel-track" id="cTrack">
+        <div class="carousel-slide">
+          <div class="carousel-slide-body">
+            <p class="carousel-slide-num">Historia 01 · Mama wcześniaka</p>
+            <p class="carousel-slide-quote">Urodził się w 27. tygodniu. Ważył 860 gramów. Przez trzy tygodnie siedziałam obok inkubatora i nie wiedziałam co robić. Fundacja pokazała mi, że mogę być mamą — nawet tu, na oddziale.</p>
+            <p class="carousel-slide-author">— Mama Wojtka, Kraków · 2024</p>
+          </div>
+        </div>
+        <div class="carousel-slide">
+          <div class="carousel-slide-body">
+            <p class="carousel-slide-num">Historia 02 · Rodzice bliźniąt</p>
+            <p class="carousel-slide-quote">Dwie córki urodzone w 30. tygodniu. W pierwszej chwili nie rozumiałam żadnego słowa lekarzy. Warsztaty Akademii Rodzica zmieniły wszystko — zaczęłam rozumieć co widzę na monitorach, jak kangurować, jak prosić o pomoc.</p>
+            <p class="carousel-slide-author">— Mama Zosi i Hani, Wrocław · 2025</p>
+          </div>
+        </div>
+        <div class="carousel-slide">
+          <div class="carousel-slide-body">
+            <p class="carousel-slide-num">Historia 03 · Tata wcześniaka</p>
+            <p class="carousel-slide-quote">Nikt nie mówi o tatusiach wcześniaków. Czułem się niewidzialny — ani pacjentem, ani rodzicem. Serce Mamy organizowało spotkania też dla nas. Po raz pierwszy poczułem, że mam prawo się bać.</p>
+            <p class="carousel-slide-author">— Tata Mikołaja, Gdańsk · 2024</p>
+          </div>
+        </div>
+        <div class="carousel-slide">
+          <div class="carousel-slide-body" style="text-align:center;padding:3.5rem 2.5rem;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:220px">
+            <p class="carousel-slide-num" style="display:inline-block;margin-bottom:1rem">Twoja historia</p>
+            <p style="font-family:var(--font-serif);font-size:1.15rem;color:var(--muted);line-height:1.7;max-width:500px">Twoja historia może pomóc innej mamie poczuć się mniej samotną. Jeśli chcesz się podzielić — napisz do nas.</p>
+            <a href="#contact" class="btn-resume" style="margin-top:1.5rem;display:inline-flex">Napisz do nas →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-indicators">
+      <button class="carousel-dot active" data-idx="0"></button>
+      <button class="carousel-dot" data-idx="1"></button>
+      <button class="carousel-dot" data-idx="2"></button>
+      <button class="carousel-dot" data-idx="3"></button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MATERIAŁY (hidden id for path anchor) ═══ -->
+<span id="materials"></span>
+
+<!-- ═══ INFOGRAFIKA ═══ -->
+<section class="infographic-section">
+  <div class="section-inner">
+    <p class="section-eyebrow reveal">Dane i fakty</p>
+    <h2 class="section-heading reveal">Wcześniak w liczbach</h2>
+    <p class="section-sub reveal">Każda liczba to realne dziecko i rodzina, która potrzebowała pomocy.</p>
+
+    <!-- 2-col: stats (left) + chart (right) -->
+    <div class="infographic-cols reveal">
+      <div class="infographic-stats-block">
+        <div class="infographic-stat-solo">
+          <div class="infographic-stat-num">23 000</div>
+          <div class="infographic-stat-label">wcześniaków rodzi się rocznie w Polsce</div>
+          <div class="infographic-stat-sub">≈ 63 każdego dnia</div>
+        </div>
+        <div class="infographic-stat-solo">
+          <div class="infographic-stat-num">7,7%</div>
+          <div class="infographic-stat-label">wszystkich urodzeń to porody przedwczesne</div>
+          <div class="infographic-stat-sub">1 na 13 dzieci</div>
+        </div>
+        <div class="infographic-stat-solo">
+          <div class="infographic-stat-num">95%</div>
+          <div class="infographic-stat-label">przeżywalność po 28. tygodniu ciąży</div>
+          <div class="infographic-stat-sub">nowoczesna intensywna terapia</div>
+        </div>
+        <div class="infographic-stat-solo">
+          <div class="infographic-stat-num">62–83</div>
+          <div class="infographic-stat-label">dni średnio w szpitalu na OIOM-ie</div>
+          <div class="infographic-stat-sub">zależnie od wieku ciążowego</div>
+        </div>
+      </div>
+
+      <div class="infographic-chart-block">
+        <div class="gestation-section">
+          <p class="gestation-title">Szanse na zdrowy start według tygodnia urodzenia</p>
+          <div class="gestation-wrap">
+            <div class="gestation-track">
+              <div class="gestation-week extreme-pre"><div class="gestation-bar" style="height:18px"></div><span class="gestation-wlabel">22–25</span></div>
+              <div class="gestation-week extreme-pre"><div class="gestation-bar" style="height:30px"></div><span class="gestation-wlabel">26 tyg.</span></div>
+              <div class="gestation-week very-pre"><div class="gestation-bar" style="height:44px"></div><span class="gestation-wlabel">27</span></div>
+              <div class="gestation-week very-pre"><div class="gestation-bar" style="height:54px"></div><span class="gestation-wlabel">28 tyg.</span></div>
+              <div class="gestation-week very-pre"><div class="gestation-bar" style="height:62px"></div><span class="gestation-wlabel">29</span></div>
+              <div class="gestation-week very-pre"><div class="gestation-bar" style="height:68px"></div><span class="gestation-wlabel">30 tyg.</span></div>
+              <div class="gestation-week very-pre"><div class="gestation-bar" style="height:73px"></div><span class="gestation-wlabel">31</span></div>
+              <div class="gestation-week moderate-pre"><div class="gestation-bar" style="height:78px"></div><span class="gestation-wlabel">32 tyg.</span></div>
+              <div class="gestation-week moderate-pre"><div class="gestation-bar" style="height:81px"></div><span class="gestation-wlabel">33</span></div>
+              <div class="gestation-week late-pre"><div class="gestation-bar" style="height:83px"></div><span class="gestation-wlabel">34 tyg.</span></div>
+              <div class="gestation-week late-pre"><div class="gestation-bar" style="height:86px"></div><span class="gestation-wlabel">35</span></div>
+              <div class="gestation-week late-pre"><div class="gestation-bar" style="height:88px"></div><span class="gestation-wlabel">36 tyg.</span></div>
+              <div class="gestation-week term"><div class="gestation-bar" style="height:90px"></div><span class="gestation-wlabel">37+</span></div>
+            </div>
+            <div class="gestation-legend">
+              <span class="gestation-legend-item extreme-pre">Ekstremalnie wcześniaki (&lt; 26 tyg.)</span>
+              <span class="gestation-legend-item very-pre">Bardzo wcześniaki (27–31 tyg.)</span>
+              <span class="gestation-legend-item moderate-pre">Umiarkowanie wcześniaki (32–33 tyg.)</span>
+              <span class="gestation-legend-item late-pre">Późne wcześniaki (34–36 tyg.)</span>
+              <span class="gestation-legend-item term">Donoszone (37+ tyg.)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="infographic-sep"></div>
+
+    <p class="infographic-facts-heading reveal">Czego możesz nie wiedzieć o wcześniakach?</p>
+    <div class="fact-grid">
+      <div class="fact-card reveal-scale">
+        <div class="fact-card-icon">🫁</div>
+        <h4 class="fact-card-title">Surfaktant ratuje życie</h4>
+        <p class="fact-card-text">Płuca wcześniaka mogą nie produkować jeszcze <strong>surfaktantu</strong> — substancji zapobiegającej zapadaniu się pęcherzyków. Podanie go po porodzie uratowało miliony dzieci na świecie.</p>
+      </div>
+      <div class="fact-card reveal-scale" style="transition-delay:0.07s">
+        <div class="fact-card-icon">🤱</div>
+        <h4 class="fact-card-title">Kangurowanie to medycyna</h4>
+        <p class="fact-card-text"><strong>Kontakt skóra do skóry</strong> obniża ryzyko infekcji o 51%, zmniejsza śmiertelność o 40% i skraca pobyt w szpitalu średnio o 7 dni. Najtańsza i najskuteczniejsza terapia.</p>
+      </div>
+      <div class="fact-card reveal-scale" style="transition-delay:0.14s">
+        <div class="fact-card-icon">🍼</div>
+        <h4 class="fact-card-title">Mleko mamy — spersonalizowane</h4>
+        <p class="fact-card-text">Mleko mamy wcześniaka zawiera <strong>więcej białka, żelaza i przeciwciał</strong> niż mleko po porodzie o czasie — organizm automatycznie dostosowuje skład do potrzeb dziecka.</p>
+      </div>
+      <div class="fact-card reveal-scale" style="transition-delay:0.21s">
+        <div class="fact-card-icon">🔇</div>
+        <h4 class="fact-card-title">Cisza leczy mózg</h4>
+        <p class="fact-card-text">Mózg wcześniaka jest <strong>wyjątkowo wrażliwy na hałas</strong>. OIOM często przekracza 70 dB — tyle co odkurzacz. Redukcja hałasu dosłownie chroni rozwijające się neurony.</p>
+      </div>
+      <div class="fact-card reveal-scale" style="transition-delay:0.28s">
+        <div class="fact-card-icon">❤️</div>
+        <h4 class="fact-card-title">Głos rodziców stabilizuje serce</h4>
+        <p class="fact-card-text">Regularny kontakt z głosem rodziców <strong>stabilizuje rytm serca</strong>, obniża poziom kortyzolu i przyspiesza dojrzewanie układu nerwowego wcześniaka.</p>
+      </div>
+      <div class="fact-card reveal-scale" style="transition-delay:0.35s">
+        <div class="fact-card-icon">📈</div>
+        <h4 class="fact-card-title">Polska w czołówce regionu</h4>
+        <p class="fact-card-text">Polska ma jedną z <strong>najnowocześniejszych sieci OIOM-ów noworodkowych</strong> w Europie Środkowej — ale sprzęt i szkolenia to wciąż obszar, gdzie liczy się każde wsparcie.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 06 BLOG ═══ -->
+<section id="blog" class="light-section">
+  <div class="section-inner">
+    <p class="section-eyebrow reveal">06</p>
+    <h2 class="section-heading reveal">Blog</h2>
+    <p class="section-sub reveal">Artykuły, poradniki i aktualności dla rodziców wcześniaków i personelu medycznego.</p>
+    <div class="blog-grid">
+
+      <a href="blog-kangurowanie.html" class="blog-card reveal-scale">
+        <div class="blog-card-img">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_37ZZKwyNLLPo4MGAhhK607iaU8Q/hf_20260623_094711_5e53462a-32ca-45eb-b1ae-9acbac968ffa.jpeg" alt="Wcześniak w inkubatorze" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="lazy">
+          <span class="blog-card-cat">Kangurowanie</span>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-date">12 maja 2025</span>
+          <h3 class="blog-card-title">Kontakt skóra do skóry — dlaczego jest tak ważny dla wcześniaka?</h3>
+          <p class="blog-card-excerpt">Kangurowanie to nie tylko ciepło. Badania pokazują, że regularny kontakt z mamą lub tatą reguluje oddychanie, stabilizuje tętno i przyspiesza przyrost masy ciała noworodka.</p>
+          <span class="blog-card-link">Czytaj artykuł →</span>
+        </div>
+      </a>
+
+      <a href="blog-karmienie.html" class="blog-card reveal-scale" style="transition-delay:0.1s">
+        <div class="blog-card-img">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_37ZZKwyNLLPo4MGAhhK607iaU8Q/hf_20260623_094614_8005bbcf-06a4-4269-8e16-7db6df3552e0.png" alt="Karmienie piersią wcześniaka" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="lazy">
+          <span class="blog-card-cat">Karmienie</span>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-date">3 kwietnia 2025</span>
+          <h3 class="blog-card-title">Karmienie piersią wcześniaka — 7 rzeczy, których nikt Ci nie powie</h3>
+          <p class="blog-card-excerpt">Mleko mamy wcześniaka różni się składem od mleka po porodzie o czasie. To naturalny mechanizm — Twój organizm wie, czego dziecku potrzeba.</p>
+          <span class="blog-card-link">Czytaj artykuł →</span>
+        </div>
+      </a>
+
+      <a href="blog-psychologia.html" class="blog-card reveal-scale" style="transition-delay:0.2s">
+        <div class="blog-card-img">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_37ZZKwyNLLPo4MGAhhK607iaU8Q/hf_20260623_094616_bb899d96-1c1f-4531-ac1c-ce9407998df8.png" alt="Wsparcie psychologiczne dla mamy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="lazy">
+          <span class="blog-card-cat">Psychologia</span>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-date">18 marca 2025</span>
+          <h3 class="blog-card-title">Trauma porodowa — jak rozpoznać i kiedy szukać pomocy</h3>
+          <p class="blog-card-excerpt">Poród przedwczesny to często trauma nie tylko dla dziecka, ale i dla mamy. Dowiedz się jakie sygnały powinny skłonić Cię do rozmowy ze specjalistą.</p>
+          <span class="blog-card-link">Czytaj artykuł →</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 07 POMÓŻ ═══ -->
+<section id="donate" class="light-section alt">
+  <div class="section-inner">
+    <p class="section-eyebrow reveal">07</p>
+    <h2 class="section-heading reveal">Pomóż najmniejszym pacjentom</h2>
+    <p class="section-sub reveal">Każdy pakiet ma realny, wymierny wpływ — na konkretne dziecko, na konkretnym oddziale.</p>
+    <div class="donate-stats reveal">
+      <div class="donate-stat"><div class="donate-stat-num" data-target="23000">0</div><div class="donate-stat-label">wcześniaków rodzi się<br>rocznie w Polsce</div></div>
+      <div class="donate-stat"><div class="donate-stat-num" data-target="87">0</div><div class="donate-stat-label">% z nich wymaga<br>specjalistycznej opieki</div></div>
+      <div class="donate-stat"><div class="donate-stat-num" data-target="3">0</div><div class="donate-stat-label">aktywne programy<br>wsparcia rodzin</div></div>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card reveal-l">
+        <div class="cert-top-bar" style="background:#e8b0be"></div>
+        <div class="cert-body" data-abbr="PW">
+          <div class="cert-amount">500 – 5 000 zł</div>
+          <div class="cert-name">Przyjaciel Wcześniaka</div>
+          <div class="cert-issuer" style="color:#c07888">Pakiet wejściowy</div>
+          <p class="cert-desc">Materiały pielęgnacyjne, zestawy dla rodziców na oddziale, materiały edukacyjne. Realna pomoc od pierwszego dnia.</p>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-top-bar" style="background:var(--rose)"></div>
+        <div class="cert-body" data-abbr="BD">
+          <div class="cert-amount">5 000 – 20 000 zł</div>
+          <div class="cert-name">Blisko Dziecka</div>
+          <div class="cert-issuer" style="color:var(--rose)">Projekt Blisko Dziecka</div>
+          <p class="cert-desc">Krzesła do kangurowania, zasłony i osłony inkubatorów redukujące stymulację sensoryczną. Pomaga rodzicom być fizycznie blisko.</p>
+        </div>
+      </div>
+      <div class="cert-card reveal-r">
+        <div class="cert-top-bar" style="background:#9aabba"></div>
+        <div class="cert-body" data-abbr="AMP">
+          <div class="cert-amount">20 000 – 50 000 zł</div>
+          <div class="cert-name">Akademia Młodego Rodzica</div>
+          <div class="cert-issuer" style="color:#6a8898">Akademia Rodzica</div>
+          <p class="cert-desc">Pełny cykl warsztatów: karmienie, pielęgnacja, rehabilitacja, wsparcie psychologiczne. Każdy rodzic zyskuje wiedzę i pewność siebie.</p>
+        </div>
+      </div>
+    </div>
+    <div class="cert-grid-2">
+      <div class="cert-card reveal-l">
+        <div class="cert-top-bar" style="background:#a08ab4"></div>
+        <div class="cert-body" data-abbr="NIT">
+          <div class="cert-amount">25 000 – 100 000 zł</div>
+          <div class="cert-name">Nowoczesna Intensywna Terapia</div>
+          <div class="cert-issuer" style="color:#8870a4">Wyposażenie OIOM</div>
+          <p class="cert-desc">Inkubatory, respiratory, pompy infuzyjne. Sprzęt, który dosłownie ratuje życie. Każde urządzenie to realna szansa dla konkretnego dziecka.</p>
+        </div>
+      </div>
+      <div class="cert-card reveal-r">
+        <div class="cert-top-bar" style="background:var(--dark)"></div>
+        <div class="cert-body" data-abbr="NW">
+          <div class="cert-amount">50 000 – 200 000 zł</div>
+          <div class="cert-name">Neuroprotekcja Wcześniaka</div>
+          <div class="cert-issuer" style="color:var(--dark2)">Program flagowy</div>
+          <p class="cert-desc">Kompleksowy program neurologicznej opieki — EEG, USG mózgu, rehabilitacja neurologiczna w pierwszych miesiącach życia. Każdy dzień ma tu znaczenie.</p>
+        </div>
+      </div>
+    </div>
+    <div class="donate-cta-card reveal">
+      <h3>Chcesz pomóc inaczej?</h3>
+      <p>Przyjmujemy wolontariat, sprzęt używany, promocję w mediach i współpracę korporacyjną. Napisz do nas.</p>
+      <a href="#contact" class="btn-white">Skontaktuj się z nami →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 08 KONTAKT ═══ -->
+<section id="contact" class="light-section">
+  <div class="section-inner">
+    <p class="section-eyebrow reveal">08</p>
+    <h2 class="section-heading reveal">Kontakt</h2>
+    <p class="section-sub reveal">Napisz do nas — niezależnie czy szukasz wsparcia, chcesz pomóc, czy masz pytania.</p>
+    <div class="contact-layout">
+      <div class="contact-items">
+        <div class="contact-row reveal"><div class="contact-icon-box"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6 19.79 19.79 0 0 1 1.6 5 2 2 0 0 1 3.57 3h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 10a16 16 0 0 0 5.91 5.91l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div><div class="contact-lbl">Telefon</div><div class="contact-val"><a href="tel:+48000000000">+48 000 000 000</a></div></div></div>
+        <div class="contact-row reveal"><div class="contact-icon-box"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div><div><div class="contact-lbl">E-mail</div><div class="contact-val"><a href="mailto:kontakt@sercemamy.pl">kontakt@sercemamy.pl</a></div></div></div>
+        <div class="contact-row reveal"><div class="contact-icon-box"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="contact-lbl">Adres</div><div class="contact-val">ul. Przykładowa 1, Lublin</div></div></div>
+        <div class="contact-row reveal"><div class="contact-icon-box"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div><div><div class="contact-lbl">Instagram</div><div class="contact-val"><a href="https://www.instagram.com/" target="_blank" rel="noopener">@sercemamy</a></div></div></div>
+      </div>
+      <div class="contact-form-card reveal-r">
+        <h3>Zgłoś potrzebę wsparcia</h3>
+        <p>Wypełnij formularz — odezwiemy się w ciągu 24 godzin.</p>
+        <div class="form-group"><label for="f-name">Imię i nazwisko</label><input type="text" id="f-name" placeholder="np. Anna Kowalska" autocomplete="name"/></div>
+        <div class="form-group"><label for="f-email">Adres e-mail</label><input type="email" id="f-email" placeholder="twoj@email.pl" autocomplete="email"/></div>
+        <div class="form-group"><label for="f-stage">Twoja sytuacja</label>
+          <select id="f-stage"><option value="">Wybierz etap...</option><option>Jestem w ciąży</option><option>Dziecko jest na OIOM-ie</option><option>Wróciliśmy do domu</option><option>Chcę wesprzeć finansowo</option><option>Chcę wesprzeć jako wolontariusz</option><option>Inne pytanie</option></select>
+        </div>
+        <div class="form-group"><label for="f-msg">Wiadomość</label><textarea id="f-msg" placeholder="Napisz kilka słów..."></textarea></div>
+        <button class="btn-form ripple-host" type="button">Wyślij wiadomość</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 Serce Mamy — Stowarzyszenie</span>
+  <div class="footer-links">
+    <a href="#about">O nas</a>
+    <a href="#donate">Pomóż</a>
+    <a href="#blog">Blog</a>
+    <a href="#contact">Kontakt</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  /* LOADER */
+  window.addEventListener('load', function(){
+    setTimeout(function(){ var l=document.getElementById('page-loader'); if(l) l.classList.add('loaded'); }, 1300);
+  });
+
+  /* FLOATING DECO — fade in after load */
+  window.addEventListener('load', function(){
+    setTimeout(function(){
+      document.querySelectorAll('.fdl-el').forEach(function(el,i){
+        setTimeout(function(){ el.classList.add('visible'); }, i*200);
+      });
+    }, 1500);
+  });
+
+  /* LETTER-SWAP */
+  document.querySelectorAll('[data-ls]').forEach(function(line){
+    var text=line.textContent; line.textContent=''; line.setAttribute('aria-label',text);
+    var ci=0;
+    Array.from(text).forEach(function(ch){
+      if(ch===' '||ch===' '){var sp=document.createElement('span');sp.className='ls-sp';sp.innerHTML='&nbsp;';line.appendChild(sp);return;}
+      var c=document.createElement('span'); c.className='ls-char'; c.style.setProperty('--d',ci*22);
+      var a=document.createElement('span'); a.className='ls-a'; a.textContent=ch;
+      var b=document.createElement('span'); b.className='ls-b'; b.setAttribute('aria-hidden','true'); b.textContent=ch;
+      c.appendChild(a); c.appendChild(b); line.appendChild(c); ci++;
+    });
+  });
+  var lsBlock=document.getElementById('ls-block');
+  if(lsBlock) new IntersectionObserver(function(e){ if(e[0].isIntersecting) setTimeout(function(){ lsBlock.classList.add('ls-in'); },150); },{threshold:0.25}).observe(lsBlock);
+
+  /* BIG HEADLINE ANIMATION (GSAP ScrollTrigger) */
+  window.addEventListener('load', function(){
+    if(typeof gsap==='undefined') return;
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.utils.toArray('.headline-line-inner').forEach(function(el,i){
+      gsap.fromTo(el, {yPercent:110}, {yPercent:0, duration:1.4, ease:'power4.out', delay:i*0.12, scrollTrigger:{trigger:el, start:'top 92%'}});
+    });
+    /* Hero entrance */
+    var hl=document.querySelector('.hero-split-headline');
+    if(hl){
+      var words=hl.textContent.trim().split(/\s+/);
+      hl.innerHTML=words.map(function(w){ return '<span class="hw" style="display:inline-block;overflow:hidden;vertical-align:bottom;line-height:1.15"><span class="hwi" style="display:inline-block">'+w+'</span></span>'; }).join(' ');
+      hl.style.opacity='1';
+    }
+    var tl=gsap.timeline({defaults:{ease:'power3.out'}});
+    tl.fromTo('.hero-split-photo',{opacity:0,x:60,scale:1.06},{opacity:1,x:0,scale:1,duration:1.4},0.1);
+    tl.fromTo('.hero-split-label',{opacity:0,y:22},{opacity:1,y:0,duration:0.75},0.5);
+    if(document.querySelector('.hwi')) tl.fromTo('.hwi',{yPercent:115,opacity:0},{yPercent:0,opacity:1,duration:0.95,stagger:0.055},0.65);
+    tl.fromTo('.hero-lead',{opacity:0,y:14},{opacity:1,y:0,duration:0.7},1.15);
+    tl.fromTo('.hero-trust-item',{opacity:0,y:16},{opacity:1,y:0,duration:0.55,stagger:0.1},1.05);
+    tl.fromTo('.hero-marquee-wrap',{opacity:0,y:14},{opacity:1,y:0,duration:0.7},1.25);
+    tl.fromTo('.hero-cta-br',{opacity:0,y:12},{opacity:1,y:0,duration:0.6},1.2);
+    tl.fromTo('.hero-name-tag',{opacity:0,y:-14},{opacity:1,y:0,duration:0.6},0.3);
+    /* Magnetic float CTA */
+    var fc=document.getElementById('float-cta');
+    if(fc && window.innerWidth>768){
+      fc.addEventListener('mousemove',function(e){ var r=fc.getBoundingClientRect(); gsap.to(fc,{x:(e.clientX-(r.left+r.width/2))*0.35,y:(e.clientY-(r.top+r.height/2))*0.35,duration:0.4,ease:'power2.out',overwrite:true}); });
+      fc.addEventListener('mouseleave',function(){ gsap.to(fc,{x:0,y:0,duration:0.9,ease:'elastic.out(1,0.45)',overwrite:true}); });
+    }
+    /* Cursor glow */
+    if(window.innerWidth>768 && !window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+      var glow=document.createElement('div'); glow.className='cursor-glow'; document.body.appendChild(glow);
+      document.addEventListener('mousemove',function(e){ gsap.to(glow,{left:e.clientX,top:e.clientY,duration:0.55,ease:'power2.out',overwrite:true}); });
+    }
+  });
+
+  /* REVEAL */
+  var SIDS=['home','about','path','projects','stories','blog','donate','contact'];
+  SIDS.forEach(function(id){ var c=document.getElementById(id); if(!c) return; c.querySelectorAll('.reveal,.reveal-l,.reveal-r,.reveal-scale').forEach(function(el,i){ el.style.transitionDelay=(i*0.09)+'s'; }); });
+  var revObs=new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); revObs.unobserve(e.target); } }); },{threshold:0.05});
+  document.querySelectorAll('.reveal,.reveal-l,.reveal-r,.reveal-scale').forEach(function(el){ revObs.observe(el); });
+
+  /* RAF SCROLL */
+  var _raf=false;
+  var spEl=document.getElementById('scroll-progress');
+  var fcEl=document.getElementById('float-cta');
+  var nvEl=document.getElementById('pageNameVert');
+  var heEl=document.getElementById('home');
+  function onScroll(){
+    if(_raf) return; _raf=true;
+    requestAnimationFrame(function(){
+      _raf=false;
+      var sy=window.scrollY, tot=document.documentElement.scrollHeight-window.innerHeight;
+      if(spEl) spEl.style.width=(sy/tot*100)+'%';
+      var thr=(heEl?heEl.offsetHeight:window.innerHeight)*0.4;
+      if(fcEl) fcEl.classList.toggle('visible',sy>thr);
+      if(nvEl) nvEl.classList.toggle('visible',sy>thr);
+      /* nav active */
+      var ids=['home','about','path','projects','stories','blog','donate','contact'];
+      var secs=ids.map(function(id){ return document.getElementById(id); }).filter(Boolean);
+      var links=document.querySelectorAll('.nav-links a');
+      var cur='home';
+      secs.forEach(function(s){ if(sy>=s.offsetTop-90) cur=s.id; });
+      if(sy+window.innerHeight>=document.documentElement.scrollHeight-60) cur='contact';
+      links.forEach(function(a){ a.classList.toggle('active',a.getAttribute('href')==='#'+cur); });
+    });
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+
+  /* MOBILE NAV */
+  var nw=document.querySelector('.nav-links-wrap'), nt=document.getElementById('navToggle');
+  if(nt&&nw){ nt.addEventListener('click',function(){ nw.classList.toggle('open'); }); document.querySelectorAll('.nav-links a').forEach(function(a){ a.addEventListener('click',function(){ nw.classList.remove('open'); }); }); }
+
+  /* CAROUSEL */
+  (function(){
+    var track=document.getElementById('cTrack'), dots=document.querySelectorAll('.carousel-dot'), numEl=document.getElementById('cSlideNum');
+    var total=track?track.children.length:0, cur=0, timer;
+    function goTo(i){ cur=((i%total)+total)%total; track.style.transform='translateX(-'+(cur*100)+'%)'; dots.forEach(function(d,j){ d.classList.toggle('active',j===cur); }); if(numEl) numEl.textContent=cur+1; }
+    function start(){ timer=setInterval(function(){ goTo(cur+1); },5500); }
+    function stop(){ clearInterval(timer); }
+    var prev=document.getElementById('cPrev'), next=document.getElementById('cNext');
+    if(prev) prev.addEventListener('click',function(){ stop(); goTo(cur-1); start(); });
+    if(next) next.addEventListener('click',function(){ stop(); goTo(cur+1); start(); });
+    dots.forEach(function(d){ d.addEventListener('click',function(){ stop(); goTo(+d.dataset.idx); start(); }); });
+    var vp=document.querySelector('.carousel-viewport'), sx=0;
+    if(vp){ vp.addEventListener('touchstart',function(e){ sx=e.touches[0].clientX; },{passive:true}); vp.addEventListener('touchend',function(e){ var dx=e.changedTouches[0].clientX-sx; if(Math.abs(dx)>40){ stop(); goTo(cur+(dx<0?1:-1)); start(); } },{passive:true}); vp.addEventListener('mouseenter',stop); vp.addEventListener('mouseleave',start); }
+    if(total>0) start();
+  })();
+
+  /* COUNTERS */
+  var cntObs=new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(!e.isIntersecting) return; cntObs.unobserve(e.target); var el=e.target, target=parseInt(el.dataset.target,10); if(isNaN(target)) return; var steps=60, inc=target/steps, step=0; var t=setInterval(function(){ step++; var v=Math.min(Math.round(inc*step),target); el.textContent=(v>=1000?v.toLocaleString('pl-PL'):v)+(target>=1000?'+':''); if(step>=steps) clearInterval(t); },1400/steps); }); },{threshold:0.5});
+  document.querySelectorAll('[data-target]').forEach(function(el){ cntObs.observe(el); });
+
+  /* FORM */
+  var fb=document.querySelector('.btn-form');
+  if(fb) fb.addEventListener('click',function(){ var n=document.getElementById('f-name').value.trim(), em=document.getElementById('f-email').value.trim(); if(!n||!em){ fb.textContent='Uzupełnij imię i e-mail'; fb.style.background='rgba(255,255,255,0.15)'; setTimeout(function(){ fb.textContent='Wyślij wiadomość'; fb.style.background=''; },2200); return; } fb.textContent='Wysłano! Odezwiemy się wkrótce'; fb.style.background='rgba(100,200,140,0.4)'; fb.disabled=true; });
+
+  /* RIPPLE */
+  document.querySelectorAll('.ripple-host').forEach(function(el){
+    el.addEventListener('click',function(e){
+      var r=el.getBoundingClientRect(), d=Math.max(r.width,r.height)*2;
+      var w=document.createElement('span'); w.className='ripple-wave';
+      w.style.cssText='width:'+d+'px;height:'+d+'px;left:'+(e.clientX-r.left-d/2)+'px;top:'+(e.clientY-r.top-d/2)+'px';
+      el.appendChild(w); setTimeout(function(){ w.remove(); },600);
+    });
+  });
+
+  /* CARD TILT 3D */
+  if(window.matchMedia('(pointer:fine)').matches && !window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+    document.querySelectorAll('.tilt-card').forEach(function(card){
+      var MAX=8;
+      card.addEventListener('mousemove',function(e){
+        var r=card.getBoundingClientRect();
+        var x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+        var rx=(-y*MAX).toFixed(2), ry=(x*MAX).toFixed(2);
+        card.style.transform='perspective(700px) rotateX('+rx+'deg) rotateY('+ry+'deg) translateY(-4px) scale(1.02)';
+        card.style.boxShadow='0 14px 48px rgba(192,120,138,0.22),0 2px 8px rgba(192,120,138,0.12)';
+        card.style.transition='box-shadow 0.1s ease';
+      });
+      card.addEventListener('mouseleave',function(){
+        card.style.transform='perspective(700px) rotateX(0) rotateY(0) translateY(0) scale(1)';
+        card.style.boxShadow='';
+        card.style.transition='transform 0.45s cubic-bezier(.16,1,.3,1), box-shadow 0.45s ease';
+      });
+    });
+  }
+
+  /* SPEC-PANEL HOVER GLOW */
+  if(window.matchMedia('(pointer:fine)').matches){
+    document.querySelectorAll('.spec-panel').forEach(function(panel){
+      panel.addEventListener('mousemove',function(e){
+        var r=panel.getBoundingClientRect();
+        var x=e.clientX-r.left, y=e.clientY-r.top;
+        panel.style.setProperty('--mx',x+'px');
+        panel.style.setProperty('--my',y+'px');
+      });
+    });
+  }
+
+  /* ABOUT BENTO PARALLAX */
+  window.addEventListener('load',function(){
+    var bq=document.querySelector('.about-bento-main');
+    if(!bq||!window.matchMedia('(pointer:fine)').matches) return;
+    bq.addEventListener('mousemove',function(e){
+      var r=bq.getBoundingClientRect();
+      var xp=((e.clientX-r.left)/r.width-.5)*12, yp=((e.clientY-r.top)/r.height-.5)*8;
+      bq.style.transform='perspective(900px) rotateX('+(-yp*.4).toFixed(2)+'deg) rotateY('+(xp*.4).toFixed(2)+'deg)';
+      bq.style.transition='transform 0.1s ease';
+    });
+    bq.addEventListener('mouseleave',function(){
+      bq.style.transform='';
+      bq.style.transition='transform 0.6s cubic-bezier(.16,1,.3,1)';
+    });
+  });
+
+})();
+</script>
+</body>
+</html>

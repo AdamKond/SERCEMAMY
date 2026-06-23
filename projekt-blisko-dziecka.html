@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blisko Dziecka — Serce Mamy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Inter+Tight:wght@700;800;900&display=swap" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --rose:#c0788a;--rose-dim:rgba(192,120,138,.10);--rose-dim2:rgba(192,120,138,.20);
+      --dark:#2e1f2c;--dark2:#3d2a38;--body-bg:#fdfaf8;--text:#3d2a38;
+      --muted:#866272;--muted2:#b09aa8;--border:#e4d0d8;--card-shadow:0 4px 24px rgba(192,120,138,.09);
+      --font-display:'Bebas Neue',sans-serif;--font-serif:'Playfair Display',Georgia,serif;
+      --font-tight:'Inter Tight','Inter',sans-serif;--font-body:'Inter',system-ui,sans-serif;
+    }
+    html{scroll-behavior:smooth;scroll-padding-top:70px}
+    body{background:var(--body-bg);color:var(--text);font-family:var(--font-body);font-size:16px;line-height:1.6;overflow-x:hidden}
+    ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:var(--rose);border-radius:3px}
+    a:focus-visible,button:focus-visible{outline:2px solid var(--rose);outline-offset:3px}
+    #scroll-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--rose),#d9a0b0);z-index:200;width:0%;transition:width .08s linear}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,48px);background:rgba(253,250,248,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(192,120,138,.12)}
+    .nav-back{display:flex;align-items:center;gap:8px;text-decoration:none;font-size:13px;font-weight:600;color:var(--muted);transition:color .2s}
+    .nav-back:hover{color:var(--rose)}
+    .nav-logo-pill{display:flex;align-items:center;gap:7px;text-decoration:none}
+    .nav-logo-pill svg{color:var(--rose)}
+    .nav-logo-pill span{font-family:var(--font-display);font-size:20px;letter-spacing:.07em;color:#9e5068;line-height:1}
+
+    /* PROJECT HERO */
+    .proj-hero{min-height:70vh;background:linear-gradient(145deg,#fce8ef 0%,#fdfaf8 55%,#f8f0f5 100%);display:flex;align-items:flex-end;padding:0 clamp(20px,5vw,80px) clamp(40px,6vh,80px);padding-top:80px;position:relative;overflow:hidden}
+    .proj-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 80% 40%,rgba(192,120,138,.15) 0%,transparent 65%);pointer-events:none}
+    .proj-hero-inner{max-width:800px;position:relative;z-index:1}
+    .proj-back-link{display:inline-flex;align-items:center;gap:.5rem;font-size:12px;font-weight:700;color:var(--rose);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2rem;transition:gap .2s}
+    .proj-back-link:hover{gap:.85rem}
+    .proj-hero-tag{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--rose);margin-bottom:1.25rem;display:flex;align-items:center;gap:.6rem}
+    .proj-hero-tag::before{content:'';display:inline-block;width:24px;height:2px;background:var(--rose);border-radius:2px}
+    .proj-hero-title{font-family:var(--font-tight);font-size:clamp(2.4rem,6vw,5.5rem);font-weight:900;line-height:1.06;letter-spacing:-.02em;color:var(--dark);margin-bottom:1.5rem}
+    .proj-hero-sub{font-size:clamp(15px,1.5vw,18px);color:var(--muted);line-height:1.8;max-width:580px;margin-bottom:2.5rem}
+    .proj-tags{display:flex;flex-wrap:wrap;gap:.5rem}
+    .proj-tag{padding:.38rem .9rem;background:var(--rose-dim);border:1px solid var(--rose-dim2);border-radius:999px;font-size:12px;color:var(--rose);font-weight:500}
+    .proj-hero-num{position:absolute;right:0;top:50%;transform:translateY(-50%);font-family:var(--font-display);font-size:clamp(10rem,22vw,20rem);line-height:1;color:rgba(192,120,138,.06);user-select:none;pointer-events:none;white-space:nowrap}
+
+    /* CONTENT */
+    .proj-content{max-width:1100px;margin:0 auto;padding:clamp(60px,8vw,100px) clamp(20px,5vw,60px)}
+    .proj-grid{display:grid;grid-template-columns:1fr 340px;gap:4rem;align-items:start}
+    .prose h2{font-family:var(--font-serif);font-size:clamp(1.5rem,2.5vw,2rem);font-weight:700;color:var(--dark);margin-bottom:1rem;margin-top:2.5rem;line-height:1.2}
+    .prose h2:first-child{margin-top:0}
+    .prose p{font-size:15px;color:var(--muted);line-height:1.9;margin-bottom:1.25rem}
+    .prose p strong{color:var(--dark);font-weight:600}
+    .prose ul{list-style:none;padding:0;margin-bottom:1.5rem;display:flex;flex-direction:column;gap:.7rem}
+    .prose ul li{display:flex;align-items:flex-start;gap:.75rem;font-size:14.5px;color:var(--muted);line-height:1.7}
+    .prose ul li::before{content:'♡';color:var(--rose);flex-shrink:0;margin-top:.12rem;font-size:.85rem}
+    .prose blockquote{background:rgba(192,120,138,.05);border-left:3px solid var(--rose);border-radius:0 10px 10px 0;padding:1.25rem 1.5rem;margin:2rem 0;font-family:var(--font-serif);font-style:italic;font-size:1.05rem;color:var(--dark);line-height:1.75}
+
+    /* SIDEBAR */
+    .proj-sidebar{display:flex;flex-direction:column;gap:1.5rem;position:sticky;top:80px}
+    .sidebar-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:1.75rem;box-shadow:var(--card-shadow)}
+    .sidebar-card-title{font-family:var(--font-serif);font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:1rem;display:flex;align-items:center;gap:.6rem}
+    .sidebar-card-title::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--rose);flex-shrink:0}
+    .sidebar-stat{display:flex;align-items:center;justify-content:space-between;padding:.6rem 0;border-bottom:1px solid var(--border);font-size:13px}
+    .sidebar-stat:last-child{border-bottom:none}
+    .sidebar-stat-label{color:var(--muted)}
+    .sidebar-stat-val{font-weight:700;color:var(--dark)}
+    .btn-contact{display:flex;align-items:center;justify-content:center;gap:.5rem;padding:.85rem 1.5rem;background:var(--rose);color:#fff;font-size:13px;font-weight:700;letter-spacing:.04em;text-decoration:none;border-radius:999px;transition:background .25s,transform .25s;margin-top:.5rem}
+    .btn-contact:hover{background:#a8607a;transform:translateY(-2px)}
+
+    /* RELATED */
+    .proj-related{background:#faf4f7;padding:clamp(50px,7vw,80px) clamp(20px,5vw,60px)}
+    .proj-related-inner{max-width:1100px;margin:0 auto}
+    .proj-related-title{font-family:var(--font-serif);font-size:clamp(1.5rem,2.5vw,2rem);font-weight:700;color:var(--dark);margin-bottom:2.5rem}
+    .related-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+    .related-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:1.75rem;box-shadow:var(--card-shadow);text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:.9rem;transition:box-shadow .3s,transform .3s}
+    .related-card:hover{box-shadow:0 10px 40px rgba(192,120,138,.18);transform:translateY(-3px)}
+    .related-card-label{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--rose)}
+    .related-card-title{font-family:var(--font-serif);font-size:1.05rem;font-weight:700;color:var(--dark);line-height:1.3}
+    .related-card-desc{font-size:13px;color:var(--muted);line-height:1.7;flex:1}
+    .related-card-cta{font-size:12px;font-weight:700;color:var(--rose);letter-spacing:.06em}
+
+    /* FOOTER */
+    footer{background:#241520;color:rgba(255,255,255,.38);padding:1.5rem clamp(20px,5vw,60px);display:flex;align-items:center;justify-content:space-between;font-size:12px}
+    footer span:first-child{color:rgba(255,255,255,.65);font-weight:500}
+    .footer-back{color:rgba(255,255,255,.38);text-decoration:none;transition:color .2s}
+    .footer-back:hover{color:rgba(255,255,255,.75)}
+
+    /* REVEALS */
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .72s cubic-bezier(.16,1,.3,1),transform .72s cubic-bezier(.16,1,.3,1)}
+    .reveal.visible{opacity:1;transform:none}
+    .reveal-l{opacity:0;transform:translateX(-40px);transition:opacity .72s cubic-bezier(.16,1,.3,1),transform .72s cubic-bezier(.16,1,.3,1)}
+    .reveal-l.visible{opacity:1;transform:none}
+
+    @media(max-width:768px){.proj-grid{grid-template-columns:1fr}.proj-sidebar{position:static}.related-grid{grid-template-columns:1fr}.proj-hero{min-height:60vh}.proj-hero-num{display:none}}
+  </style>
+</head>
+<body>
+<div id="scroll-progress"></div>
+
+<nav>
+  <a class="nav-back" href="index.html">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    Wróć do strony głównej
+  </a>
+  <a class="nav-logo-pill" href="index.html">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    <span>Serce Mamy</span>
+  </a>
+</nav>
+
+<section class="proj-hero">
+  <div class="proj-hero-num" aria-hidden="true">01</div>
+  <div class="proj-hero-inner">
+    <a href="index.html#projects" class="proj-back-link">← Wszystkie projekty</a>
+    <p class="proj-hero-tag">Projekt 01</p>
+    <h1 class="proj-hero-title">Blisko Dziecka</h1>
+    <p class="proj-hero-sub">Program wspierający fizyczny kontakt rodziców z noworodkiem na oddziale intensywnej terapii noworodkowej — nawet gdy dziecko jest podłączone do aparatury.</p>
+    <div class="proj-tags">
+      <span class="proj-tag">Kangurowanie</span>
+      <span class="proj-tag">OIOM noworodkowy</span>
+      <span class="proj-tag">Kontakt rodzic–dziecko</span>
+      <span class="proj-tag">Wsparcie emocjonalne</span>
+      <span class="proj-tag">Inkubatory</span>
+    </div>
+  </div>
+</section>
+
+<div class="proj-content">
+  <div class="proj-grid">
+    <div class="prose">
+      <h2>Czym jest program Blisko Dziecka?</h2>
+      <p>Program <strong>Blisko Dziecka</strong> powstał jako odpowiedź na realną potrzebę — rodzice wcześniaków na oddziałach OIOM-N często czują się bezradni i odcięci od swojego dziecka. Otaczająca aparatura, procedury medyczne i przestrzenność oddziałów sprawiają, że mama i tata nie wiedzą, co mogą robić, co jest dla dziecka bezpieczne, a co — wręcz niezbędne.</p>
+      <p>A odpowiedź jest prosta: <strong>Twoja obecność jest leczeniem.</strong> Badania naukowe potwierdzają, że regularny kontakt skóra do skóry — zwany kangurkowaniem — reguluje oddychanie noworodka, stabilizuje tętno i temperaturę, przyspiesza przyrost masy ciała i stymuluje wydzielanie mleka przez mamę.</p>
+
+      <blockquote>Kiedy trzymałam go na klatce piersiowej, widziałam jak monitor zmienia wartości. Saturacja rosła. Tętno się wyrównywało. Pielęgniarka powiedziała mi: "To działasz Ty, nie my."</blockquote>
+
+      <h2>Co robimy w ramach projektu?</h2>
+      <ul>
+        <li>Doposażamy oddziały w <strong>ergonomiczne krzesła do kangurowania</strong> — specjalnie zaprojektowane, aby mama lub tata mogli spędzić przy dziecku wiele godzin w komforcie.</li>
+        <li>Szkolimy personel pielęgniarski z <strong>technik ułatwiania kangurowania</strong> przy różnych rodzajach aparatury.</li>
+        <li>Opracowujemy materiały edukacyjne dla rodziców — <strong>protokoły kangurowania krok po kroku</strong>, informacje o bezpieczeństwie, plakaty na oddziałach.</li>
+        <li>Organizujemy warsztaty online i na żywo prowadzone przez <strong>doświadczone pielęgniarki neonatologiczne</strong>.</li>
+        <li>Prowadzimy grupę wsparcia dla rodziców wcześniaków — miejsce na rozmowę, pytania i dzielenie się doświadczeniami.</li>
+      </ul>
+
+      <h2>Dla kogo?</h2>
+      <p>Program jest skierowany do rodziców noworodków hospitalizowanych na oddziałach intensywnej terapii noworodkowej — niezależnie od stopnia wcześniactwa czy wagi urodzeniowej. Współpracujemy z oddziałami w całej Polsce.</p>
+      <p>Współpracujemy również z personelem medycznym — pielęgniarkami, położnymi i neonatologami — którzy chcą wdrożyć program na swoim oddziale.</p>
+
+      <h2>Wyniki i dowody skuteczności</h2>
+      <p>Metoda kangurowania (Kangaroo Mother Care, KMC) jest rekomendowana przez <strong>Światową Organizację Zdrowia (WHO)</strong> jako podstawowa metoda opieki nad wcześniakami. Badania pokazują, że dzieci objęte KMC:</p>
+      <ul>
+        <li>Krócej przebywają na oddziale intensywnej terapii.</li>
+        <li>Rzadziej wymagają ponownych hospitalizacji.</li>
+        <li>Szybciej osiągają prawidłową masę ciała.</li>
+        <li>Wykazują lepszy rozwój neurologiczny w późniejszym życiu.</li>
+        <li>Mają silniejszą więź z rodzicami.</li>
+      </ul>
+    </div>
+
+    <aside class="proj-sidebar">
+      <div class="sidebar-card">
+        <p class="sidebar-card-title">Fakty o projekcie</p>
+        <div class="sidebar-stat"><span class="sidebar-stat-label">Status</span><span class="sidebar-stat-val">Aktywny</span></div>
+        <div class="sidebar-stat"><span class="sidebar-stat-label">Zasięg</span><span class="sidebar-stat-val">Cała Polska</span></div>
+        <div class="sidebar-stat"><span class="sidebar-stat-label">Oddziały</span><span class="sidebar-stat-val">Kilkanaście</span></div>
+        <div class="sidebar-stat"><span class="sidebar-stat-label">Beneficjenci</span><span class="sidebar-stat-val">Rodziny z OIOM-u</span></div>
+        <div class="sidebar-stat"><span class="sidebar-stat-label">Finansowanie</span><span class="sidebar-stat-val">Darowizny + granty</span></div>
+      </div>
+      <div class="sidebar-card">
+        <p class="sidebar-card-title">Chcesz wesprzeć?</p>
+        <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:1rem">Każda złotówka trafia bezpośrednio na doposażenie oddziałów lub materiały dla rodziców.</p>
+        <a href="index.html#donate" class="btn-contact">Wesprzyj projekt →</a>
+      </div>
+      <div class="sidebar-card">
+        <p class="sidebar-card-title">Masz pytania?</p>
+        <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:1rem">Skontaktuj się z nami — odpowiadamy w ciągu 24 godzin.</p>
+        <a href="index.html#contact" class="btn-contact" style="background:transparent;color:var(--rose);border:1.5px solid var(--rose)">Napisz do nas →</a>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<div class="proj-related">
+  <div class="proj-related-inner">
+    <h2 class="proj-related-title">Inne nasze projekty</h2>
+    <div class="related-grid">
+      <a href="projekt-ciche-noce.html" class="related-card reveal-l">
+        <p class="related-card-label">Projekt 02</p>
+        <h3 class="related-card-title">Ciche Noce</h3>
+        <p class="related-card-desc">Ograniczamy nadmierną stymulację sensoryczną na oddziałach noworodkowych — wyciszenie, zasłony, nakładki na inkubatory.</p>
+        <span class="related-card-cta">Dowiedz się więcej →</span>
+      </a>
+      <a href="projekt-akademia-rodzica.html" class="related-card reveal">
+        <p class="related-card-label">Projekt 03</p>
+        <h3 class="related-card-title">Akademia Rodzica</h3>
+        <p class="related-card-desc">Warsztaty i szkolenia dla rodziców wcześniaków — od pierwszych dni na oddziale po powrót do domu.</p>
+        <span class="related-card-cta">Dowiedz się więcej →</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>© 2025 Serce Mamy</span>
+  <a href="index.html" class="footer-back">← Wróć do strony głównej</a>
+</footer>
+
+<script>
+(function(){
+  var spEl=document.getElementById('scroll-progress'),_r=false;
+  window.addEventListener('scroll',function(){if(_r)return;_r=true;requestAnimationFrame(function(){_r=false;var sy=window.scrollY,tot=document.documentElement.scrollHeight-window.innerHeight;if(spEl)spEl.style.width=(sy/tot*100)+'%';});},{passive:true});
+  var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target);}});},{threshold:.06});
+  document.querySelectorAll('.reveal,.reveal-l').forEach(function(el,i){el.style.transitionDelay=(i*.08)+'s';obs.observe(el);});
+  window.addEventListener('load',function(){
+    if(typeof gsap==='undefined')return;
+    gsap.registerPlugin(ScrollTrigger);
+    var ti=document.querySelector('.proj-hero-title');
+    if(ti){
+      var words=ti.textContent.trim().split(/\s+/);
+      ti.innerHTML=words.map(function(w){return '<span style="display:inline-block;overflow:hidden;vertical-align:bottom"><span class="hw-i" style="display:inline-block">'+w+'</span></span>';}).join(' ');
+    }
+    gsap.fromTo('.hw-i',{yPercent:110,opacity:0},{yPercent:0,opacity:1,duration:1.1,ease:'power4.out',stagger:.08,delay:.3});
+    gsap.fromTo('.proj-hero-tag',{opacity:0,y:18},{opacity:1,y:0,duration:.7,ease:'power3.out',delay:.2});
+    gsap.fromTo('.proj-hero-sub',{opacity:0,y:16},{opacity:1,y:0,duration:.75,ease:'power3.out',delay:.75});
+    gsap.fromTo('.proj-tags',{opacity:0,y:14},{opacity:1,y:0,duration:.65,ease:'power3.out',delay:.9});
+    gsap.fromTo('.proj-back-link',{opacity:0,x:-20},{opacity:1,x:0,duration:.6,ease:'power3.out',delay:.1});
+    gsap.fromTo('.proj-hero-num',{opacity:0,x:60},{opacity:.06,x:0,duration:1.4,ease:'power3.out',delay:.2});
+  });
+})();
+</script>
+</body>
+</html>
