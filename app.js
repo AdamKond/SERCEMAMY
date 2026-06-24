@@ -221,3 +221,64 @@
   });
 
 })();
+
+/* ── Porady · Bezpieczna ciąża — scroll fan cards (adaptacja) ── */
+(function(){
+  const sec   = document.getElementById('porady-sec');
+  const track = document.getElementById('porady-track');
+  const hint  = document.getElementById('porady-hint');
+  if (!sec || !track) return;
+
+  const isMob = () => window.innerWidth <= 768;
+
+  /* 1. Wejście — karty unoszą się z dołu, gdy sekcja wchodzi w kadr */
+  const observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      sec.classList.add('revealed');
+      observer.disconnect();
+    }
+  }, { threshold: 0.05 });
+  observer.observe(sec);
+
+  /* 2. Scroll — poziomy pan (tylko desktop) */
+  function update() {
+    if (isMob()) { track.style.transform = ''; return; }
+    const rect  = sec.getBoundingClientRect();
+    const maxS  = sec.offsetHeight - window.innerHeight;
+    if (maxS <= 0) return;
+    const prog  = Math.max(0, Math.min(1, -rect.top / maxS));
+    const tw    = track.scrollWidth;
+    const vw    = window.innerWidth;
+    const startX = vw * 0.18;
+    const travel = tw - vw + vw * 0.12;
+    const x = startX - prog * (startX + travel);
+    track.style.transform = `translateX(${x.toFixed(1)}px)`;
+    if (hint) hint.classList.toggle('visible', prog < 0.04);
+  }
+
+  if (hint && !isMob()) hint.classList.add('visible');
+  update();
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update, { passive: true });
+})();
+
+/* ── Pływający kontakt — rozwijanie panelu ── */
+(function(){
+  var fab = document.getElementById('contact-fab');
+  var btn = document.getElementById('cfabBtn');
+  if (!fab || !btn) return;
+  function setOpen(open){
+    fab.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  btn.addEventListener('click', function(e){
+    e.stopPropagation();
+    setOpen(!fab.classList.contains('open'));
+  });
+  document.addEventListener('click', function(e){
+    if (fab.classList.contains('open') && !fab.contains(e.target)) setOpen(false);
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') setOpen(false);
+  });
+})();

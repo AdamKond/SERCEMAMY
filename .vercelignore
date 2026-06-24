@@ -1,0 +1,12 @@
+# Nie publikuj cudzej strony ani plików roboczych
+adriannakondracka/
+_poczatkowa_tmp/
+poczatkowa sekcja/
+*.bak
+*.bak2
+index.html.bak*
+*.zip
+desktop.ini
+**/desktop.ini
+.git
+.gitignore

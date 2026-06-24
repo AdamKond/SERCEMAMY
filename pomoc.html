@@ -40,10 +40,7 @@
       <circle cx="51" cy="51" r="47"/>
       <path d="M51 4a47 47 0 0 1 47 47"/>
     </svg>
-    <svg class="pl-heart" viewBox="0 0 100 100" aria-hidden="true">
-      <path class="fill" d="M50 78C50 78 24 62 24 44c0-9 7-15 15-15 5.4 0 9.2 2.8 11 6.4C51.8 31.8 55.6 29 61 29c8 0 15 6 15 15 0 18-26 34-26 34z"/>
-      <path class="ekg" d="M31 50h7l3.4-8 5.4 14 3.6-10 2.8 6H69"/>
-    </svg>
+    <img class="pl-logo" src="logo-mama.svg" alt="Serce Mamy" width="56" height="56" />
   </div>
   <div class="pl-brand">Serce Mamy</div>
   <div class="pl-sub">Stowarzyszenie</div>
@@ -52,17 +49,31 @@
 
 <div id="scroll-progress"></div>
 
-<a href="pomoc.html#contact" id="float-cta" class="ripple-host">
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-  Pomóż nam
-</a>
+<!-- Pływający kontakt (rozwija się do góry) -->
+<div id="contact-fab" aria-live="polite">
+  <div class="cfab-panel" id="cfabPanel" role="menu">
+    <a class="cfab-row" href="tel:+48000000000" role="menuitem">
+      <span class="cfab-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+      <span class="cfab-txt"><b>Zadzwoń</b>+48&nbsp;000&nbsp;000&nbsp;000</span>
+    </a>
+    <a class="cfab-row" href="mailto:kontakt@sercemamy.pl" role="menuitem">
+      <span class="cfab-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+      <span class="cfab-txt"><b>Napisz</b>kontakt@sercemamy.pl</span>
+    </a>
+  </div>
+  <button class="cfab-btn" id="cfabBtn" type="button" aria-expanded="false" aria-controls="cfabPanel">
+    <span class="cfab-btn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+    <span class="cfab-label">Kontakt</span>
+    <svg class="cfab-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+</div>
 
 <div class="page-name-vert" id="pageNameVert">SERCE MAMY</div>
 
 <!-- NAV -->
 <nav id="navbar">
   <a class="nav-logo" href="index.html">
-    <img class="nav-logo-img" src="logo.svg" width="40" height="40" alt="Serce Mamy — logo" />
+    <img class="nav-logo-img" src="logo-mama.svg" width="40" height="40" alt="Serce Mamy — logo" />
     <div class="nav-logo-text">
       <span class="nav-logo-main">Serce Mamy</span>
       <span class="nav-logo-sub">Stowarzyszenie</span>
@@ -104,6 +115,16 @@
   <p class="page-hero-lead">Twoja pomoc może stać się <b>realną zmianą</b> dla mam długo przebywających na oddziale patologii ciąży, dla <b>wcześniaków</b> oraz dla rodzin czekających na bezpieczny powrót do domu. Każda wpłata — niezależnie od wysokości — przekłada się na <b>sprzęt, materiały i wsparcie</b>, które ratują i ułatwiają życie najmłodszych pacjentów.</p>
   <div class="page-hero-media"><img src="intro-media/niemowle.png" alt="Uśmiechnięte niemowlę" loading="lazy" onerror="this.closest('.page-hero-media').style.display='none'"></div>
 </section>
+
+<!-- ═══ PAS ZDJĘCIOWY · CIEPŁO ═══ -->
+<div class="photo-strip">
+  <img src="intro-media/wloczka-serce.png" alt="Serce uplecione z miękkiej wełny" loading="lazy">
+  <div class="photo-strip-overlay">
+    <blockquote class="photo-strip-quote">Z drobnych gestów dobra splata się realne wsparcie dla mam i dzieci.</blockquote>
+    <span class="photo-strip-attr">Serce Mamy · Stowarzyszenie</span>
+  </div>
+</div>
+
 <!-- ═══ 07 POMÓŻ ═══ -->
 <section id="donate" class="light-section alt">
   <div class="section-inner">
@@ -201,12 +222,33 @@
 </section>
 
 <footer>
-  <span style="display:inline-flex;align-items:center;gap:10px"><img src="logo.svg" width="28" height="28" alt="" style="border-radius:50%;display:block"/>© 2025 Serce Mamy — Stowarzyszenie</span>
-  <div class="footer-links">
-    <a href="index.html">Główna</a>
-    <a href="o-nas.html">O nas</a>
-    <a href="dzialania.html">Działania</a>
-    <a href="pomoc.html">Wsparcie</a>
+  <!-- TODO: uzupełnij prawdziwymi danymi (adres, telefon, e-mail, KRS/NIP, nr konta) -->
+  <div class="footer-inner">
+    <div class="footer-col footer-brand">
+      <span class="footer-logo"><img src="logo-mama.svg" width="40" height="40" alt="Serce Mamy"/>Serce Mamy</span>
+      <p class="footer-tagline">Wspieramy mamy, wcześniaki i noworodki od pierwszych chwil życia — od ciąży, przez poród, po bezpieczny powrót do domu.</p>
+    </div>
+    <div class="footer-col">
+      <h4 class="footer-h">Kontakt</h4>
+      <ul class="footer-contact">
+        <li><span class="fc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><span>Stowarzyszenie „Serce Mamy"<br>ul. Jaczewskiego 8, 20-954 Lublin</span></li>
+        <li><span class="fc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><a href="tel:+48000000000">+48 000 000 000</a></li>
+        <li><span class="fc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><a href="mailto:kontakt@sercemamy.pl">kontakt@sercemamy.pl</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 class="footer-h">Nawigacja</h4>
+      <div class="footer-links">
+        <a href="index.html">Główna</a>
+        <a href="o-nas.html">O nas</a>
+        <a href="dzialania.html">Działania</a>
+        <a href="pomoc.html">Wsparcie</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Serce Mamy — Stowarzyszenie</span>
+    <span class="footer-legal">KRS 0000000000 · NIP 0000000000 · Nr konta: 00&nbsp;0000&nbsp;0000&nbsp;0000&nbsp;0000&nbsp;0000&nbsp;0000</span>
   </div>
 </footer>
 <script src="app.js" defer></script>
