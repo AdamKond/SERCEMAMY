@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; background: #eae8e8; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { overscroll-behavior-y: none; }
+  ::selection { background: #b38c61; color: #fff; }
+  @keyframes adaMaskUp { from { transform: translateY(115%); } to { transform: translateY(0); } }
+  @keyframes adaFade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes adaFadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes adaSpin { to { transform: rotate(360deg); } }
+  @keyframes adaSmileDraw { 0% { stroke-dashoffset: 240; } 55% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 0; } }
+  @keyframes adaClipDown { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0% 0); } }
+  [data-anim] { opacity: 0; transform: translateY(36px); transition: opacity 0.95s cubic-bezier(.22,1,.36,1), transform 1.05s cubic-bezier(.22,1,.36,1); }
+  [data-anim].in { opacity: 1; transform: none; }
+  [data-anim-x] { opacity: 0; transform: translateX(60px); transition: opacity 1s cubic-bezier(.22,1,.36,1), transform 1.1s cubic-bezier(.22,1,.36,1); }
+  [data-anim-x].in { opacity: 1; transform: none; }
+  [data-clip] { clip-path: inset(0 0 100% 0); transition: clip-path 1.2s cubic-bezier(.76,0,.24,1); }
+  [data-clip].in { clip-path: inset(0 0 0% 0); }
+  [data-tech] { color: #b8b6b4; transition: color 0.45s ease; }
+  [data-tech].active { color: #14151d; }
+  [data-tech] .ada-lm { color: #b8b6b4; transition: color 0.45s ease; }
+  [data-tech].active .ada-lm { color: #14151d; }
+  [data-tech].active .ada-lm-line { transform: scaleX(1); }
+  @keyframes adaKineticUp { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes adaKineticDown { from { opacity: 0; transform: translateY(-90px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes adaMesh1 { 0% { transform: translate(-12%,-8%) scale(1); } 50% { transform: translate(14%,10%) scale(1.25); } 100% { transform: translate(-12%,-8%) scale(1); } }
+  @keyframes adaMesh2 { 0% { transform: translate(10%,-6%) scale(1.1); } 50% { transform: translate(-14%,12%) scale(0.85); } 100% { transform: translate(10%,-6%) scale(1.1); } }
+  @keyframes adaMesh3 { 0% { transform: translate(-8%,12%) scale(0.95); } 50% { transform: translate(16%,-10%) scale(1.3); } 100% { transform: translate(-8%,12%) scale(0.95); } }
+  @keyframes adaMesh4 { 0% { transform: translate(8%,8%) scale(1.15); } 50% { transform: translate(-10%,-12%) scale(0.9); } 100% { transform: translate(8%,8%) scale(1.15); } }
+</style>
+</helmet>
+
+<div style="position: relative; width: 100%; background: #eae8e8; font-family: 'Inter Tight', sans-serif; color: #424346;">
+
+  <!-- ============ PRELOADER ============ -->
+  <div data-preloader style="position: fixed; inset: 0; z-index: 300; display: flex; align-items: center; justify-content: center; background: radial-gradient(60% 70% at 50% 50%, #1b1c25 0%, #0e0f15 70%); transition: opacity 0.9s ease, visibility 0.9s ease;">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 30px;">
+      <div style="position: relative; width: 150px; height: 150px; display: flex; align-items: center; justify-content: center;">
+        <svg width="150" height="150" viewBox="0 0 150 150" fill="none" style="position: absolute; inset: 0; animation: adaSpin 1.1s linear infinite;">
+          <path d="M75 12 A63 63 0 0 1 138 75" stroke="#b38c61" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        <svg width="66" height="60" viewBox="0 0 64 58" fill="none" aria-hidden="true" style="display:none;"></svg>
+      </div>
+      <span data-pre-count style="font-family: 'Inter Tight', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.2em; color: #6f6968;">0%</span>
+    </div>
+  </div>
+
+  <!-- ============ PINNED HORIZONTAL SECTION (Hero + Smile) ============ -->
+  <div data-pin-wrap style="position: relative; width: 100%;">
+    <div data-sticky style="position: sticky; top: 0; height: 100vh; overflow: hidden; background: #eae8e8;">
+      <div data-track style="display: flex; align-items: stretch; height: 100vh; will-change: transform;">
+
+        <!-- PANEL 1 — HERO -->
+        <section data-screen-label="Hero" style="position: relative; flex: none; width: 100vw; height: 100vh; background: #eae8e8; overflow: hidden;">
+          <!-- animated mesh-gradient background -->
+          <div style="position: absolute; inset: 0; overflow: hidden; pointer-events: none;">
+            <div style="position: absolute; width: 70vw; height: 70vw; left: -10vw; top: -18vw; border-radius: 50%; background: radial-gradient(circle, rgba(179,140,97,0.40), rgba(179,140,97,0) 68%); filter: blur(20px); animation: adaMesh1 22s ease-in-out infinite;"></div>
+            <div style="position: absolute; width: 60vw; height: 60vw; right: -12vw; top: -8vw; border-radius: 50%; background: radial-gradient(circle, rgba(214,180,168,0.45), rgba(214,180,168,0) 68%); filter: blur(20px); animation: adaMesh2 27s ease-in-out infinite;"></div>
+            <div style="position: absolute; width: 66vw; height: 66vw; right: -8vw; bottom: -22vw; border-radius: 50%; background: radial-gradient(circle, rgba(168,176,190,0.38), rgba(168,176,190,0) 68%); filter: blur(20px); animation: adaMesh3 25s ease-in-out infinite;"></div>
+            <div style="position: absolute; width: 54vw; height: 54vw; left: -6vw; bottom: -18vw; border-radius: 50%; background: radial-gradient(circle, rgba(20,21,29,0.10), rgba(20,21,29,0) 70%); filter: blur(20px); animation: adaMesh4 30s ease-in-out infinite;"></div>
+            <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(234,232,232,0.30), rgba(234,232,232,0.55));"></div>
+          </div>
+          <!-- soft radial warmth -->
+          <div style="position: absolute; inset: 0; background: radial-gradient(120% 90% at 50% 8%, rgba(179,140,97,0.10) 0%, rgba(234,232,232,0) 55%);"></div>
+
+          <div style="position: absolute; left: 0; right: 0; z-index: 5; top: 50%; transform: translateY(-50%); padding: 0 clamp(24px,4vw,64px); text-align: center; pointer-events: none;">
+            <div style="display: inline-flex; align-items: center; gap: 12px; margin-bottom: clamp(22px,3.4vh,40px); font-family: 'Inter Tight', sans-serif; font-size: clamp(11px,0.95vw,13px); letter-spacing: 0.24em; text-transform: uppercase; color: #b38c61; opacity: 0; animation: adaFadeUp 1s cubic-bezier(.22,1,.36,1) 1.7s both;">
+              <span style="display: inline-block; width: 30px; height: 1px; background: #b38c61;"></span>
+              Stowarzyszenie Serce Mamy
+              <span style="display: inline-block; width: 30px; height: 1px; background: #b38c61;"></span>
+            </div>
+            <h1 style="margin: 0; font-family: 'Instrument Serif', serif; font-weight: 400; color: #14151d; font-size: clamp(54px, 9vw, 168px); line-height: 0.9; letter-spacing: -0.018em;">
+              <span style="display: block; overflow: hidden; padding-bottom: 0.04em;"><span style="display: block; animation: adaMaskUp 1.15s cubic-bezier(.22,1,.36,1) 1.9s both;">Wspieramy</span></span>
+              <span style="display: block; overflow: hidden; padding-bottom: 0.04em;"><span style="display: block; animation: adaMaskUp 1.15s cubic-bezier(.22,1,.36,1) 2.02s both;">mamy i&nbsp;<span style="font-style: italic; color: #b38c61;">wcześniaki</span></span></span>
+            </h1>
+            <p style="margin: clamp(26px,3.6vh,46px) auto 0; max-width: 40ch; font-family: 'Inter Tight', sans-serif; font-weight: 400; font-size: clamp(15px,1.15vw,19px); line-height: 1.55; color: #6f6968; opacity: 0; animation: adaFadeUp 1s cubic-bezier(.22,1,.36,1) 2.55s both;">Od pierwszych chwil życia wspieramy kobiety w ciąży, mamy po porodzie, wcześniaki i noworodki oraz ich rodziny.</p>
+          </div>
+
+          <div style="position: absolute; left: 50%; transform: translateX(-50%); bottom: 40px; text-align: center; font-family: 'Inter Tight', sans-serif; opacity: 0; animation: adaFadeUp 1s cubic-bezier(.22,1,.36,1) 2.7s both;">
+            <span style="display: block; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #9a9492; margin-bottom: 9px;">Działamy przy</span>
+            <span style="display: block; font-weight: 500; font-size: clamp(13px,1.05vw,15px); line-height: 1.5; color: #14151d;">Klinice Położnictwa&nbsp;&middot; Patologii Ciąży&nbsp;&middot; Neonatologii</span>
+          </div>
+        </section>
+
+        <!-- PANEL 2 — YOUR SMILE -->
+        <section data-screen-label="Your smile" style="position: relative; flex: none; width: 190vw; height: 100vh; background: #b8b6b4; overflow: hidden;">
+          <div data-clip style="position: absolute; top: 0; right: 0; width: 86%; height: 100%; overflow: hidden;">
+          <div style="width: 100%; height: 100%; background: radial-gradient(70% 70% at 60% 35%, #3c4a47, #1c2422 70%, #0d0f0e);"></div>
+            <span style="position: absolute; right: 40px; bottom: 34px; font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 13px; color: #eae8e8; text-align: right; line-height: 1.3; text-shadow: 0 1px 10px rgba(0,0,0,0.5);">Łączymy medycynę<br>z empatią</span>
+          </div>
+          <h2 data-anim style="position: absolute; left: 7vw; top: 50%; transform: translateY(-50%); margin: 0; white-space: nowrap; font-family: 'Instrument Serif', serif; font-weight: 400; color: #f4f1ee; font-size: clamp(64px, 8.6vw, 150px); line-height: 1; letter-spacing: -0.01em; text-shadow: 0 2px 40px rgba(0,0,0,0.25);">Tam, gdzie medycyna spotyka się z troską</h2>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ OUR GOAL (vertical, bg video) ============ -->
+  <section data-goal data-screen-label="Our goal" style="position: relative; width: 100%; min-height: 100vh; display: flex; align-items: center; background: #eae8e8; overflow: hidden;">
+    <!-- background video (same as hero) -->
+    <div style="position: absolute; inset: 0; overflow: hidden;">
+      <div style="position: absolute; inset: 0; background: radial-gradient(80% 80% at 70% 20%, #d8d2d0, #c4bdbb 60%, #b8b0ae);"></div>
+      <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(234,232,232,0.5), rgba(234,232,232,0.85));"></div>
+    </div>
+
+    <!-- moving portrait: slides in from right, parallaxes down, kept in right column so it never covers the heading -->
+    <div data-portrait-slide style="position: absolute; right: clamp(24px,5vw,90px); top: 12vh; width: clamp(180px, 20vw, 320px); z-index: 3; opacity: 0; transform: translateX(90px); transition: opacity 1.1s cubic-bezier(.22,1,.36,1), transform 1.2s cubic-bezier(.22,1,.36,1);">
+      <div data-portrait-parallax style="will-change: transform;">
+        <div style="width: 100%; aspect-ratio: 3/4; overflow: hidden; border-radius: 2px; box-shadow: 0 30px 70px rgba(20,21,29,0.18);">
+          <img src="media/portrait.jpg" alt="Team portrait" style="width: 100%; height: 100%; object-fit: cover; display: block;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div style="display: none; width: 100%; height: 100%; align-items: center; justify-content: center; background: repeating-linear-gradient(45deg,#23242c,#23242c 14px,#2c2d36 14px,#2c2d36 28px); font-family: ui-monospace,monospace; font-size: 12px; color: #8a8b93;">portrait.jpg</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- content (left / center, constrained so portrait doesn't overlap) -->
+    <div style="position: relative; z-index: 2; width: 100%; max-width: 1320px; margin: 0 auto; padding: 14vh clamp(24px,4vw,64px);">
+      <div data-anim style="display: flex; align-items: center; gap: 22px; margin-bottom: clamp(40px,7vh,80px);">
+        <div style="display: flex; align-items: center;">
+          <span style="display: inline-flex; align-items: center; justify-content: center; width: 60px; height: 60px; border-radius: 999px; background: repeating-linear-gradient(45deg,#c9c2c1,#c9c2c1 6px,#bfb8b7 6px,#bfb8b7 12px); border: 3px solid #eae8e8; font-family: ui-monospace,monospace; font-size: 8px; color: #6f6968;">img</span>
+          <span style="display: inline-flex; align-items: center; justify-content: center; width: 60px; height: 60px; border-radius: 999px; margin-left: -18px; background: repeating-linear-gradient(45deg,#c9c2c1,#c9c2c1 6px,#bfb8b7 6px,#bfb8b7 12px); border: 3px solid #eae8e8; font-family: ui-monospace,monospace; font-size: 8px; color: #6f6968;">img</span>
+          <span style="display: inline-flex; align-items: center; justify-content: center; width: 60px; height: 60px; border-radius: 999px; margin-left: -18px; background: repeating-linear-gradient(45deg,#c9c2c1,#c9c2c1 6px,#bfb8b7 6px,#bfb8b7 12px); border: 3px solid #eae8e8; font-family: ui-monospace,monospace; font-size: 8px; color: #6f6968;">img</span>
+          <span style="display: inline-flex; align-items: center; justify-content: center; width: 60px; height: 60px; border-radius: 999px; margin-left: -6px; background: #d6d1d0; font-family: 'Inter Tight',sans-serif; font-weight: 500; font-size: 17px; color: #14151d;">+7</span>
+        </div>
+        <span style="font-family: 'Inter Tight',sans-serif; font-size: clamp(12px,0.95vw,14px); color: #6f6968;">Stworzone przez lekarzy</span>
+      </div>
+
+      <h2 data-anim style="margin: 0; max-width: 17ch; font-family: 'Instrument Serif', serif; font-weight: 400; color: #14151d; font-size: clamp(40px, 5.2vw, 96px); line-height: 1.04; letter-spacing: -0.006em;">Naszą misją jest poprawa jakości i komfortu opieki okołoporodowej nad mamą, dzieckiem i ich <span style="font-style: italic;">rodziną</span>.</h2>
+
+      <p data-anim style="margin: clamp(36px,6vh,64px) 0 0; max-width: 46ch; font-family: 'Inter Tight', sans-serif; font-weight: 400; font-size: clamp(14px,1.05vw,16px); line-height: 1.6; color: #6f6968;">Dobra opieka okołoporodowa to nie tylko procedury i leczenie. To także rozmowa, zrozumienie, obecność bliskich i poczucie, że rodzina nie jest sama.</p>
+
+      <div data-anim style="margin-top: clamp(36px,6vh,64px);">
+        <button style="display: inline-flex; align-items: center; gap: 48px; padding: 20px 26px; border: none; border-radius: 999px; background: #14151d; color: #eae8e8; cursor: pointer; font-family: 'Inter Tight',sans-serif; font-weight: 500; font-size: 16px; transition: background 0.4s ease, transform 0.5s cubic-bezier(.22,1,.36,1);" style-hover="background:#000; transform:translateY(-2px);">
+          <span>O nas</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 18L18 6M18 6H9M18 6v9" stroke="#eae8e8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ OUR SERVICES (vertical) ============ -->
+  <section data-screen-label="Services intro" style="position: relative; width: 100%; padding: clamp(80px,16vh,180px) clamp(24px,4vw,64px); background: #14151d;">
+    <h2 data-anim style="margin: 0; font-family: 'Instrument Serif', serif; font-weight: 400; color: #f4f1ee; font-size: clamp(56px, 11vw, 200px); line-height: 0.92; text-align: center;">Kogo wspieramy</h2>
+  </section>
+
+  <!-- Service card: Esthetic -->
+  <section data-screen-label="Esthetic Dentistry" style="position: relative; width: 100%; height: 100vh; overflow: hidden; background: #14151d;">
+    <div data-clip style="position: absolute; inset: 0; overflow: hidden;">
+      <img src="media/service-1.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(1) contrast(1.05);" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div style="display: none; width: 100%; height: 100%; align-items: center; justify-content: center; background: repeating-linear-gradient(45deg,#1d1e26,#1d1e26 16px,#26272f 16px,#26272f 32px); font-family: ui-monospace,monospace; font-size: 13px; color: #6f6968;">service-1.jpg</div>
+    </div>
+    <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,21,29,0) 40%, rgba(20,21,29,0.85) 100%);"></div>
+    <div style="position: absolute; left: clamp(24px,5vw,72px); bottom: clamp(40px,7vh,72px); right: clamp(24px,5vw,72px); display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 32px;">
+      <div data-anim>
+        <h3 style="margin: 0 0 22px; font-family: 'Instrument Serif', serif; font-weight: 400; color: #f4f1ee; font-size: clamp(58px, 8vw, 132px); line-height: 0.9;"><span style="font-style: italic;">Kobiety</span><br>w ciąży</h3>
+        <p style="margin: 0; max-width: 44ch; font-family: 'Inter Tight',sans-serif; font-size: clamp(14px,1.05vw,16px); line-height: 1.55; color: #c8c6c4;">Pacjentki hospitalizowane na oddziale patologii ciąży, kobiety w ciąży powikłanej oraz mamy po porodzie i w okresie połogu.</p>
+      </div>
+      <button data-anim style="display: inline-flex; align-items: center; gap: 36px; padding: 18px 24px; border: none; border-radius: 999px; background: #eae8e8; color: #14151d; cursor: pointer; font-family: 'Inter Tight',sans-serif; font-weight: 500; font-size: 15px;">
+        <span>Więcej</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M6 18L18 6M18 6H9M18 6v9" stroke="#14151d" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- Service card: Restorative -->
+  <section data-screen-label="Restorative Dentistry" style="position: relative; width: 100%; height: 100vh; overflow: hidden; background: #14151d;">
+    <div data-clip style="position: absolute; inset: 0; overflow: hidden;">
+      <img src="media/service-2.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(1) contrast(1.05);" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div style="display: none; width: 100%; height: 100%; align-items: center; justify-content: center; background: repeating-linear-gradient(45deg,#1d1e26,#1d1e26 16px,#26272f 16px,#26272f 32px); font-family: ui-monospace,monospace; font-size: 13px; color: #6f6968;">service-2.jpg</div>
+    </div>
+    <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,21,29,0) 40%, rgba(20,21,29,0.85) 100%);"></div>
+    <div style="position: absolute; left: clamp(24px,5vw,72px); bottom: clamp(40px,7vh,72px); right: clamp(24px,5vw,72px); display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 32px;">
+      <div data-anim>
+        <h3 style="margin: 0 0 22px; font-family: 'Instrument Serif', serif; font-weight: 400; color: #f4f1ee; font-size: clamp(58px, 8vw, 132px); line-height: 0.9;"><span style="font-style: italic;">Wcześniaki</span><br>i rodziny</h3>
+        <p style="margin: 0; max-width: 44ch; font-family: 'Inter Tight',sans-serif; font-size: clamp(14px,1.05vw,16px); line-height: 1.55; color: #c8c6c4;">Wcześniaki i noworodki wymagające specjalistycznej opieki oraz rodzice dzieci długo hospitalizowanych w oddziale neonatologii.</p>
+      </div>
+      <button data-anim style="display: inline-flex; align-items: center; gap: 36px; padding: 18px 24px; border: none; border-radius: 999px; background: #eae8e8; color: #14151d; cursor: pointer; font-family: 'Inter Tight',sans-serif; font-weight: 500; font-size: 15px;">
+        <span>Więcej</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M6 18L18 6M18 6H9M18 6v9" stroke="#14151d" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============ TECHNOLOGY — full-bleed video moment ============ -->
+  <section data-screen-label="Technology" style="position: relative; z-index: 6; width: 100%; height: 100vh; background: #14151d;">
+    <div style="position: absolute; inset: 0; background: radial-gradient(65% 70% at 50% 38%, #2a2c38, #14151d 65%, #0b0c11);"></div>
+    <div style="position: absolute; inset: 0; background: radial-gradient(40% 50% at 50% 45%, rgba(179,140,97,0.14), rgba(179,140,97,0) 70%);"></div>
+    <h2 data-techtitle style="position: absolute; left: 50%; top: 0; transform: translate(-50%, 0); margin: 0; white-space: nowrap; will-change: transform; font-family: 'Instrument Serif', serif; font-weight: 400; color: #f4f1ee; font-size: clamp(64px, 11vw, 200px); line-height: 0.9; text-shadow: 0 2px 40px rgba(0,0,0,0.35);">Realne Wsparcie</h2>
+    <div style="position: absolute; left: 0; right: 0; bottom: 5vh; display: flex; align-items: flex-start; justify-content: space-between; padding: 0 clamp(24px,4vw,64px); font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: clamp(12px,1vw,15px); color: #eae8e8;">
+      <span>Bezpieczeństwo</span>
+      <span style="text-align: center; color: rgba(234,232,232,0.65);">Opieka okołoporodowa:<br><span style="color: #eae8e8;">Empatia</span></span>
+      <span>Nadzieja</span>
+    </div>
+  </section>
+
+  <!-- ============ TECHNOLOGY — kinetic headline ============ -->
+  <section data-screen-label="Technology headline" style="position: relative; width: 100%; min-height: 100vh; background: #eae8e8; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+    <div style="position: relative; width: 100%; max-width: 1500px; height: 58vh; margin: 0 auto; font-family: 'Instrument Serif', serif; font-weight: 400; color: #424346; line-height: 0.92; letter-spacing: -0.01em;">
+      <span data-kin style="position: absolute; left: 19%; top: 0; font-size: clamp(52px, 9vw, 150px); opacity: 0;">Realne Wsparcie</span>
+      <span data-kin style="position: absolute; left: 1%; top: 30%; font-size: clamp(52px, 9vw, 150px); opacity: 0;">dla Mamy</span>
+      <span data-kin style="position: absolute; left: 47%; top: 30%; font-size: clamp(52px, 9vw, 150px); opacity: 0;"><span style="font-style: italic;">i</span> Dziecka</span>
+      <span data-kin style="position: absolute; left: 38%; top: 60%; font-size: clamp(52px, 9vw, 150px); opacity: 0;">od pierwszych chwil</span>
+    </div>
+  </section>
+
+  <!-- ============ FIXED HEADER (removed) ============ -->
+
+  <!-- scroll hint (only during horizontal) -->
+  <div data-hint style="position: fixed; right: 32px; bottom: 28px; z-index: 200; display: flex; align-items: center; gap: 10px; font-family: 'Inter Tight',sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #6f6968; opacity: 0; transition: opacity 0.5s ease;">
+    <span>Przewiń</span>
+    <svg width="34" height="10" viewBox="0 0 34 10" fill="none"><path d="M0 5h31M27 1l5 4-5 4" stroke="#6f6968" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    const track = document.querySelector('[data-track]');
+    const pinWrap = document.querySelector('[data-pin-wrap]');
+    const header = document.querySelector('[data-header]');
+    const hint = document.querySelector('[data-hint]');
+    const preloader = document.querySelector('[data-preloader]');
+    const preCount = document.querySelector('[data-pre-count]');
+    const goal = document.querySelector('[data-goal]');
+    const pSlide = document.querySelector('[data-portrait-slide]');
+    const pPar = document.querySelector('[data-portrait-parallax]');
+    if (!track) return;
+    const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+
+    // ---- preloader ----
+    let pc = 0;
+    const dismissPreloader = () => {
+      if (preloader) { preloader.style.opacity = '0'; preloader.style.visibility = 'hidden'; }
+      if (hint && (window.scrollY || 0) < 40) hint.style.opacity = '1';
+    };
+    const preFallback = setTimeout(() => { clearInterval(pint); dismissPreloader(); }, 3400);
+    const pint = setInterval(() => {
+      pc = Math.min(100, pc + Math.round(4 + Math.random() * 11));
+      if (preCount) preCount.textContent = pc + '%';
+      if (pc >= 100) {
+        clearInterval(pint);
+        clearTimeout(preFallback);
+        setTimeout(dismissPreloader, 250);
+      }
+    }, 130);
+
+    // ---- horizontal pin measurement ----
+    let maxX = 0;
+    const measure = () => {
+      maxX = Math.max(0, track.scrollWidth - window.innerWidth);
+      pinWrap.style.height = (window.innerHeight + maxX) + 'px';
+    };
+    measure();
+    window.addEventListener('resize', measure);
+    window.addEventListener('load', measure);
+    requestAnimationFrame(measure);
+    requestAnimationFrame(() => requestAnimationFrame(measure));
+    if (window.ResizeObserver) { new ResizeObserver(measure).observe(track); }
+    if (document.fonts && document.fonts.ready) { document.fonts.ready.then(measure); }
+
+    // ---- unified scroll-based reveals (horizontal for track items, vertical for the rest) ----
+    let reveals = Array.from(document.querySelectorAll('[data-anim],[data-anim-x],[data-clip]'));
+    const checkReveals = () => {
+      const wW = window.innerWidth, wH = window.innerHeight;
+      for (let i = reveals.length - 1; i >= 0; i--) {
+        const el = reveals[i];
+        const r = el.getBoundingClientRect();
+        const inTrack = track.contains(el);
+        const visible = inTrack
+          ? (r.left < wW * 0.82 && r.right > 0)
+          : (r.top < wH * 0.88 && r.bottom > 0);
+        if (visible) { el.classList.add('in'); reveals.splice(i, 1); }
+      }
+    };
+    const checkTrack = checkReveals;
+
+    // ---- header color flip over dark sections ----
+    const flip = () => {
+      const cx = window.innerWidth / 2;
+      const el = document.elementFromPoint(cx, 40);
+      let dark = false;
+      let n = el;
+      while (n && n !== document.body) {
+        const bg = getComputedStyle(n).backgroundColor;
+        if (bg && bg !== 'rgba(0, 0, 0, 0)' && bg !== 'transparent') {
+          const m = bg.match(/\d+/g);
+          if (m) { const lum = (0.299*m[0] + 0.587*m[1] + 0.114*m[2]); dark = lum < 110; }
+          break;
+        }
+        n = n.parentElement;
+      }
+      document.querySelectorAll('[data-hcolor]').forEach((h) => { h.style.color = dark ? '#eae8e8' : '#14151d'; });
+    };
+
+    // ---- smooth horizontal + parallax ----
+    let target = 0, current = 0, raf = null;
+    const lerp = (a, b, t) => a + (b - a) * t;
+    const tick = () => {
+      current = lerp(current, target, 0.1);
+      if (Math.abs(current - target) < 0.4) current = target;
+      track.style.transform = 'translate3d(' + (-current) + 'px,0,0)';
+      checkTrack();
+      if (current !== target) { raf = requestAnimationFrame(tick); } else { raf = null; }
+    };
+
+    const portrait = () => {
+      if (!goal || !pSlide) return;
+      const r = goal.getBoundingClientRect();
+      const vh = window.innerHeight;
+      // slide-in when section approaches
+      if (r.top < vh * 0.82) { pSlide.style.opacity = '1'; pSlide.style.transform = 'none'; }
+      // parallax down through the section — travels far down the section
+      const p = clamp((vh - r.top) / (vh + r.height), 0, 1);
+      const travel = Math.max(360, r.height * 0.62);
+      if (pPar) pPar.style.transform = 'translateY(' + (p * travel - 40).toFixed(1) + 'px)';
+    };
+
+    // ---- technology showcase ----
+    const techBtns = Array.from(document.querySelectorAll('[data-tech]'));
+    const techImg = document.querySelector('[data-tech-img]');
+    const techCounter = document.querySelector('[data-tech-counter]');
+    const setTech = (i) => {
+      techBtns.forEach((b) => b.classList.toggle('active', +b.dataset.index === i));
+      if (techImg && techBtns[i]) techImg.src = techBtns[i].dataset.img;
+      if (techCounter) techCounter.textContent = ('0' + (i + 1)).slice(-2);
+    };
+    techBtns.forEach((b) => {
+      b.addEventListener('mouseenter', () => setTech(+b.dataset.index));
+      b.addEventListener('click', () => setTech(+b.dataset.index));
+    });
+
+    // ---- technology title: descend out of its section and land on the kinetic "Technology-Driven" below ----
+    const techTitle = document.querySelector('[data-techtitle]');
+    const techSection = techTitle ? techTitle.closest('section') : null;
+    const kinTarget = document.querySelector('[data-kin]'); // first kinetic span = "Technology-Driven"
+    const techScroll = () => {
+      if (!techTitle || !techSection || !kinTarget) return;
+      const y = window.scrollY || window.pageYOffset;
+      const vh = window.innerHeight, vw = window.innerWidth;
+      const secTop = techSection.getBoundingClientRect().top + y;   // section/title base (title is top:0)
+      const secH = techSection.offsetHeight;
+      const kr = kinTarget.getBoundingClientRect();
+      const kinTop = kr.top + y;                                    // doc top of target span
+      const kinCx = kr.left + kr.width / 2;                         // screen-x center of target
+      const full = Math.max(0, kinTop - secTop);                   // vertical doc distance to travel
+      const yStart = secTop;                                        // section reaches top of viewport
+      const yEnd = kinTop - vh * 0.40;                              // target sits ~40% down viewport
+      const p = clamp((y - yStart) / Math.max(1, yEnd - yStart), 0, 1);
+      const ty = full * p;
+      const dx = (kinCx - vw / 2) * p;                              // glide toward the target's x
+      const sc = 1 - 0.22 * p;                                      // shrink toward the target's size
+      techTitle.style.transform = 'translate(calc(-50% + ' + dx.toFixed(1) + 'px), ' + ty.toFixed(1) + 'px) scale(' + sc.toFixed(3) + ')';
+      // keep it legible: white over the dark video, dark once it crosses into the light section
+      const crossed = ty > secH - 40;
+      techTitle.style.color = crossed ? '#424346' : '#f4f1ee';
+      techTitle.style.textShadow = crossed ? 'none' : '0 2px 40px rgba(0,0,0,0.35)';
+    };
+
+    // ---- kinetic headline reveal ----
+    const kin = Array.from(document.querySelectorAll('[data-kin]'));
+    let kinDone = false;
+    const checkKin = () => {
+      if (kinDone || !kin.length) return;
+      if (kin[0].getBoundingClientRect().top < window.innerHeight * 0.82) {
+        kinDone = true;
+        kin.forEach((el, i) => { if (i === 0) return; el.style.animation = 'adaKineticUp 1s cubic-bezier(.22,1,.36,1) ' + (i * 0.12) + 's both'; });
+      }
+    };
+
+    const onScroll = () => {
+      const y = window.scrollY || window.pageYOffset;
+      maxX = Math.max(0, track.scrollWidth - window.innerWidth);
+      target = clamp(y, 0, maxX);
+      if (!raf) raf = requestAnimationFrame(tick);
+      if (hint) hint.style.opacity = y > 40 ? '0' : '';
+      checkReveals();
+      checkKin();
+      portrait();
+      techScroll();
+      flip();
+      try { localStorage.setItem('ada_scroll', String(y)); } catch (e) {}
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    onScroll();
+    requestAnimationFrame(() => { checkReveals(); checkKin(); portrait(); techScroll(); flip(); });
+
+    this._cleanup = () => {
+      clearInterval(pint);
+      clearTimeout(preFallback);
+      window.removeEventListener('resize', measure);
+      window.removeEventListener('scroll', onScroll);
+      pinWrap.style.height = '';
+    };
+  }
+  componentWillUnmount() { if (this._cleanup) this._cleanup(); }
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

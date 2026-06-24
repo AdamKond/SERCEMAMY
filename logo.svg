@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Serce Mamy">
+  <circle cx="50" cy="50" r="48" fill="#5f9e96"/>
+  <path fill="#ffffff" d="M50 77C50 77 25 61.5 25 43.5 25 34.9 31.4 29 39 29c5.2 0 8.9 2.7 11 6.4C52.1 31.7 55.8 29 61 29c7.6 0 14 5.9 14 14.5C75 61.5 50 77 50 77z"/>
+  <path fill="none" stroke="#5f9e96" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" d="M32 50h7l3.4-8 5.4 14 3.6-10 2.8 6H68"/>
+</svg>

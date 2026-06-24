@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Działania — Serce Mamy</title>
+  <meta name="description" content="Stowarzyszenie „Serce Mamy” wspiera mamy, wcześniaki, noworodki i rodziny w opiece okołoporodowej. Powstało przy Klinice Położnictwa i Patologii Ciąży z Oddziałem Neonatologii, z inicjatywy lekarzy.">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Inter+Tight:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- FLOATING MICRO-DECO layer -->
+<div class="fdl" aria-hidden="true">
+  <div class="fdl-el" style="top:18%;left:6%;animation:microFloat 6.2s ease-in-out infinite;animation-delay:0s">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+  </div>
+  <div class="fdl-el pk" style="top:34%;left:92%;animation:microFloat 8s ease-in-out infinite;animation-delay:1.2s">
+    <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+  </div>
+  <div class="fdl-el" style="top:62%;left:4%;animation:microFloat 7.4s ease-in-out infinite;animation-delay:2.5s">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"/></svg>
+  </div>
+  <div class="fdl-el pk" style="top:78%;left:96%;animation:microFloat 9s ease-in-out infinite;animation-delay:0.8s">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+  </div>
+  <div class="fdl-el" style="top:50%;left:88%;animation:microFloat 6.8s ease-in-out infinite;animation-delay:3.5s">
+    <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor" opacity="0.6"><circle cx="12" cy="12" r="10"/></svg>
+  </div>
+</div>
+
+<!-- LOADER -->
+<div id="page-loader">
+  <div class="pl-mark">
+    <svg class="pl-ring" viewBox="0 0 102 102" aria-hidden="true">
+      <circle cx="51" cy="51" r="47"/>
+      <path d="M51 4a47 47 0 0 1 47 47"/>
+    </svg>
+    <svg class="pl-heart" viewBox="0 0 100 100" aria-hidden="true">
+      <path class="fill" d="M50 78C50 78 24 62 24 44c0-9 7-15 15-15 5.4 0 9.2 2.8 11 6.4C51.8 31.8 55.6 29 61 29c8 0 15 6 15 15 0 18-26 34-26 34z"/>
+      <path class="ekg" d="M31 50h7l3.4-8 5.4 14 3.6-10 2.8 6H69"/>
+    </svg>
+  </div>
+  <div class="pl-brand">Serce Mamy</div>
+  <div class="pl-sub">Stowarzyszenie</div>
+  <div class="pl-bar"><div class="pl-bar-fill"></div></div>
+</div>
+
+<div id="scroll-progress"></div>
+
+<a href="pomoc.html#contact" id="float-cta" class="ripple-host">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+  Pomóż nam
+</a>
+
+<div class="page-name-vert" id="pageNameVert">SERCE MAMY</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="index.html">
+    <img class="nav-logo-img" src="logo.svg" width="40" height="40" alt="Serce Mamy — logo" />
+    <div class="nav-logo-text">
+      <span class="nav-logo-main">Serce Mamy</span>
+      <span class="nav-logo-sub">Stowarzyszenie</span>
+    </div>
+  </a>
+  <div class="nav-links-wrap">
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Główna</a></li>
+      <li class="has-sub">
+        <a href="o-nas.html">O nas <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <ul class="subnav">
+          <li><a href="o-nas.html">Kim jesteśmy</a></li>
+          <li><a href="o-nas.html#path">Ścieżka wsparcia</a></li>
+          <li><a href="o-nas.html#stories">Historie rodzin</a></li>
+        </ul>
+      </li>
+      <li class="has-sub">
+        <a href="dzialania.html" class="active">Działania <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <ul class="subnav">
+          <li><a href="dzialania.html#projects">Nasze projekty</a></li>
+          <li><a href="dzialania.html#blog">Blog</a></li>
+        </ul>
+      </li>
+      <li class="has-sub">
+        <a href="pomoc.html">Wsparcie <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <ul class="subnav">
+          <li><a href="pomoc.html#donate">Pomóż nam</a></li>
+          <li><a href="pomoc.html#contact">Kontakt</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="nav-toggle" id="navToggle"><span></span><span></span><span></span></div>
+</nav>
+<div class="page-top-spacer"></div>
+<section class="page-hero">
+  <p class="page-hero-eyebrow">Działania · Programy</p>
+  <h2 class="page-hero-title"><span class="l1">Nasze</span><span class="l2">Działania</span></h2>
+  <p class="page-hero-lead">Realizujemy <b>konkretne programy</b>, które każdego dnia zmieniają jakość opieki na oddziale i po powrocie do domu — od wspierania <b>kangurowania i kontaktu skóra do skóry</b>, przez wyciszanie oddziałów noworodkowych, po <b>warsztaty i edukację rodziców</b>. Dzielimy się również wiedzą i danymi o wcześniactwie, bo świadomość realnie ratuje życie najmniejszych pacjentów.</p>
+  <div class="page-hero-media"><img src="intro-media/raczka.png" alt="Dłoń mamy i rączka noworodka" loading="lazy" onerror="this.closest('.page-hero-media').style.display='none'"></div>
+</section>
+<!-- ═══ 04 PROJEKTY ═══ -->
+<section id="projects" class="light-section">
+  <div class="section-inner">
+    <p class="section-eyebrow reveal">Programy</p>
+    <h2 class="section-heading reveal">Nasze projekty</h2>
+    <p class="section-sub reveal">Trzy programy, które realnie zmieniają jakość życia na oddziale i po powrocie do domu.</p>
+    <div class="spec-stack">
+
+      <div class="spec-panel reveal">
+        <div class="spec-accent spec-accent-rose" data-num="01">
+          <span class="spec-accent-label">Projekt 01</span>
+          <h3 class="spec-accent-title">Blisko Dziecka</h3>
+        </div>
+        <div class="spec-content">
+          <p class="spec-content-desc">Program wspierający kangurowanie i kontakt skóra do skóry na oddziałach intensywnej terapii noworodkowej. Pomagamy rodzicom być jak najbliżej — nawet gdy dziecko jest podłączone do aparatury.</p>
+          <div class="spec-content-tags">
+            <span class="spec-tag">Kangurowanie</span>
+            <span class="spec-tag">OIOM noworodkowy</span>
+            <span class="spec-tag">Kontakt rodzic–dziecko</span>
+            <span class="spec-tag">Wsparcie emocjonalne</span>
+          </div>
+          <a href="projekt-blisko-dziecka.html" class="spec-cta-link">Czytaj więcej o projekcie</a>
+        </div>
+      </div>
+
+      <div class="spec-panel flip reveal">
+        <div class="spec-accent spec-accent-plum" data-num="02">
+          <span class="spec-accent-label">Projekt 02</span>
+          <h3 class="spec-accent-title">Ciche Noce</h3>
+        </div>
+        <div class="spec-content">
+          <p class="spec-content-desc">Program ograniczania nadmiernej stymulacji sensorycznej na oddziałach noworodkowych. Wyciszenie, zasłony, nakładki — wszystko po to, by noworodek mógł spać głębiej i rozwijać się lepiej.</p>
+          <div class="spec-content-tags">
+            <span class="spec-tag">Sen noworodka</span>
+            <span class="spec-tag">Redukcja hałasu</span>
+            <span class="spec-tag">Neuroprotekcja</span>
+            <span class="spec-tag">Zdrowy rozwój</span>
+          </div>
+          <a href="projekt-ciche-noce.html" class="spec-cta-link">Czytaj więcej o projekcie</a>
+        </div>
+      </div>
+
+      <div class="spec-panel reveal">
+        <div class="spec-accent spec-accent-dark" data-num="03">
+          <span class="spec-accent-label">Projekt 03</span>
+          <h3 class="spec-accent-title">Akademia Rodzica</h3>
+        </div>
+        <div class="spec-content">
+          <p class="spec-content-desc">Warsztaty i szkolenia dla rodziców wcześniaków — od pierwszych dni na oddziale po powrót do domu. Uczymy pielęgnacji, karmienia, rozpoznawania sygnałów. Zapewniamy dostęp do psychologa, fizjoterapeuty i laktatorki.</p>
+          <div class="spec-content-tags">
+            <span class="spec-tag">Warsztaty</span>
+            <span class="spec-tag">Karmienie piersią</span>
+            <span class="spec-tag">Pielęgnacja</span>
+            <span class="spec-tag">Grupy wsparcia</span>
+          </div>
+          <a href="projekt-akademia-rodzica.html" class="spec-cta-link">Czytaj więcej o projekcie</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ INFOGRAFIKA ═══ -->
+<section class="infographic-section">
+  <div class="section-inner">
+    <p class="section-eyebrow reveal">Dane i fakty</p>
+    <h2 class="section-heading reveal">Wcześniak w liczbach</h2>
+    <p class="section-sub reveal">Każda liczba to realne dziecko i rodzina, która potrzebowała pomocy.</p>
+
+    <!-- 2-col: stats (left) + chart (right) -->
+    <div class="infographic-cols reveal">
+      <div class="infographic-stats-block">
+        <div class="infographic-stat-solo">
+          <div class="infographic-stat-num">23 000</div>
+          <div class="infographic-stat-label">wcześniaków rodzi się rocznie w Polsce</div>
+          <div class="infographic-stat-sub">≈ 63 każdego dnia</div>
+        </div>
+        <div class="infographic-stat-solo">
+          <div class="infographic-stat-num">7,7%</div>
+          <div class="infographic-stat-label">wszystkich urodzeń to porody przedwczesne</div>
+          <div class="infographic-stat-sub">1 na 13 dzieci</div>
+        </div>
+        <div class="infographic-stat-solo">
+          <div class="infographic-stat-num">95%</div>
+          <div class="infographic-stat-label">przeżywalność po 28. tygodniu ciąży</div>
+          <div class="infographic-stat-sub">nowoczesna intensywna terapia</div>
+        </div>
+        <div class="infographic-stat-solo">
+          <div class="infographic-stat-num">62–83</div>
+          <div class="infographic-stat-label">dni średnio w szpitalu na OIOM-ie</div>
+          <div class="infographic-stat-sub">zależnie od wieku ciążowego</div>
+        </div>
+      </div>
+
+      <div class="infographic-chart-block">
+        <div class="gestation-section">
+          <p class="gestation-title">Szanse na zdrowy start według tygodnia urodzenia</p>
+          <div class="gestation-wrap">
+            <div class="gestation-track">
+              <div class="gestation-week extreme-pre"><div class="gestation-bar" style="height:18px"></div><span class="gestation-wlabel">22–25</span></div>
+              <div class="gestation-week extreme-pre"><div class="gestation-bar" style="height:30px"></div><span class="gestation-wlabel">26 tyg.</span></div>
+              <div class="gestation-week very-pre"><div class="gestation-bar" style="height:44px"></div><span class="gestation-wlabel">27</span></div>
+              <div class="gestation-week very-pre"><div class="gestation-bar" style="height:54px"></div><span class="gestation-wlabel">28 tyg.</span></div>
+              <div class="gestation-week very-pre"><div class="gestation-bar" style="height:62px"></div><span class="gestation-wlabel">29</span></div>
+              <div class="gestation-week very-pre"><div class="gestation-bar" style="height:68px"></div><span class="gestation-wlabel">30 tyg.</span></div>
+              <div class="gestation-week very-pre"><div class="gestation-bar" style="height:73px"></div><span class="gestation-wlabel">31</span></div>
+              <div class="gestation-week moderate-pre"><div class="gestation-bar" style="height:78px"></div><span class="gestation-wlabel">32 tyg.</span></div>
+              <div class="gestation-week moderate-pre"><div class="gestation-bar" style="height:81px"></div><span class="gestation-wlabel">33</span></div>
+              <div class="gestation-week late-pre"><div class="gestation-bar" style="height:83px"></div><span class="gestation-wlabel">34 tyg.</span></div>
+              <div class="gestation-week late-pre"><div class="gestation-bar" style="height:86px"></div><span class="gestation-wlabel">35</span></div>
+              <div class="gestation-week late-pre"><div class="gestation-bar" style="height:88px"></div><span class="gestation-wlabel">36 tyg.</span></div>
+              <div class="gestation-week term"><div class="gestation-bar" style="height:90px"></div><span class="gestation-wlabel">37+</span></div>
+            </div>
+            <div class="gestation-legend">
+              <span class="gestation-legend-item extreme-pre">Ekstremalnie wcześniaki (&lt; 26 tyg.)</span>
+              <span class="gestation-legend-item very-pre">Bardzo wcześniaki (27–31 tyg.)</span>
+              <span class="gestation-legend-item moderate-pre">Umiarkowanie wcześniaki (32–33 tyg.)</span>
+              <span class="gestation-legend-item late-pre">Późne wcześniaki (34–36 tyg.)</span>
+              <span class="gestation-legend-item term">Donoszone (37+ tyg.)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="infographic-sep"></div>
+
+    <p class="infographic-facts-heading reveal">Czego możesz nie wiedzieć o wcześniakach?</p>
+    <div class="fact-grid">
+      <div class="fact-card reveal-scale">
+        <div class="fact-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v8"/><path d="M12 7c-.6-1.2-2-2-3.2-2C7 5 6 6.4 6 8.2c0 1 .2 2 .6 3 .7 1.7.9 3.3.9 4.8 0 1.7-1 2-1.8 2C4.8 18 4 17 4 15.4 4 12 4.7 10 5 9"/><path d="M12 7c.6-1.2 2-2 3.2-2C17 5 18 6.4 18 8.2c0 1-.2 2-.6 3-.7 1.7-.9 3.3-.9 4.8 0 1.7 1 2 1.8 2 .9 0 1.7-1 1.7-2.6C20 12 19.3 10 19 9"/></svg></div>
+        <h4 class="fact-card-title">Surfaktant ratuje życie</h4>
+        <p class="fact-card-text">Płuca wcześniaka mogą nie produkować jeszcze <strong>surfaktantu</strong> — substancji zapobiegającej zapadaniu się pęcherzyków. Podanie go po porodzie uratowało miliony dzieci na świecie.</p>
+      </div>
+      <div class="fact-card reveal-scale" style="transition-delay:0.07s">
+        <div class="fact-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.8 5.6a4.5 4.5 0 0 0-7-.6L12 6.6 10.2 5a4.5 4.5 0 0 0-7 .6 4.6 4.6 0 0 0 .6 5.8l7.2 7.1a1.4 1.4 0 0 0 2 0l7.2-7.1a4.6 4.6 0 0 0 .6-5.8Z"/></svg></div>
+        <h4 class="fact-card-title">Kangurowanie to medycyna</h4>
+        <p class="fact-card-text"><strong>Kontakt skóra do skóry</strong> obniża ryzyko infekcji o 51%, zmniejsza śmiertelność o 40% i skraca pobyt w szpitalu średnio o 7 dni. Najtańsza i najskuteczniejsza terapia.</p>
+      </div>
+      <div class="fact-card reveal-scale" style="transition-delay:0.14s">
+        <div class="fact-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 2h6"/><path d="M10 2.5 9.4 6"/><path d="M14 2.5 14.6 6"/><path d="M8 6h8a0 0 0 0 1 0 0l-.7 13.2A2.8 2.8 0 0 1 12.5 22h-1A2.8 2.8 0 0 1 8.7 19.2L8 6Z"/><path d="M8.3 11h7.4"/></svg></div>
+        <h4 class="fact-card-title">Mleko mamy — spersonalizowane</h4>
+        <p class="fact-card-text">Mleko mamy wcześniaka zawiera <strong>więcej białka, żelaza i przeciwciał</strong> niż mleko po porodzie o czasie — organizm automatycznie dostosowuje skład do potrzeb dziecka.</p>
+      </div>
+      <div class="fact-card reveal-scale" style="transition-delay:0.21s">
+        <div class="fact-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg></div>
+        <h4 class="fact-card-title">Cisza leczy mózg</h4>
+        <p class="fact-card-text">Mózg wcześniaka jest <strong>wyjątkowo wrażliwy na hałas</strong>. OIOM często przekracza 70 dB — tyle co odkurzacz. Redukcja hałasu dosłownie chroni rozwijające się neurony.</p>
+      </div>
+      <div class="fact-card reveal-scale" style="transition-delay:0.28s">
+        <div class="fact-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.8 5.6a4.5 4.5 0 0 0-7-.6L12 6.6 10.2 5a4.5 4.5 0 0 0-7 .6 4.6 4.6 0 0 0 .6 5.8l7.2 7.1a1.4 1.4 0 0 0 2 0l7.2-7.1a4.6 4.6 0 0 0 .6-5.8Z"/><path d="M3.5 12.4h4l1.5-3 2 5 1.5-2h4.5"/></svg></div>
+        <h4 class="fact-card-title">Głos rodziców stabilizuje serce</h4>
+        <p class="fact-card-text">Regularny kontakt z głosem rodziców <strong>stabilizuje rytm serca</strong>, obniża poziom kortyzolu i przyspiesza dojrzewanie układu nerwowego wcześniaka.</p>
+      </div>
+      <div class="fact-card reveal-scale" style="transition-delay:0.35s">
+        <div class="fact-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><polyline points="7 14 11 10 14 13 20 6"/><polyline points="20 11 20 6 15 6"/></svg></div>
+        <h4 class="fact-card-title">Polska w czołówce regionu</h4>
+        <p class="fact-card-text">Polska ma jedną z <strong>najnowocześniejszych sieci OIOM-ów noworodkowych</strong> w Europie Środkowej — ale sprzęt i szkolenia to wciąż obszar, gdzie liczy się każde wsparcie.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 06 BLOG ═══ -->
+<section id="blog" class="light-section">
+  <div class="section-inner">
+    <p class="section-eyebrow reveal">Blog</p>
+    <h2 class="section-heading reveal">Blog</h2>
+    <p class="section-sub reveal">Artykuły, poradniki i aktualności dla rodziców wcześniaków i personelu medycznego.</p>
+    <div class="blog-grid">
+
+      <a href="blog-kangurowanie.html" class="blog-card reveal-scale">
+        <div class="blog-card-img">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_37ZZKwyNLLPo4MGAhhK607iaU8Q/hf_20260623_094711_5e53462a-32ca-45eb-b1ae-9acbac968ffa.jpeg" alt="Wcześniak w inkubatorze" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="lazy">
+          <span class="blog-card-cat">Kangurowanie</span>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-date">12 maja 2025</span>
+          <h3 class="blog-card-title">Kontakt skóra do skóry — dlaczego jest tak ważny dla wcześniaka?</h3>
+          <p class="blog-card-excerpt">Kangurowanie to nie tylko ciepło. Badania pokazują, że regularny kontakt z mamą lub tatą reguluje oddychanie, stabilizuje tętno i przyspiesza przyrost masy ciała noworodka.</p>
+          <span class="blog-card-link">Czytaj artykuł →</span>
+        </div>
+      </a>
+
+      <a href="blog-karmienie.html" class="blog-card reveal-scale" style="transition-delay:0.1s">
+        <div class="blog-card-img">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_37ZZKwyNLLPo4MGAhhK607iaU8Q/hf_20260623_094614_8005bbcf-06a4-4269-8e16-7db6df3552e0.png" alt="Karmienie piersią wcześniaka" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="lazy">
+          <span class="blog-card-cat">Karmienie</span>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-date">3 kwietnia 2025</span>
+          <h3 class="blog-card-title">Karmienie piersią wcześniaka — 7 rzeczy, których nikt Ci nie powie</h3>
+          <p class="blog-card-excerpt">Mleko mamy wcześniaka różni się składem od mleka po porodzie o czasie. To naturalny mechanizm — Twój organizm wie, czego dziecku potrzeba.</p>
+          <span class="blog-card-link">Czytaj artykuł →</span>
+        </div>
+      </a>
+
+      <a href="blog-psychologia.html" class="blog-card reveal-scale" style="transition-delay:0.2s">
+        <div class="blog-card-img">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_37ZZKwyNLLPo4MGAhhK607iaU8Q/hf_20260623_094616_bb899d96-1c1f-4531-ac1c-ce9407998df8.png" alt="Wsparcie psychologiczne dla mamy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="lazy">
+          <span class="blog-card-cat">Psychologia</span>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-date">18 marca 2025</span>
+          <h3 class="blog-card-title">Trauma porodowa — jak rozpoznać i kiedy szukać pomocy</h3>
+          <p class="blog-card-excerpt">Poród przedwczesny to często trauma nie tylko dla dziecka, ale i dla mamy. Dowiedz się jakie sygnały powinny skłonić Cię do rozmowy ze specjalistą.</p>
+          <span class="blog-card-link">Czytaj artykuł →</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span style="display:inline-flex;align-items:center;gap:10px"><img src="logo.svg" width="28" height="28" alt="" style="border-radius:50%;display:block"/>© 2025 Serce Mamy — Stowarzyszenie</span>
+  <div class="footer-links">
+    <a href="index.html">Główna</a>
+    <a href="o-nas.html">O nas</a>
+    <a href="dzialania.html">Działania</a>
+    <a href="pomoc.html">Wsparcie</a>
+  </div>
+</footer>
+<script src="app.js" defer></script>
+</body>
+</html>

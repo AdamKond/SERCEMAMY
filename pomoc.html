@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wsparcie — Serce Mamy</title>
+  <meta name="description" content="Stowarzyszenie „Serce Mamy” wspiera mamy, wcześniaki, noworodki i rodziny w opiece okołoporodowej. Powstało przy Klinice Położnictwa i Patologii Ciąży z Oddziałem Neonatologii, z inicjatywy lekarzy.">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Inter+Tight:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- FLOATING MICRO-DECO layer -->
+<div class="fdl" aria-hidden="true">
+  <div class="fdl-el" style="top:18%;left:6%;animation:microFloat 6.2s ease-in-out infinite;animation-delay:0s">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+  </div>
+  <div class="fdl-el pk" style="top:34%;left:92%;animation:microFloat 8s ease-in-out infinite;animation-delay:1.2s">
+    <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+  </div>
+  <div class="fdl-el" style="top:62%;left:4%;animation:microFloat 7.4s ease-in-out infinite;animation-delay:2.5s">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"/></svg>
+  </div>
+  <div class="fdl-el pk" style="top:78%;left:96%;animation:microFloat 9s ease-in-out infinite;animation-delay:0.8s">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+  </div>
+  <div class="fdl-el" style="top:50%;left:88%;animation:microFloat 6.8s ease-in-out infinite;animation-delay:3.5s">
+    <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor" opacity="0.6"><circle cx="12" cy="12" r="10"/></svg>
+  </div>
+</div>
+
+<!-- LOADER -->
+<div id="page-loader">
+  <div class="pl-mark">
+    <svg class="pl-ring" viewBox="0 0 102 102" aria-hidden="true">
+      <circle cx="51" cy="51" r="47"/>
+      <path d="M51 4a47 47 0 0 1 47 47"/>
+    </svg>
+    <svg class="pl-heart" viewBox="0 0 100 100" aria-hidden="true">
+      <path class="fill" d="M50 78C50 78 24 62 24 44c0-9 7-15 15-15 5.4 0 9.2 2.8 11 6.4C51.8 31.8 55.6 29 61 29c8 0 15 6 15 15 0 18-26 34-26 34z"/>
+      <path class="ekg" d="M31 50h7l3.4-8 5.4 14 3.6-10 2.8 6H69"/>
+    </svg>
+  </div>
+  <div class="pl-brand">Serce Mamy</div>
+  <div class="pl-sub">Stowarzyszenie</div>
+  <div class="pl-bar"><div class="pl-bar-fill"></div></div>
+</div>
+
+<div id="scroll-progress"></div>
+
+<a href="pomoc.html#contact" id="float-cta" class="ripple-host">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+  Pomóż nam
+</a>
+
+<div class="page-name-vert" id="pageNameVert">SERCE MAMY</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="index.html">
+    <img class="nav-logo-img" src="logo.svg" width="40" height="40" alt="Serce Mamy — logo" />
+    <div class="nav-logo-text">
+      <span class="nav-logo-main">Serce Mamy</span>
+      <span class="nav-logo-sub">Stowarzyszenie</span>
+    </div>
+  </a>
+  <div class="nav-links-wrap">
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Główna</a></li>
+      <li class="has-sub">
+        <a href="o-nas.html">O nas <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <ul class="subnav">
+          <li><a href="o-nas.html">Kim jesteśmy</a></li>
+          <li><a href="o-nas.html#path">Ścieżka wsparcia</a></li>
+          <li><a href="o-nas.html#stories">Historie rodzin</a></li>
+        </ul>
+      </li>
+      <li class="has-sub">
+        <a href="dzialania.html">Działania <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <ul class="subnav">
+          <li><a href="dzialania.html#projects">Nasze projekty</a></li>
+          <li><a href="dzialania.html#blog">Blog</a></li>
+        </ul>
+      </li>
+      <li class="has-sub">
+        <a href="pomoc.html" class="active">Wsparcie <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <ul class="subnav">
+          <li><a href="pomoc.html#donate">Pomóż nam</a></li>
+          <li><a href="pomoc.html#contact">Kontakt</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="nav-toggle" id="navToggle"><span></span><span></span><span></span></div>
+</nav>
+<div class="page-top-spacer"></div>
+<section class="page-hero">
+  <p class="page-hero-eyebrow">Wsparcie · Pomóż</p>
+  <h2 class="page-hero-title"><span class="l1">Wesprzyj</span><span class="l2">Serce Mamy</span></h2>
+  <p class="page-hero-lead">Twoja pomoc może stać się <b>realną zmianą</b> dla mam długo przebywających na oddziale patologii ciąży, dla <b>wcześniaków</b> oraz dla rodzin czekających na bezpieczny powrót do domu. Każda wpłata — niezależnie od wysokości — przekłada się na <b>sprzęt, materiały i wsparcie</b>, które ratują i ułatwiają życie najmłodszych pacjentów.</p>
+  <div class="page-hero-media"><img src="intro-media/niemowle.png" alt="Uśmiechnięte niemowlę" loading="lazy" onerror="this.closest('.page-hero-media').style.display='none'"></div>
+</section>
+<!-- ═══ 07 POMÓŻ ═══ -->
+<section id="donate" class="light-section alt">
+  <div class="section-inner">
+    <p class="section-eyebrow reveal">Wsparcie</p>
+    <h2 class="section-heading reveal">Wesprzyj nas</h2>
+    <p class="section-sub reveal">Państwa pomoc może stać się realną zmianą dla mam długo przebywających na oddziale patologii ciąży, dla wcześniaków oraz dla rodzin czekających na bezpieczny powrót do domu.</p>
+    <div class="donate-stats reveal">
+      <div class="donate-stat"><div class="donate-stat-num" data-target="23000">0</div><div class="donate-stat-label">wcześniaków rodzi się<br>rocznie w Polsce</div></div>
+      <div class="donate-stat"><div class="donate-stat-num" data-target="87">0</div><div class="donate-stat-label">% z nich wymaga<br>specjalistycznej opieki</div></div>
+      <div class="donate-stat"><div class="donate-stat-num" data-target="3">0</div><div class="donate-stat-label">aktywne programy<br>wsparcia rodzin</div></div>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card reveal-l">
+        <div class="cert-top-bar" style="background:#bfe0da"></div>
+        <div class="cert-body" data-abbr="PW">
+          <div class="cert-amount">500 – 5 000 zł</div>
+          <div class="cert-name">Przyjaciel Wcześniaka</div>
+          <div class="cert-issuer" style="color:#5f9e96">Pakiet wejściowy</div>
+          <p class="cert-desc">Materiały pielęgnacyjne, zestawy dla rodziców na oddziale, materiały edukacyjne. Realna pomoc od pierwszego dnia.</p>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-top-bar" style="background:var(--rose)"></div>
+        <div class="cert-body" data-abbr="BD">
+          <div class="cert-amount">5 000 – 20 000 zł</div>
+          <div class="cert-name">Blisko Dziecka</div>
+          <div class="cert-issuer" style="color:var(--rose)">Projekt Blisko Dziecka</div>
+          <p class="cert-desc">Krzesła do kangurowania, zasłony i osłony inkubatorów redukujące stymulację sensoryczną. Pomaga rodzicom być fizycznie blisko.</p>
+        </div>
+      </div>
+      <div class="cert-card reveal-r">
+        <div class="cert-top-bar" style="background:#3f7068"></div>
+        <div class="cert-body" data-abbr="AMP">
+          <div class="cert-amount">20 000 – 50 000 zł</div>
+          <div class="cert-name">Akademia Młodego Rodzica</div>
+          <div class="cert-issuer" style="color:#3f7068">Akademia Rodzica</div>
+          <p class="cert-desc">Pełny cykl warsztatów: karmienie, pielęgnacja, rehabilitacja, wsparcie psychologiczne. Każdy rodzic zyskuje wiedzę i pewność siebie.</p>
+        </div>
+      </div>
+    </div>
+    <div class="cert-grid-2">
+      <div class="cert-card reveal-l">
+        <div class="cert-top-bar" style="background:#2e544d"></div>
+        <div class="cert-body" data-abbr="NIT">
+          <div class="cert-amount">25 000 – 100 000 zł</div>
+          <div class="cert-name">Nowoczesna Intensywna Terapia</div>
+          <div class="cert-issuer" style="color:#2e544d">Wyposażenie OIOM</div>
+          <p class="cert-desc">Inkubatory, respiratory, pompy infuzyjne. Sprzęt, który dosłownie ratuje życie. Każde urządzenie to realna szansa dla konkretnego dziecka.</p>
+        </div>
+      </div>
+      <div class="cert-card reveal-r">
+        <div class="cert-top-bar" style="background:var(--dark)"></div>
+        <div class="cert-body" data-abbr="NW">
+          <div class="cert-amount">50 000 – 200 000 zł</div>
+          <div class="cert-name">Neuroprotekcja Wcześniaka</div>
+          <div class="cert-issuer" style="color:var(--dark2)">Program flagowy</div>
+          <p class="cert-desc">Kompleksowy program neurologicznej opieki — EEG, USG mózgu, rehabilitacja neurologiczna w pierwszych miesiącach życia. Każdy dzień ma tu znaczenie.</p>
+        </div>
+      </div>
+    </div>
+    <div class="donate-cta-card reveal">
+      <h3>Dla firm i osób prywatnych</h3>
+      <p>Partnerstwo może obejmować wsparcie finansowe, rzeczowe, organizacyjne, edukacyjne lub promocyjne. Każda forma pomocy ma znaczenie — od dużego partnerstwa instytucjonalnego po indywidualną darowiznę.</p>
+      <a href="pomoc.html#contact" class="btn-white">Skontaktuj się z nami →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 08 KONTAKT ═══ -->
+<section id="contact" class="light-section">
+  <div class="section-inner">
+    <p class="section-eyebrow reveal">Kontakt</p>
+    <h2 class="section-heading reveal">Kontakt</h2>
+    <p class="section-sub reveal">Napisz do nas — niezależnie czy szukasz wsparcia, chcesz pomóc, czy masz pytania.</p>
+    <div class="contact-layout">
+      <div class="contact-items">
+        <div class="contact-row reveal"><div class="contact-icon-box"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6 19.79 19.79 0 0 1 1.6 5 2 2 0 0 1 3.57 3h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 10a16 16 0 0 0 5.91 5.91l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div><div class="contact-lbl">Telefon</div><div class="contact-val"><a href="tel:+48000000000">+48 000 000 000</a></div></div></div>
+        <div class="contact-row reveal"><div class="contact-icon-box"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div><div><div class="contact-lbl">E-mail</div><div class="contact-val"><a href="mailto:kontakt@sercemamy.pl">kontakt@sercemamy.pl</a></div></div></div>
+        <div class="contact-row reveal"><div class="contact-icon-box"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="contact-lbl">Adres</div><div class="contact-val">ul. Przykładowa 1, Lublin</div></div></div>
+        <div class="contact-row reveal"><div class="contact-icon-box"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div><div><div class="contact-lbl">Instagram</div><div class="contact-val"><a href="https://www.instagram.com/" target="_blank" rel="noopener">@sercemamy</a></div></div></div>
+      </div>
+      <div class="contact-form-card reveal-r">
+        <h3>Zgłoś potrzebę wsparcia</h3>
+        <p>Wypełnij formularz — odezwiemy się w ciągu 24 godzin.</p>
+        <div class="form-group"><label for="f-name">Imię i nazwisko</label><input type="text" id="f-name" placeholder="np. Anna Kowalska" autocomplete="name"/></div>
+        <div class="form-group"><label for="f-email">Adres e-mail</label><input type="email" id="f-email" placeholder="twoj@email.pl" autocomplete="email"/></div>
+        <div class="form-group"><label for="f-stage">Twoja sytuacja</label>
+          <select id="f-stage"><option value="">Wybierz etap...</option><option>Jestem w ciąży</option><option>Dziecko jest na OIOM-ie</option><option>Wróciliśmy do domu</option><option>Chcę wesprzeć finansowo</option><option>Chcę wesprzeć jako wolontariusz</option><option>Inne pytanie</option></select>
+        </div>
+        <div class="form-group"><label for="f-msg">Wiadomość</label><textarea id="f-msg" placeholder="Napisz kilka słów..."></textarea></div>
+        <button class="btn-form ripple-host" type="button">Wyślij wiadomość</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span style="display:inline-flex;align-items:center;gap:10px"><img src="logo.svg" width="28" height="28" alt="" style="border-radius:50%;display:block"/>© 2025 Serce Mamy — Stowarzyszenie</span>
+  <div class="footer-links">
+    <a href="index.html">Główna</a>
+    <a href="o-nas.html">O nas</a>
+    <a href="dzialania.html">Działania</a>
+    <a href="pomoc.html">Wsparcie</a>
+  </div>
+</footer>
+<script src="app.js" defer></script>
+</body>
+</html>
