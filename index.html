@@ -422,7 +422,8 @@
 
   // ---- pomiar poziomego pinu ----
   var maxX = 0;
-  function measure(){ maxX = Math.max(0, track.scrollWidth - window.innerWidth); pinWrap.style.height = (window.innerHeight + maxX) + 'px'; }
+  var SCROLL_SPEED = 0.72; // <1 = krótszy pierwszy scroll (poziomy pan kończy się szybciej)
+  function measure(){ maxX = Math.max(0, track.scrollWidth - window.innerWidth); pinWrap.style.height = (window.innerHeight + maxX * SCROLL_SPEED) + 'px'; }
   measure();
   window.addEventListener('resize', measure);
   window.addEventListener('load', measure);
@@ -501,7 +502,7 @@
   function onScroll(){
     var y = window.scrollY || window.pageYOffset;
     maxX = Math.max(0, track.scrollWidth - window.innerWidth);
-    target = clamp(y, 0, maxX);
+    target = clamp(y / SCROLL_SPEED, 0, maxX);
     if (!raf) raf = requestAnimationFrame(tick);
     if (hint) hint.style.opacity = y > 40 ? '0' : '1';
     checkReveals(); checkKin(); portrait(); techScroll();
