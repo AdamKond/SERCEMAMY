@@ -69,9 +69,14 @@
   window.addEventListener('load', function(){
     if(typeof gsap==='undefined') return;
     gsap.registerPlugin(ScrollTrigger);
+    /* mobile: ignoruj zmianę wysokości viewportu od paska adresu (stabilne triggery) */
+    if(ScrollTrigger.config) ScrollTrigger.config({ ignoreMobileResize: true });
     gsap.utils.toArray('.headline-line-inner').forEach(function(el,i){
-      gsap.fromTo(el, {yPercent:110}, {yPercent:0, duration:1.4, ease:'power4.out', delay:i*0.12, immediateRender:false, scrollTrigger:{trigger:el, start:'top 95%'}});
+      gsap.fromTo(el, {yPercent:110}, {yPercent:0, duration:1.4, ease:'power4.out', delay:i*0.12, immediateRender:false, scrollTrigger:{trigger:el, start:'top 92%'}});
     });
+    /* przelicz pozycje po pełnym załadowaniu (obrazy mogą zmienić wysokość) i przy obrocie */
+    setTimeout(function(){ ScrollTrigger.refresh(); }, 400);
+    window.addEventListener('orientationchange', function(){ setTimeout(function(){ ScrollTrigger.refresh(); }, 350); });
     /* Hero entrance */
     var hl=document.querySelector('.hero-split-headline');
     if(hl){
