@@ -141,7 +141,7 @@
 
   /* MOBILE NAV */
   var nw=document.querySelector('.nav-links-wrap'), nt=document.getElementById('navToggle');
-  if(nt&&nw){ nt.addEventListener('click',function(){ nw.classList.toggle('open'); }); document.querySelectorAll('.nav-links a').forEach(function(a){ a.addEventListener('click',function(){ nw.classList.remove('open'); }); }); }
+  if(nt&&nw){ nt.addEventListener('click',function(){ var o=nw.classList.toggle('open'); nt.classList.toggle('open',o); nt.setAttribute('aria-expanded',o?'true':'false'); }); document.querySelectorAll('.nav-links a').forEach(function(a){ a.addEventListener('click',function(){ nw.classList.remove('open'); nt.classList.remove('open'); nt.setAttribute('aria-expanded','false'); }); }); }
 
   /* CAROUSEL */
   (function(){

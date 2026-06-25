@@ -133,7 +133,8 @@
     .nav-links li:nth-child(7){animation:navDropIn .55s var(--ease) both .64s}
     .nav-links li:nth-child(8){animation:navDropIn .55s var(--ease) both .70s}
     .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
-    .nav-toggle span { display: block; width: 22px; height: 1.5px; background: var(--dark2); border-radius: 2px; }
+    .nav-toggle span { display: block; width: 22px; height: 1.5px; background: var(--dark2); border-radius: 2px; transition: transform .38s var(--ease), opacity .25s var(--ease); }
+    @keyframes navItemIn { from { opacity: 0; transform: translateX(18px); } to { opacity: 1; transform: translateX(0); } }
 
     /* ══ HERO (legacy — #home jest teraz kompaktowym hubem .home-info) ══ */
     #home { position: relative; }
@@ -505,12 +506,7 @@
     }
     @media (max-width: 640px) {
       nav { padding: 0 16px; height: 60px; }
-      .nav-links-wrap { display: none; position: fixed; top: 68px; right: 12px; left: 12px; background: rgba(255,255,255,0.97); backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: 16px; padding: 0.75rem; box-shadow: 0 8px 32px rgba(0,0,0,0.14); z-index: 99; }
-      .nav-links-wrap.open { display: flex; }
-      .nav-links { flex-direction: column; gap: 2px; width: 100%; }
-      .nav-links a { font-size: 13px; padding: 0.65rem 1rem; width: 100%; text-align: center; justify-content: center; }
-      .nav-links a .num { display: none; }
-      .nav-toggle { display: flex; }
+      nav .nav-links-wrap { top: 66px; right: 10px; width: min(340px, calc(100vw - 20px)); }
       #home { height: auto; min-height: 0; }
       .hero-split { padding: calc(var(--nav-h) + 36px) 22px 90px; }
       .hero-split-headline { font-size: clamp(1.8rem,8vw,2.6rem); line-height: 1.12; max-width: 100%; }
@@ -549,8 +545,44 @@
     .nav-links .subnav a:hover { background: var(--rose-dim); color: var(--rose); }
     @media (max-width: 900px) {
       .nav-links .has-sub > a .caret { display: none; }
-      .nav-links .subnav { position: static; transform: none; opacity: 1; visibility: visible; min-width: 0; padding: 2px 0 6px 16px; margin: 0; background: transparent; border: none; box-shadow: none; }
-      .nav-links .subnav a { padding: 7px 4px; font-size: 14px; }
+      .nav-links .subnav { position: static; transform: none; opacity: 1; visibility: visible; min-width: 0; padding: 2px 0 4px 14px; margin: 0; background: transparent; border: none; box-shadow: none; }
+      .nav-links .subnav a { padding: 9px 8px; font-size: 13.5px; }
+
+      /* ── MOBILE MENU (spójny próg z chowaniem subnav) ── */
+      .nav-toggle { display: flex; }
+      .nav-links-wrap {
+        display: flex; flex-direction: column; align-items: stretch;
+        position: fixed; top: calc(66px + 6px); right: 10px; left: auto; width: min(320px, calc(100vw - 20px));
+        background: rgba(255,255,255,0.98);
+        backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+        border: 1px solid rgba(95,158,150,0.18); border-radius: 20px;
+        padding: 8px;
+        box-shadow: 0 22px 56px rgba(46,84,78,0.20);
+        z-index: 99;
+        opacity: 0; visibility: hidden;
+        transform: translateY(-14px) scale(0.97);
+        transform-origin: top right;
+        transition: opacity .3s var(--ease), transform .4s cubic-bezier(.22,1,.36,1), visibility .4s;
+      }
+      .nav-links-wrap.open { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+      .nav-links { flex-direction: column; gap: 0; width: 100%; align-items: stretch; }
+      .nav-links > li { width: 100%; border-bottom: 1px solid rgba(95,158,150,0.10); }
+      .nav-links > li:last-child { border-bottom: none; }
+      .nav-links a { font-size: 15px; padding: 13px 16px; width: 100%; text-align: left; justify-content: flex-start; border-radius: 12px; letter-spacing: 0.01em; }
+      .nav-links > li > a { font-weight: 600; }
+      .nav-links a.active { background: var(--rose-dim); color: var(--rose); }
+      .nav-links a .num { display: none; }
+      .nav-links .subnav a { color: var(--muted); font-weight: 500; }
+      /* stagger wejścia pozycji przy otwarciu */
+      .nav-links-wrap.open .nav-links > li { animation: navItemIn .45s cubic-bezier(.22,1,.36,1) both; }
+      .nav-links-wrap.open .nav-links > li:nth-child(1){ animation-delay: .05s; }
+      .nav-links-wrap.open .nav-links > li:nth-child(2){ animation-delay: .11s; }
+      .nav-links-wrap.open .nav-links > li:nth-child(3){ animation-delay: .17s; }
+      .nav-links-wrap.open .nav-links > li:nth-child(4){ animation-delay: .23s; }
+      /* hamburger -> X */
+      .nav-toggle.open span:nth-child(1){ transform: translateY(6.5px) rotate(45deg); }
+      .nav-toggle.open span:nth-child(2){ opacity: 0; transform: scaleX(0.4); }
+      .nav-toggle.open span:nth-child(3){ transform: translateY(-6.5px) rotate(-45deg); }
     }
 
     /* ════════ INTRO (kinowy scroll — łagodna paleta) ════════ */
@@ -655,7 +687,18 @@
       .ih-smile { height: 78vh; }
       .ih-smile-title { white-space: normal; left: clamp(20px,6vw,48px); right: clamp(20px,6vw,48px); font-size: clamp(40px,11vw,68px); }
       .ih-smile-media { width: 100%; }
+
+      /* ── HERO na telefonie: przejście w bok + napis zjeżdżający w dół ── */
+      /* media drugiego panelu wchodzi z boku (wycieranie w prawo) zamiast z dołu */
+      #intro .ih-pinwrap [data-ih-clip] { clip-path: inset(0 100% 0 0); opacity: .25; transition: clip-path 1.15s cubic-bezier(.76,0,.24,1), opacity 1.1s var(--ease); }
+      #intro .ih-pinwrap [data-ih-clip].in { clip-path: inset(0 0 0 0); opacity: 1; }
+      /* duży napis „Tam, gdzie medycyna…" zjeżdża z góry w dół */
+      #intro .ih-pinwrap .ih-smile-title { transform: translateY(-72px); opacity: 0; transition: opacity 1s var(--ease), transform 1.05s cubic-bezier(.22,1,.36,1); }
+      #intro .ih-pinwrap .ih-smile-title.in { transform: translateY(0); opacity: 1; }
+      /* treść pierwszego panelu również wjeżdża delikatnie z boku */
+      #intro .ih-hero-content { animation: ihHeroSide 1.1s cubic-bezier(.22,1,.36,1) .15s both; }
     }
+    @keyframes ihHeroSide { from { opacity: 0; transform: translateX(-34px); } to { opacity: 1; transform: translateX(0); } }
     @media (prefers-reduced-motion: reduce) {
       .ih-aurora::before, .ih-aurora::after, .pl-heart, .pl-ring { animation: none !important; }
     }
