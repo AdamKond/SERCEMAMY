@@ -959,6 +959,21 @@
 }
 .about-bento-photo:hover img { transform: scale(1.04); }
 
+.about-bento-art {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  box-shadow: var(--card-shadow);
+  background: radial-gradient(120% 120% at 50% 30%, #f4f9f7, var(--white));
+  flex: 1.4;
+  min-height: 220px;
+  padding: 1.4rem;
+}
+.about-bento-art .sm-pulse-art { margin: 0; }
+.about-bento-art .sm-pulse-art svg { max-width: 260px; }
+
 /* Galeria rysunków „Z serca" (strona główna) */
 .art-gallery { background: linear-gradient(180deg,#ffffff,#f4f9f7); padding: clamp(60px,8vw,110px) clamp(20px,5vw,60px); }
 .art-gallery-inner { max-width: 1200px; margin: 0 auto; }
