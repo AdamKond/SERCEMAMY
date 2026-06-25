@@ -38,20 +38,20 @@
     /* ══ LOADER ══ */
     #page-loader {
       position: fixed; inset: 0; z-index: 9999; background: radial-gradient(80% 80% at 50% 38%, #fbfdfc 0%, #eef5f3 100%);
-      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.1rem;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(1.1rem,2.6vw,1.7rem);
       transition: opacity 0.75s var(--ease), visibility 0.75s;
     }
     #page-loader.loaded { opacity: 0; visibility: hidden; pointer-events: none; }
-    .pl-mark { position: relative; width: 102px; height: 102px; display: flex; align-items: center; justify-content: center; animation: plIn .8s var(--ease) both; }
-    .pl-ring { position: absolute; inset: 0; width: 102px; height: 102px; animation: plSpin 1.15s linear infinite; }
+    .pl-mark { position: relative; width: clamp(124px,17vw,168px); height: clamp(124px,17vw,168px); display: flex; align-items: center; justify-content: center; animation: plIn .8s var(--ease) both; }
+    .pl-ring { position: absolute; inset: 0; width: 100%; height: 100%; animation: plSpin 1.15s linear infinite; }
     .pl-ring circle { fill: none; stroke: var(--rose-dim2); stroke-width: 3; }
     .pl-ring path { fill: none; stroke: var(--rose); stroke-width: 3; stroke-linecap: round; }
     .pl-heart { width: 50px; height: 50px; animation: plBeat 1.25s ease-in-out infinite; transform-origin: 50% 56%; }
     .pl-heart .fill { fill: var(--rose); }
     .pl-heart .ekg { fill: none; stroke: #fff; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 64; stroke-dashoffset: 64; animation: plEkg 1.7s var(--ease) infinite; }
-    .pl-brand { font-family: var(--font-serif); font-weight: 600; font-size: clamp(1.5rem,4vw,2rem); color: var(--dark); letter-spacing: .005em; animation: plIn .8s var(--ease) .1s both; }
-    .pl-sub { font-size: 9px; letter-spacing: .42em; font-weight: 700; color: var(--muted2); text-transform: uppercase; margin-top: -.55rem; animation: plIn .8s var(--ease) .18s both; }
-    .pl-bar { width: 124px; height: 3px; background: var(--border2); border-radius: 3px; overflow: hidden; margin-top: .5rem; }
+    .pl-brand { font-family: var(--font-serif); font-weight: 600; font-size: clamp(1.85rem,5.5vw,2.6rem); color: var(--dark); letter-spacing: .005em; animation: plIn .8s var(--ease) .1s both; }
+    .pl-sub { font-size: clamp(9px,1.5vw,11px); letter-spacing: .42em; font-weight: 700; color: var(--muted2); text-transform: uppercase; margin-top: -.55rem; animation: plIn .8s var(--ease) .18s both; }
+    .pl-bar { width: clamp(150px,24vw,200px); height: 3px; background: var(--border2); border-radius: 3px; overflow: hidden; margin-top: .5rem; }
     .pl-bar-fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--rose), #9fcfc7); border-radius: 3px; animation: plFill 1.35s var(--ease) forwards; }
     @keyframes plSpin { to { transform: rotate(360deg); } }
     @keyframes plBeat { 0%,100%{ transform:scale(1);} 14%{ transform:scale(1.16);} 28%{ transform:scale(1);} 42%{ transform:scale(1.09);} 56%{ transform:scale(1);} }
@@ -1217,7 +1217,7 @@
 /* ══════════════════════════════════
    LOADER — logo zamiast serduszka
    ══════════════════════════════════ */
-.pl-logo { width: 56px; height: 56px; display: block; border-radius: 50%; animation: plBeat 1.5s ease-in-out infinite; transform-origin: 50% 50%; }
+.pl-logo { width: clamp(70px,9.5vw,94px); height: clamp(70px,9.5vw,94px); display: block; border-radius: 50%; animation: plBeat 1.5s ease-in-out infinite; transform-origin: 50% 50%; }
 @media (prefers-reduced-motion: reduce) { .pl-logo { animation: none; } }
 
 /* ══════════════════════════════════
@@ -1351,6 +1351,17 @@ footer {
   .sm-divider .line { width: 26vw; }
   .donate-stats { grid-template-columns: 1fr; }
   .donate-stat { padding: 1.4rem 1.5rem; }
+
+  /* Hub nawigacyjny + sekcja końcowa — telefon */
+  .home-info { padding: clamp(48px,8vh,84px) clamp(18px,5vw,40px); }
+  .home-grid { gap: 14px; }
+  .home-card { min-height: 0; }
+  .big-headline-pillars { flex-direction: column; align-items: stretch; gap: 0.75rem; }
+  .bh-pillar { justify-content: flex-start; }
+  .bh-cta-wrap { flex-direction: column; align-items: stretch; }
+  .bh-cta { width: 100%; justify-content: center; }
+  .about-bento-art { min-height: 200px; padding: 1rem; }
+  .about-bento-art .sm-pulse-art svg { max-width: 220px; }
 }
 
 /* bardzo wąskie ekrany */
