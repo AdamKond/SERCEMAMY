@@ -174,8 +174,8 @@
     .big-headline-inner { max-width: 1100px; margin: 0 auto; }
     .big-headline-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: #9fcfc7; margin-bottom: 2rem; display: flex; align-items: center; gap: 0.6rem; }
     .big-headline-eyebrow::before { content: ''; display: inline-block; width: 24px; height: 2px; background: var(--rose); border-radius: 2px; }
-    .headline-line { overflow: hidden; }
-    .headline-line-inner { font-family: var(--font-tight); font-size: clamp(2.4rem,6vw,6.5rem); font-weight: 900; line-height: 1.06; letter-spacing: -0.02em; color: #fff; display: block; }
+    .headline-line { overflow: hidden; padding-block: 0.16em; margin-block: -0.12em; }
+    .headline-line-inner { font-family: var(--font-tight); font-size: clamp(2.4rem,6vw,6.5rem); font-weight: 900; line-height: 1.08; letter-spacing: -0.02em; color: #fff; display: block; }
     .headline-line-inner.rose { color: #9fcfc7; }
     .headline-line-inner.muted { color: rgba(255,255,255,0.4); }
     .big-headline-sub { font-size: clamp(15px,1.4vw,18px); color: rgba(255,255,255,0.78); line-height: 1.85; max-width: 520px; margin-top: 2.5rem; }

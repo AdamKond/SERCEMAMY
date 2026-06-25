@@ -72,7 +72,7 @@
     /* mobile: ignoruj zmianę wysokości viewportu od paska adresu (stabilne triggery) */
     if(ScrollTrigger.config) ScrollTrigger.config({ ignoreMobileResize: true });
     gsap.utils.toArray('.headline-line-inner').forEach(function(el,i){
-      gsap.fromTo(el, {yPercent:110}, {yPercent:0, duration:1.4, ease:'power4.out', delay:i*0.12, immediateRender:false, scrollTrigger:{trigger:el, start:'top 92%'}});
+      gsap.fromTo(el, {yPercent:110}, {yPercent:0, duration:1.4, ease:'power4.out', delay:i*0.12, immediateRender:false, scrollTrigger:{trigger:el, start:'top 92%', toggleActions:'restart none none reset'}});
     });
     /* przelicz pozycje po pełnym załadowaniu (obrazy mogą zmienić wysokość) i przy obrocie */
     setTimeout(function(){ ScrollTrigger.refresh(); }, 400);
