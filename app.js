@@ -17,8 +17,9 @@
     lineEls.forEach(function(le, li){
       [].slice.call(le.childNodes).forEach(function(n){
         var em = n.nodeType === 1 && n.tagName === 'EM';
+        var br = n.nodeType === 1 && n.tagName === 'SPAN';
         var txt = n.textContent || '';
-        Array.prototype.forEach.call(txt, function(ch){ seq.push({ li: li, ch: ch, em: em }); });
+        Array.prototype.forEach.call(txt, function(ch){ seq.push({ li: li, ch: ch, em: em, br: br }); });
       });
       le.textContent = '';
     });
@@ -31,6 +32,8 @@
         var last = el.lastChild;
         if(last && last.nodeType === 1 && last.tagName === 'EM'){ last.textContent += s.ch; }
         else { var em = document.createElement('em'); em.textContent = s.ch; el.appendChild(em); }
+      } else if(s.br){
+        var sp = document.createElement('span'); sp.className = 't-brand'; sp.textContent = s.ch; el.appendChild(sp);
       } else {
         el.appendChild(document.createTextNode(s.ch));
       }
@@ -65,15 +68,16 @@
   var lsBlock=document.getElementById('ls-block');
   if(lsBlock) new IntersectionObserver(function(e){ if(e[0].isIntersecting) setTimeout(function(){ lsBlock.classList.add('ls-in'); },150); },{threshold:0.25}).observe(lsBlock);
 
+  /* BIG HEADLINE — wejście linii tekstu (IntersectionObserver zamiast ScrollTriggera, odpala raz) */
+  var bhSection=document.querySelector('.big-headline-section');
+  if(bhSection) new IntersectionObserver(function(e,obs){ if(e[0].isIntersecting){ bhSection.classList.add('bh-in'); obs.disconnect(); } },{threshold:0.25}).observe(bhSection);
+
   /* BIG HEADLINE ANIMATION (GSAP ScrollTrigger) */
   window.addEventListener('load', function(){
     if(typeof gsap==='undefined') return;
     gsap.registerPlugin(ScrollTrigger);
     /* mobile: ignoruj zmianę wysokości viewportu od paska adresu (stabilne triggery) */
     if(ScrollTrigger.config) ScrollTrigger.config({ ignoreMobileResize: true });
-    gsap.utils.toArray('.headline-line-inner').forEach(function(el,i){
-      gsap.fromTo(el, {yPercent:110}, {yPercent:0, duration:1.4, ease:'power4.out', delay:i*0.12, immediateRender:false, scrollTrigger:{trigger:el, start:'top 92%', toggleActions:'restart none none reset'}});
-    });
     /* przelicz pozycje po pełnym załadowaniu (obrazy mogą zmienić wysokość) i przy obrocie */
     setTimeout(function(){ ScrollTrigger.refresh(); }, 400);
     window.addEventListener('orientationchange', function(){ setTimeout(function(){ ScrollTrigger.refresh(); }, 350); });
@@ -286,4 +290,18 @@
   document.addEventListener('keydown', function(e){
     if (e.key === 'Escape') setOpen(false);
   });
+})();
+
+/* ── Hero: wideo w tle — pauza przy prefers-reduced-motion, pewny autoplay ── */
+(function(){
+  var v = document.querySelector('.ih-hero-video');
+  if (!v) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    v.removeAttribute('autoplay');
+    v.pause();
+    v.remove();
+    return;
+  }
+  var p = v.play();
+  if (p && p.catch) p.catch(function(){ /* autoplay zablokowany — zostaje poster */ });
 })();

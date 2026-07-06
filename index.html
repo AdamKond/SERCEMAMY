@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Serce Mamy — Stowarzyszenie Wspierające Mamy i Wcześniaki</title>
+  <title>Serce Mamy | Stowarzyszenie Wspierające Mamy i Wcześniaki</title>
   <meta name="description" content="Stowarzyszenie „Serce Mamy” wspiera mamy, wcześniaki, noworodki i rodziny w opiece okołoporodowej. Powstało przy Klinice Położnictwa i Patologii Ciąży z Oddziałem Neonatologii, z inicjatywy lekarzy.">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -73,7 +73,7 @@
 <!-- NAV -->
 <nav id="navbar">
   <a class="nav-logo" href="index.html">
-    <img class="nav-logo-img" src="logo-mama.svg" width="40" height="40" alt="Serce Mamy — logo" />
+    <img class="nav-logo-img" src="logo-mama.svg" width="40" height="40" alt="Logo stowarzyszenia Serce Mamy" />
     <div class="nav-logo-text">
       <span class="nav-logo-main">Serce Mamy</span>
       <span class="nav-logo-sub">Stowarzyszenie</span>
@@ -106,6 +106,7 @@
       </li>
     </ul>
   </div>
+  <a class="nav-cta" href="pomoc.html#donate"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.4-7-10a4.2 4.2 0 0 1 7-3 4.2 4.2 0 0 1 7 3c0 5.6-7 10-7 10Z"/></svg>Wesprzyj nas</a>
   <div class="nav-toggle" id="navToggle"><span></span><span></span><span></span></div>
 </nav>
 <!-- ═══ 00 INTRO (kinowy scroll) ═══ -->
@@ -118,15 +119,28 @@
 
         <!-- PANEL 1 — HERO + Aurora + ruchome plamy -->
         <section class="ih-panel ih-hero">
+          <video class="ih-hero-video" autoplay muted loop playsinline preload="metadata" poster="intro-media/hero-bg-poster.jpg" aria-hidden="true">
+            <source src="intro-media/hero-bg.mp4" type="video/mp4" />
+          </video>
           <div class="ih-mesh" aria-hidden="true"></div>
           <div class="ih-blob-layer" aria-hidden="true"><span class="ih-blob b1"></span><span class="ih-blob b2"></span><span class="ih-blob b3"></span><span class="ih-blob b4"></span></div>
           <div class="ih-aurora" aria-hidden="true"><div class="ih-aurora-mask"></div></div>
           <div class="ih-veil" aria-hidden="true"></div>
+          <!-- TECH BACKGROUND: siatka cząsteczek + grid + EKG + skan -->
+          <canvas class="ih-net" id="heroNet" aria-hidden="true"></canvas>
+          <div class="ih-grid-overlay" aria-hidden="true"></div>
+          <svg class="ih-ekg" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
+            <path class="ekg-base" d="M0,60 L250,60 262,60 272,26 284,96 294,60 320,60 L555,60 567,60 577,22 589,98 599,60 625,60 L855,60 867,60 877,26 889,96 899,60 925,60 L1200,60"/>
+            <path class="ekg-glow" d="M0,60 L250,60 262,60 272,26 284,96 294,60 320,60 L555,60 567,60 577,22 589,98 599,60 625,60 L855,60 867,60 877,26 889,96 899,60 925,60 L1200,60"/>
+            <path class="ekg-path" d="M0,60 L250,60 262,60 272,26 284,96 294,60 320,60 L555,60 567,60 577,22 589,98 599,60 625,60 L855,60 867,60 877,26 889,96 899,60 925,60 L1200,60"/>
+          </svg>
           <div class="ih-hero-content">
             <div class="ih-kicker"><span></span>Stowarzyszenie Serce Mamy<span></span></div>
             <h1 class="ih-h1" id="ihType">
               <span class="t-line">Wspieramy</span>
-              <span class="t-line">mamy i&nbsp;<em>wcześniaki</em></span>
+              <span class="t-line"><span class="t-brand">mamy</span></span>
+              <span class="t-line t-conn">i</span>
+              <span class="t-line"><em>wcześniaki</em></span>
             </h1>
             <p class="ih-lead">Od pierwszych chwil życia wspieramy kobiety w ciąży, mamy po porodzie, wcześniaki i noworodki oraz ich rodziny.</p>
           </div>
@@ -212,7 +226,14 @@
     </div>
   </section>
 
-  <!-- REALNE WSPARCIE -->
+  <!-- ═══════════════════════════════════════════════════════════════════
+       UKRYTE — sekcja „Realne Wsparcie" oraz kinetyczny final (animacja przenoszenia napisu).
+       ABY PRZYWROCIC: skasuj linie otwierajaca komentarz (tuz powyzej, zaczyna sie od &lt;!--)
+       oraz linie zamykajaca komentarz na samym dole tego bloku. Reszta zadziala bez zmian —
+       skrypt animacji (techScroll / checkKin) ma zabezpieczenia i pomija te sekcje,
+       gdy ich nie ma w kodzie.
+
+  REALNE WSPARCIE
   <section class="ih-tech" id="ihTechSection">
     <div class="ih-tech-bg" aria-hidden="true"></div>
     <div class="ih-tech-glow" aria-hidden="true"></div>
@@ -224,7 +245,7 @@
     </div>
   </section>
 
-  <!-- KINETYCZNY FINAŁ -->
+  KINETYCZNY FINAŁ
   <section class="ih-kinetic">
     <div class="ih-kinetic-stage">
       <span class="ih-kin anchor" data-ih-kin>Realne Wsparcie</span>
@@ -233,6 +254,7 @@
       <span class="ih-kin" data-ih-kin>od pierwszych chwil</span>
     </div>
   </section>
+  ═══════════════════════════════════════════════════════════════════ -->
 
   <div class="ih-hint" id="ihHint"><span>Przewiń</span><svg width="34" height="10" viewBox="0 0 34 10" fill="none"><path d="M0 5h31M27 1l5 4-5 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
 
@@ -242,8 +264,8 @@
 <section id="home" class="home-info">
   <div class="home-info-inner">
     <p class="home-eyebrow reveal">Poznaj serwis</p>
-    <h2 class="home-title reveal">Dokąd chcesz przejść <em>dalej</em>?</h2>
-    <p class="home-lead reveal">Wybierz sekcję, która najbardziej Cię interesuje — opowiemy, kim jesteśmy, co robimy i jak możesz pomóc.</p>
+    <h2 class="home-title reveal">Realne wsparcie dla <em>Mamy i Dziecka</em> od pierwszych chwil</h2>
+    <p class="home-lead reveal">Wybierz sekcję, która najbardziej Cię interesuje. Opowiemy, kim jesteśmy, co robimy i jak możesz pomóc.</p>
 
     <div class="home-grid">
       <a class="home-card reveal" href="o-nas.html">
@@ -255,7 +277,7 @@
       <a class="home-card reveal" href="dzialania.html#projects">
         <div class="hc-ic"><svg viewBox="0 0 24 24"><path d="M20.8 5.6a4.5 4.5 0 0 0-7-.6L12 6.6 10.2 5a4.5 4.5 0 0 0-7 .6 4.6 4.6 0 0 0 .6 5.8l7.2 7.1a1.4 1.4 0 0 0 2 0l7.2-7.1a4.6 4.6 0 0 0 .6-5.8Z"/></svg></div>
         <div class="hc-title">Nasze projekty</div>
-        <div class="hc-desc">Blisko Dziecka, Ciche Noce i Akademia Rodzica — realne wsparcie na oddziale.</div>
+        <div class="hc-desc">Blisko Dziecka, Ciche Noce i Akademia Rodzica. Realne wsparcie na oddziale.</div>
         <span class="hc-go">Zobacz projekty →</span>
       </a>
       <a class="home-card reveal" href="o-nas.html#path">
@@ -270,6 +292,23 @@
         <div class="hc-desc">Twoje wsparcie to realna zmiana dla wcześniaków i ich rodzin.</div>
         <span class="hc-go">Wesprzyj →</span>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DLA PRZYSZŁYCH MAM ═══ -->
+<section class="mama-support" id="dla-mam">
+  <div class="mama-support-inner reveal">
+    <div class="ms-text">
+      <p class="ms-eyebrow">Dla przyszłych mam</p>
+      <h2 class="ms-title">Spodziewasz się dziecka? <em>Jesteśmy przy Tobie.</em></h2>
+      <p class="ms-lead">Ciąża potrafi budzić wiele pytań i obaw. Nie musisz przechodzić przez to sama. Działamy na co dzień przy oddziale i jesteśmy z Tobą od pierwszych chwil.</p>
+      <div class="ms-actions">
+        <a href="o-nas.html#path" class="ms-btn">Zobacz, jak wspieramy mamy</a>
+      </div>
+    </div>
+    <div class="ms-media">
+      <img src="intro-media/mama-okno.jpg" alt="Kobieta w ciąży stojąca przy oknie w porannym świetle, obejmująca dłońmi brzuch" loading="lazy" onerror="this.closest('.ms-media').style.display='none'">
     </div>
   </div>
 </section>
@@ -295,7 +334,7 @@
     <div class="headline-line"><span class="headline-line-inner">Lepsza opieka.</span></div>
     <div class="headline-line"><span class="headline-line-inner rose">Większy komfort.</span></div>
     <div class="headline-line"><span class="headline-line-inner muted">Bliżej rodziny.</span></div>
-    <p class="big-headline-sub">Każdego dnia jesteśmy blisko mam, wcześniaków i ich rodzin. Twoje wsparcie sprawia, że ta obecność jest możliwa — poznaj nas i zobacz, co robimy.</p>
+    <p class="big-headline-sub">Każdego dnia jesteśmy blisko mam, wcześniaków i ich rodzin. Twoje wsparcie sprawia, że ta obecność jest możliwa. Poznaj nas i zobacz, co robimy.</p>
     <div class="big-headline-pillars">
       <div class="bh-pillar">
         <div class="bh-pillar-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.8 5.6a4.5 4.5 0 0 0-7-.6L12 6.6 10.2 5a4.5 4.5 0 0 0-7 .6 4.6 4.6 0 0 0 .6 5.8l7.2 7.1a1.4 1.4 0 0 0 2 0l7.2-7.1a4.6 4.6 0 0 0 .6-5.8Z"/></svg></div>
@@ -322,7 +361,7 @@
   <div class="footer-inner">
     <div class="footer-col footer-brand">
       <span class="footer-logo"><img src="logo-mama.svg" width="40" height="40" alt="Serce Mamy"/>Serce Mamy</span>
-      <p class="footer-tagline">Wspieramy mamy, wcześniaki i noworodki od pierwszych chwil życia — od ciąży, przez poród, po bezpieczny powrót do domu.</p>
+      <p class="footer-tagline">Wspieramy mamy, wcześniaki i noworodki od pierwszych chwil życia: od ciąży, przez poród, po bezpieczny powrót do domu.</p>
     </div>
     <div class="footer-col">
       <h4 class="footer-h">Kontakt</h4>
@@ -343,11 +382,85 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2025 Serce Mamy — Stowarzyszenie</span>
+    <span>© 2025 Stowarzyszenie Serce Mamy</span>
     <span class="footer-legal">KRS 0000000000 · NIP 0000000000 · Nr konta: 00&nbsp;0000&nbsp;0000&nbsp;0000&nbsp;0000&nbsp;0000&nbsp;0000</span>
   </div>
 </footer>
 <script src="app.js" defer></script>
+<!-- ═══ HERO TECH — siatka cząsteczek w tle ═══ -->
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  /* ── SIATKA CZĄSTECZEK (canvas constellation) ── */
+  var cv = document.getElementById('heroNet');
+  if (cv && !reduce) {
+    var ctx = cv.getContext('2d');
+    var W = 0, H = 0;
+    function size(){ W = cv.width = cv.offsetWidth; H = cv.height = cv.offsetHeight; }
+    size(); window.addEventListener('resize', size);
+    var N = Math.min(70, Math.max(34, Math.round(window.innerWidth / 22)));
+    var ps = [];
+    for (var i = 0; i < N; i++) {
+      ps.push({
+        x: Math.random(), y: Math.random(),
+        vx: (Math.random() - 0.5) * 0.00042, vy: (Math.random() - 0.5) * 0.00042,
+        r: 1 + Math.random() * 1.9,
+        warm: Math.random() < 0.3
+      });
+    }
+    var mx = -1, my = -1;
+    window.addEventListener('pointermove', function(e){
+      var r = cv.getBoundingClientRect();
+      mx = (e.clientX - r.left); my = (e.clientY - r.top);
+    }, { passive: true });
+    var LINK = 130;
+    function frame(){
+      var rect = cv.getBoundingClientRect();
+      if (rect.bottom > 0 && rect.top < window.innerHeight && W > 0) {
+        ctx.clearRect(0, 0, W, H);
+        for (var i = 0; i < N; i++) {
+          var p = ps[i];
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < -0.02) p.x = 1.02; if (p.x > 1.02) p.x = -0.02;
+          if (p.y < -0.02) p.y = 1.02; if (p.y > 1.02) p.y = -0.02;
+        }
+        for (var a = 0; a < N; a++) {
+          var pa = ps[a], ax = pa.x * W, ay = pa.y * H;
+          for (var b = a + 1; b < N; b++) {
+            var pb = ps[b], dx = ax - pb.x * W, dy = ay - pb.y * H;
+            var d2 = dx * dx + dy * dy;
+            if (d2 < LINK * LINK) {
+              var al = (1 - Math.sqrt(d2) / LINK) * 0.30;
+              ctx.strokeStyle = (pa.warm && pb.warm)
+                ? 'rgba(207,141,148,' + al + ')'
+                : 'rgba(95,158,150,' + al + ')';
+              ctx.lineWidth = 1;
+              ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(pb.x * W, pb.y * H); ctx.stroke();
+            }
+          }
+          if (mx >= 0) {
+            var mdx = ax - mx, mdy = ay - my, md2 = mdx * mdx + mdy * mdy;
+            if (md2 < 170 * 170) {
+              var mal = (1 - Math.sqrt(md2) / 170) * 0.38;
+              ctx.strokeStyle = 'rgba(116,173,165,' + mal + ')';
+              ctx.lineWidth = 1;
+              ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(mx, my); ctx.stroke();
+            }
+          }
+        }
+        for (var k = 0; k < N; k++) {
+          var q = ps[k];
+          ctx.fillStyle = q.warm ? 'rgba(207,141,148,0.55)' : 'rgba(95,158,150,0.5)';
+          ctx.beginPath(); ctx.arc(q.x * W, q.y * H, q.r, 0, 6.2832); ctx.fill();
+        }
+      }
+      requestAnimationFrame(frame);
+    }
+    frame();
+  }
+})();
+</script>
 <!-- ═══ INTRO — kinowy scroll (poziomy pin, parallax, descend-and-land, kinetyka) ═══ -->
 <script>
 (function(){
