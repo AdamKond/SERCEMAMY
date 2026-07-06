@@ -1780,3 +1780,7 @@ body { font-size: 16.5px; line-height: 1.7; }
 @media (prefers-reduced-motion: reduce) {
   .ms-media img { animation: none; }
 }
+
+/* ── Pływający „Kontakt" po lewej (prawy dolny róg zajmuje widget czatu) ── */
+#contact-fab { right: auto; left: clamp(14px,2vw,24px); align-items: flex-start; }
+.ih-hint { right: 100px; }
