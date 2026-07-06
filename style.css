@@ -1784,3 +1784,8 @@ body { font-size: 16.5px; line-height: 1.7; }
 /* ── Pływający „Kontakt" po lewej (prawy dolny róg zajmuje widget czatu) ── */
 #contact-fab { right: auto; left: clamp(14px,2vw,24px); align-items: flex-start; }
 .ih-hint { right: 100px; }
+
+/* ── ODDZWONIMY: sekcja z formularzem callback ── */
+.callback-section { padding: clamp(56px,9vw,110px) clamp(20px,5vw,60px); background: linear-gradient(180deg,#fdf8f5,#f6ede8); }
+.callback-inner { max-width: 620px; margin: 0 auto; }
+.callback-inner .aicb { box-shadow: 0 18px 50px rgba(140,110,95,0.16); border-radius: 20px; }
