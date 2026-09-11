@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /adriannakondracka/
+
+Sitemap: https://serce-mamy.vercel.app/sitemap.xml

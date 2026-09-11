@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://serce-mamy.vercel.app/</loc><lastmod>2026-09-11</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://serce-mamy.vercel.app/o-nas</loc><lastmod>2026-09-11</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://serce-mamy.vercel.app/dzialania</loc><lastmod>2026-09-11</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://serce-mamy.vercel.app/pomoc</loc><lastmod>2026-09-11</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://serce-mamy.vercel.app/projekt-blisko-dziecka</loc><lastmod>2026-09-11</lastmod><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://serce-mamy.vercel.app/projekt-ciche-noce</loc><lastmod>2026-09-11</lastmod><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://serce-mamy.vercel.app/projekt-akademia-rodzica</loc><lastmod>2026-09-11</lastmod><changefreq>yearly</changefreq><priority>0.6</priority></url>
+</urlset>
