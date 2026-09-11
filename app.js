@@ -1,10 +1,21 @@
 (function(){
   'use strict';
 
-  /* LOADER */
-  window.addEventListener('load', function(){
-    setTimeout(function(){ var l=document.getElementById('page-loader'); if(l) l.classList.add('loaded'); }, 1300);
-  });
+  /* LOADER — krótki (min. 650 ms od startu), pomijany przy kolejnych wejściach w sesji */
+  (function(){
+    var l=document.getElementById('page-loader');
+    var t0=Date.now(), done=false;
+    function go(){
+      if(done) return; done=true;
+      if(l) l.classList.add('loaded');
+      try{ sessionStorage.setItem('sm-seen','1'); }catch(e){}
+      try{ document.dispatchEvent(new CustomEvent('sm:loaded')); }catch(e){}
+    }
+    if(!l || document.documentElement.classList.contains('no-loader')){ go(); return; }
+    var ready = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+    ready.then(function(){ setTimeout(go, Math.max(0, 650-(Date.now()-t0))); });
+    setTimeout(go, 3500);
+  })();
 
   /* TYPEWRITER — hero „wypisuje się" */
   (function(){
@@ -131,14 +142,16 @@
       var thr=(heEl?heEl.offsetHeight:window.innerHeight)*0.4;
       if(fcEl) fcEl.classList.toggle('visible',sy>thr);
       if(nvEl) nvEl.classList.toggle('visible',sy>thr);
-      /* nav active */
-      var ids=['home','about','path','projects','stories','blog','donate','contact'];
-      var secs=ids.map(function(id){ return document.getElementById(id); }).filter(Boolean);
-      var links=document.querySelectorAll('.nav-links a');
-      var cur='home';
-      secs.forEach(function(s){ if(sy>=s.offsetTop-90) cur=s.id; });
-      if(sy+window.innerHeight>=document.documentElement.scrollHeight-60) cur='contact';
-      links.forEach(function(a){ a.classList.toggle('active',a.getAttribute('href')==='#'+cur); });
+      /* nav active — tylko gdy nawigacja używa kotwic (#sekcja) */
+      var links=document.querySelectorAll('.nav-links a[href^="#"]');
+      if(links.length){
+        var ids=['home','about','path','projects','stories','blog','donate','contact'];
+        var secs=ids.map(function(id){ return document.getElementById(id); }).filter(Boolean);
+        var cur='home';
+        secs.forEach(function(s){ if(sy>=s.offsetTop-90) cur=s.id; });
+        if(sy+window.innerHeight>=document.documentElement.scrollHeight-60) cur='contact';
+        links.forEach(function(a){ a.classList.toggle('active',a.getAttribute('href')==='#'+cur); });
+      }
     });
   }
   window.addEventListener('scroll',onScroll,{passive:true});

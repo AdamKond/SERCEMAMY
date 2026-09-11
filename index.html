@@ -2,36 +2,20 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Serce Mamy | Stowarzyszenie Wspierające Mamy i Wcześniaki</title>
   <meta name="description" content="Stowarzyszenie „Serce Mamy” wspiera mamy, wcześniaki, noworodki i rodziny w opiece okołoporodowej. Powstało przy Klinice Położnictwa i Patologii Ciąży z Oddziałem Neonatologii, z inicjatywy lekarzy.">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Inter+Tight:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <link rel="icon" href="logo.svg" type="image/svg+xml" />
+  <link rel="preload" as="image" href="intro-media/hero-bg-poster.jpg" />
+  <link rel="stylesheet" href="scrollcraft.css" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="landing.css" />
+  <script>try{if(sessionStorage.getItem('sm-seen'))document.documentElement.classList.add('no-loader');}catch(e){}</script>
 </head>
-<body>
-
-<!-- FLOATING MICRO-DECO layer -->
-<div class="fdl" aria-hidden="true">
-  <div class="fdl-el" style="top:18%;left:6%;animation:microFloat 6.2s ease-in-out infinite;animation-delay:0s">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-  </div>
-  <div class="fdl-el pk" style="top:34%;left:92%;animation:microFloat 8s ease-in-out infinite;animation-delay:1.2s">
-    <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
-  </div>
-  <div class="fdl-el" style="top:62%;left:4%;animation:microFloat 7.4s ease-in-out infinite;animation-delay:2.5s">
-    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"/></svg>
-  </div>
-  <div class="fdl-el pk" style="top:78%;left:96%;animation:microFloat 9s ease-in-out infinite;animation-delay:0.8s">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-  </div>
-  <div class="fdl-el" style="top:50%;left:88%;animation:microFloat 6.8s ease-in-out infinite;animation-delay:3.5s">
-    <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor" opacity="0.6"><circle cx="12" cy="12" r="10"/></svg>
-  </div>
-</div>
+<body class="is-landing">
 
 <!-- LOADER -->
 <div id="page-loader">
@@ -48,8 +32,6 @@
 </div>
 
 <div id="scroll-progress"></div>
-
-<div class="page-name-vert" id="pageNameVert">SERCE MAMY</div>
 
 <!-- NAV -->
 <nav id="navbar">
@@ -90,266 +72,222 @@
   <a class="nav-cta" href="/pomoc#donate"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.4-7-10a4.2 4.2 0 0 1 7-3 4.2 4.2 0 0 1 7 3c0 5.6-7 10-7 10Z"/></svg>Wesprzyj nas</a>
   <div class="nav-toggle" id="navToggle"><span></span><span></span><span></span></div>
 </nav>
-<!-- ═══ 00 INTRO (kinowy scroll) ═══ -->
-<div id="intro">
 
-  <!-- PINNED HORIZONTAL (Hero + „Tam, gdzie medycyna…") -->
-  <div class="ih-pinwrap" id="ihPinWrap">
-    <div class="ih-sticky">
-      <div class="ih-track" id="ihTrack">
+<main class="lp">
 
-        <!-- PANEL 1 — HERO + Aurora + ruchome plamy -->
-        <section class="ih-panel ih-hero">
-          <video class="ih-hero-video" autoplay muted loop playsinline preload="metadata" poster="intro-media/hero-bg-poster.jpg" aria-hidden="true">
-            <source src="intro-media/hero-bg.mp4" type="video/mp4" />
-          </video>
-          <div class="ih-mesh" aria-hidden="true"></div>
-          <div class="ih-blob-layer" aria-hidden="true"><span class="ih-blob b1"></span><span class="ih-blob b2"></span><span class="ih-blob b3"></span><span class="ih-blob b4"></span></div>
-          <div class="ih-aurora" aria-hidden="true"><div class="ih-aurora-mask"></div></div>
-          <div class="ih-veil" aria-hidden="true"></div>
-          <!-- TECH BACKGROUND: siatka cząsteczek + grid + EKG + skan -->
-          <canvas class="ih-net" id="heroNet" aria-hidden="true"></canvas>
-          <div class="ih-grid-overlay" aria-hidden="true"></div>
-          <svg class="ih-ekg" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
-            <path class="ekg-base" d="M0,60 L250,60 262,60 272,26 284,96 294,60 320,60 L555,60 567,60 577,22 589,98 599,60 625,60 L855,60 867,60 877,26 889,96 899,60 925,60 L1200,60"/>
-            <path class="ekg-glow" d="M0,60 L250,60 262,60 272,26 284,96 294,60 320,60 L555,60 567,60 577,22 589,98 599,60 625,60 L855,60 867,60 877,26 889,96 899,60 925,60 L1200,60"/>
-            <path class="ekg-path" d="M0,60 L250,60 262,60 272,26 284,96 294,60 320,60 L555,60 567,60 577,22 589,98 599,60 625,60 L855,60 867,60 877,26 889,96 899,60 925,60 L1200,60"/>
-          </svg>
-          <div class="ih-hero-content">
-            <div class="ih-kicker"><span></span>Stowarzyszenie Serce Mamy<span></span></div>
-            <h1 class="ih-h1" id="ihType">
-              <span class="t-line">Wspieramy</span>
-              <span class="t-line"><span class="t-brand">mamy,&nbsp;noworodki</span></span>
-              <span class="t-line t-conn">i</span>
-              <span class="t-line"><em>wcześniaki</em></span>
-            </h1>
-            <p class="ih-lead">Od pierwszych chwil życia wspieramy kobiety w ciąży, mamy po porodzie, wcześniaki i noworodki oraz ich rodziny.</p>
+  <!-- ═══ AKT 1 · HERO — plany głębi: jedwab (tył), nagłówek, rzeźba (podmiot), mgiełka (przód) ═══ -->
+  <section class="lp-hero" id="hero" data-sc-act="pin" data-sc-span="2.6" data-sc-dwell="0.3">
+    <div data-sc-stage class="lp-hero-stage">
+
+      <div class="lp-plane lp-plane-video" data-sc-parallax="-1.2" aria-hidden="true">
+        <video class="ih-hero-video" autoplay muted loop playsinline preload="metadata" poster="intro-media/hero-bg-poster.jpg">
+          <source src="intro-media/hero-bg.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="lp-veil" aria-hidden="true"></div>
+      <div class="lp-plane lp-plane-haze lp-plane-haze--far" data-sc-parallax="-0.6" aria-hidden="true"></div>
+
+      <div class="lp-hero-copy">
+        <div class="lp-hero-copy-cue" data-sc-cue="0 0.46 0 0.42">
+        <div class="lp-hero-copy-in">
+          <div class="ih-kicker"><span></span>Stowarzyszenie Serce Mamy<span></span></div>
+          <h1 class="ih-h1">
+            <span class="t-line"><span class="t-in">Wspieramy</span></span>
+            <span class="t-line"><span class="t-in"><span class="t-brand">mamy,&nbsp;noworodki</span></span></span>
+            <span class="t-line t-conn"><span class="t-in">i</span></span>
+            <span class="t-line"><span class="t-in"><em>wcześniaki</em></span></span>
+          </h1>
+          <p class="ih-lead">Od pierwszych chwil życia wspieramy kobiety w ciąży, mamy po porodzie, wcześniaki i noworodki oraz ich rodziny.</p>
+        </div>
+        </div>
+      </div>
+
+      <div class="ih-footnote" data-sc-cue="0 0.4 0 0.5">
+        <span class="lbl">Działamy przy</span>
+        <span class="org">Klinice Położnictwa&nbsp;&middot; Patologii Ciąży&nbsp;&middot; Neonatologii</span>
+      </div>
+
+      <div class="lp-beat2">
+        <h2 class="lp-beat2-title" data-sc-cue="0.56 1 0.3 0" data-sc-kinetic="lines">Tam, gdzie medycyna spotyka się z troską</h2>
+        <p class="lp-beat2-cap" data-sc-cue="0.72 1 0.3 0">Łączymy medycynę<br>z empatią</p>
+      </div>
+
+      <figure class="lp-subject" id="lpSubject">
+        <picture>
+          <source srcset="intro-media/rzezba-cut.webp" type="image/webp">
+          <img src="intro-media/rzezba-cut.png" alt="Rzeźba mamy tulącej dziecko" width="727" height="1098" decoding="async" fetchpriority="high">
+        </picture>
+      </figure>
+
+      <div class="lp-plane lp-plane-haze lp-plane-haze--near" data-sc-parallax="1.1" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- ═══ AKT 2 · MISJA — zdjęcie wyciera się w kadr ═══ -->
+  <section class="lp-mission" id="misja" data-sc-act="flow">
+    <div class="lp-wrap lp-mission-grid">
+      <div class="lp-mission-copy" data-sc-in data-sc-stagger="90">
+        <h2 class="ih-goal-title">Naszą misją jest poprawa jakości i komfortu opieki okołoporodowej nad mamą, dzieckiem i ich <em>rodziną</em>.</h2>
+        <p class="ih-goal-lead">Dobra opieka okołoporodowa to nie tylko procedury i leczenie. To także rozmowa, zrozumienie, obecność bliskich i poczucie, że rodzina nie jest sama.</p>
+        <div class="lp-mission-cta">
+          <a href="/o-nas" class="ih-btn ih-btn-dark"><span>O nas</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 18L18 6M18 6H9M18 6v9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+        </div>
+      </div>
+      <figure class="lp-mission-media" data-sc-reveal="up" data-sc-reveal-at="0.14 0.52">
+        <img data-sc-parallax="-0.5" src="intro-media/opt/mama-raczka.jpg" alt="Dłoń mamy trzymająca rączkę noworodka" width="818" height="941" loading="lazy" decoding="async">
+      </figure>
+    </div>
+  </section>
+
+  <!-- ═══ AKT 3 · KOGO WSPIERAMY — przejazd w bok ═══ -->
+  <section class="lp-who" id="kogo-wspieramy" data-sc-act="pan" data-sc-span="3">
+    <div data-sc-stage class="lp-who-stage">
+      <div class="lp-rail" data-sc-pan="0.04">
+        <div class="lp-rail-lead">
+          <h2 class="lp-who-title">Kogo wspieramy</h2>
+        </div>
+        <article class="lp-who-card">
+          <div class="lp-who-media"><img src="intro-media/opt/ciaza.jpg" alt="Lekarka badająca kobietę w ciąży" width="1800" height="1200" loading="lazy" decoding="async"></div>
+          <div class="ih-card-veil"></div>
+          <div class="lp-who-content">
+            <div>
+              <h3 class="ih-card-title"><em>Kobiety</em><br>w ciąży</h3>
+              <p class="ih-card-desc">Pacjentki hospitalizowane na oddziale patologii ciąży, kobiety w ciąży powikłanej oraz mamy po porodzie i w okresie połogu.</p>
+            </div>
+            <a href="/o-nas#path" class="ih-btn ih-btn-light"><span>Więcej</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M6 18L18 6M18 6H9M18 6v9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
           </div>
-          <div class="ih-footnote">
-            <span class="lbl">Działamy przy</span>
-            <span class="org">Klinice Położnictwa&nbsp;&middot; Patologii Ciąży&nbsp;&middot; Neonatologii</span>
+        </article>
+        <article class="lp-who-card">
+          <div class="lp-who-media"><img src="intro-media/opt/raczka.jpg" alt="Dłoń mamy trzymająca rączkę noworodka" width="1800" height="1013" loading="lazy" decoding="async"></div>
+          <div class="ih-card-veil"></div>
+          <div class="lp-who-content">
+            <div>
+              <h3 class="ih-card-title"><em>Wcześniaki</em><br>i rodziny</h3>
+              <p class="ih-card-desc">Wcześniaki i noworodki wymagające specjalistycznej opieki oraz rodzice dzieci długo hospitalizowanych w oddziale neonatologii.</p>
+            </div>
+            <a href="/o-nas#path" class="ih-btn ih-btn-light"><span>Więcej</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M6 18L18 6M18 6H9M18 6v9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
           </div>
-        </section>
-
-        <!-- PANEL 2 — „Tam, gdzie medycyna…" -->
-        <section class="ih-panel ih-smile">
-          <div class="ih-smile-media" data-ih-clip>
-            <div class="ih-smile-media-bg"></div>
-            <span class="ih-smile-cap">Łączymy medycynę<br>z empatią</span>
-          </div>
-          <h2 class="ih-smile-title" data-ih-anim>Tam, gdzie medycyna spotyka się z troską</h2>
-        </section>
-
+        </article>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- MISJA -->
-  <section class="ih-goal" id="ihGoal">
-    <div class="ih-goal-bg" aria-hidden="true"></div>
-    <div class="ih-portrait" id="ihPortraitSlide">
-      <div class="ih-portrait-par" id="ihPortraitPar">
-        <div class="ih-portrait-frame">
-          <img src="intro-media/rzezba-mama-dziecko.png" alt="Rzeźba mamy tulącej dziecko" onerror="this.style.display='none'">
+  <!-- ═══ AKT 4 · POZNAJ SERWIS — spis treści zamiast siatki kart ═══ -->
+  <section id="home" class="lp-hub" data-sc-act="flow">
+    <div class="lp-wrap">
+      <div class="lp-hub-head" data-sc-in data-sc-stagger="80">
+        <p class="home-eyebrow">Poznaj serwis</p>
+        <h2 class="home-title">Realne wsparcie dla <em>Mamy i Dziecka</em> od pierwszych chwil</h2>
+        <p class="home-lead">Wybierz sekcję, która najbardziej Cię interesuje. Opowiemy, kim jesteśmy, co robimy i jak możesz pomóc.</p>
+      </div>
+      <div class="lp-index" data-sc-in data-sc-stagger="90">
+        <a class="lp-row" href="/o-nas">
+          <span class="lp-row-t">O nas</span>
+          <span class="lp-row-d">Kim jesteśmy, dlaczego powstaliśmy i komu pomagamy każdego dnia.</span>
+          <span class="lp-row-go">Poznaj nas →</span>
+        </a>
+        <a class="lp-row" href="/dzialania#projects">
+          <span class="lp-row-t">Nasze projekty</span>
+          <span class="lp-row-d">Blisko Dziecka, Ciche Noce i Akademia Rodzica. Realne wsparcie na oddziale.</span>
+          <span class="lp-row-go">Zobacz projekty →</span>
+        </a>
+        <a class="lp-row" href="/o-nas#path">
+          <span class="lp-row-t">Ścieżka wsparcia</span>
+          <span class="lp-row-d">Od ciąży, przez pobyt na oddziale, po bezpieczny powrót do domu.</span>
+          <span class="lp-row-go">Sprawdź ścieżkę →</span>
+        </a>
+        <a class="lp-row lp-row--warm" href="/pomoc#donate">
+          <span class="lp-row-t">Pomóż nam</span>
+          <span class="lp-row-d">Twoje wsparcie to realna zmiana dla wcześniaków i ich rodzin.</span>
+          <span class="lp-row-go">Wesprzyj →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ AKT 5 · DLA PRZYSZŁYCH MAM — paralaksa zdjęcia, światło przychodzi, gdy się zatrzymasz ═══ -->
+  <section class="mama-support lp-ms-section" id="dla-mam" data-sc-act="flow">
+    <div class="mama-support-inner lp-ms" data-lp-dwell>
+      <div class="ms-text" data-sc-in data-sc-stagger="80">
+        <p class="ms-eyebrow">Dla przyszłych mam</p>
+        <h2 class="ms-title">Spodziewasz się dziecka? <em>Jesteśmy przy Tobie.</em></h2>
+        <p class="ms-lead">Ciąża potrafi budzić wiele pytań i obaw. Nie musisz przechodzić przez to sama. Działamy na co dzień przy oddziale i jesteśmy z Tobą od pierwszych chwil.</p>
+        <div class="ms-actions">
+          <a href="/o-nas#path" class="ms-btn">Zobacz, jak wspieramy mamy</a>
+        </div>
+      </div>
+      <div class="ms-media lp-ms-media">
+        <img data-sc-parallax="-0.7" src="intro-media/opt/mama-okno.jpg" alt="Kobieta w ciąży stojąca przy oknie w porannym świetle, obejmująca dłońmi brzuch" width="1050" height="1400" loading="lazy" decoding="async">
+        <div class="lp-ms-light" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ AKT 6 · GALERIA · Z SERCA — rysunki jak na lodówce, cisza przed szczytem ═══ -->
+  <section class="art-gallery lp-gallery" data-sc-act="flow">
+    <div class="art-gallery-inner">
+      <div class="lp-gallery-head" data-sc-in data-sc-stagger="80">
+        <p class="section-eyebrow">Z serca</p>
+        <h2 class="section-heading">Dla każdej mamy i każdego dziecka</h2>
+        <p class="section-sub">Bo za każdą liczbą i każdym programem stoi prawdziwa rodzina, miłość i nadzieja.</p>
+      </div>
+      <div class="lp-photos" data-sc-in data-sc-stagger="110">
+        <figure class="lp-photo"><div class="lp-photo-frame"><img src="intro-media/opt/stopki-dlonie.jpg" alt="Stópki noworodka w dłoniach rodzica" width="1800" height="907" loading="lazy" decoding="async"></div><figcaption>Bliskość od pierwszych chwil</figcaption></figure>
+        <figure class="lp-photo"><div class="lp-photo-frame"><img src="intro-media/opt/wczesniak-dlon.jpg" alt="Dłoń trzymająca rączkę wcześniaka na oddziale neonatologii" width="1800" height="1005" loading="lazy" decoding="async"></div><figcaption>Opieka pełna serca</figcaption></figure>
+        <figure class="lp-photo"><div class="lp-photo-frame"><img src="intro-media/opt/ciaza-fotel.jpg" alt="Kobieta w ciąży odpoczywająca w domu w fotelu" width="1800" height="1005" loading="lazy" decoding="async"></div><figcaption>Wsparcie dla całej rodziny</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ AKT 7 · SZCZYT — ekran ciemnieje, serce ze światła otwiera się irysem ═══ -->
+  <section class="lp-peak" id="dolacz" data-sc-act="pin" data-sc-span="3.6">
+    <div data-sc-stage class="lp-peak-stage" data-sc-spotlight>
+      <div class="lp-peak-art" data-sc-reveal="iris" data-sc-reveal-at="0.03 0.5" aria-hidden="true">
+        <img class="lp-peak-img" src="intro-media/opt/swiatlo-serce.jpg" alt="" width="1600" height="1200" loading="lazy" decoding="async">
+      </div>
+      <div class="lp-peak-scrim" aria-hidden="true"></div>
+      <div class="lp-peak-copy">
+        <p class="big-headline-eyebrow" data-sc-cue="0.05 1 0.16 0">Dołącz do nas</p>
+        <div class="headline-line" data-sc-cue="0.11 1 0.18 0"><span class="headline-line-inner">Lepsza opieka.</span></div>
+        <div class="headline-line" data-sc-cue="0.21 1 0.18 0"><span class="headline-line-inner rose">Większy komfort.</span></div>
+        <div class="headline-line" data-sc-cue="0.31 1 0.18 0"><span class="headline-line-inner muted">Bliżej rodziny.</span></div>
+        <p class="big-headline-sub" data-sc-cue="0.44 1 0.2 0">Każdego dnia jesteśmy blisko mam, noworodków, wcześniaków i ich rodzin. Twoje wsparcie sprawia, że ta obecność jest możliwa. Poznaj nas i zobacz, co robimy.</p>
+        <div class="big-headline-pillars lp-pillars">
+          <div class="bh-pillar" data-sc-cue="0.54 1 0.22 0">
+            <div class="bh-pillar-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.8 5.6a4.5 4.5 0 0 0-7-.6L12 6.6 10.2 5a4.5 4.5 0 0 0-7 .6 4.6 4.6 0 0 0 .6 5.8l7.2 7.1a1.4 1.4 0 0 0 2 0l7.2-7.1a4.6 4.6 0 0 0 .6-5.8Z"/></svg></div>
+            <div class="bh-pillar-txt"><b>Bliskość</b><span>rodzic przy dziecku</span></div>
+          </div>
+          <div class="bh-pillar" data-sc-cue="0.585 1 0.22 0">
+            <div class="bh-pillar-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 22s-7-4.4-7-10a4.2 4.2 0 0 1 7-3 4.2 4.2 0 0 1 7 3c0 5.6-7 10-7 10Z"/><path d="M9 12h2l1-2 1.5 4 1-2h2"/></svg></div>
+            <div class="bh-pillar-txt"><b>Spokój</b><span>cisza i bezpieczeństwo</span></div>
+          </div>
+          <div class="bh-pillar" data-sc-cue="0.63 1 0.22 0">
+            <div class="bh-pillar-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M21 21v-2a4 4 0 0 0-3-3.9"/></svg></div>
+            <div class="bh-pillar-txt"><b>Rodzina</b><span>wsparcie dla całej rodziny</span></div>
+          </div>
+        </div>
+        <div class="bh-cta-wrap lp-cta-wrap" data-sc-cue="0.72 1 0.2 0">
+          <a href="/o-nas" class="bh-cta primary">Poznaj nas →</a>
+          <a href="/dzialania#projects" class="bh-cta ghost">Zobacz nasze projekty</a>
         </div>
       </div>
     </div>
-    <div class="ih-goal-inner">
-      <div class="ih-emblem" data-ih-anim aria-hidden="true">
-        <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="60" cy="60" r="56" stroke="#74ada5" stroke-width="1" opacity="0.20" class="ihe-ring ihe-r1"/>
-          <circle cx="60" cy="60" r="44" stroke="#5f9e96" stroke-width="1.2" opacity="0.28" class="ihe-ring ihe-r2"/>
-          <circle cx="60" cy="60" r="33" fill="#74ada5" opacity="0.08"/>
-          <path d="M30 60 H46 L52 48 L60 74 L68 54 L73 60 H90" stroke="#5f9e96" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
-          <path d="M60 50 C60 50 53 44 47.5 44 C42 44 39 48 39 52.5 C39 60 60 72 60 72 C60 72 81 60 81 52.5 C81 48 78 44 72.5 44 C67 44 60 50 60 50 Z" fill="#74ada5" opacity="0.30" class="ihe-heart"/>
-        </svg>
-      </div>
-      <h2 class="ih-goal-title" data-ih-anim>Naszą misją jest poprawa jakości i komfortu opieki okołoporodowej nad mamą, dzieckiem i ich <em>rodziną</em>.</h2>
-      <p class="ih-goal-lead" data-ih-anim>Dobra opieka okołoporodowa to nie tylko procedury i leczenie. To także rozmowa, zrozumienie, obecność bliskich i poczucie, że rodzina nie jest sama.</p>
-      <div data-ih-anim style="margin-top:clamp(34px,6vh,60px)">
-        <a href="/o-nas" class="ih-btn ih-btn-dark"><span>O nas</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 18L18 6M18 6H9M18 6v9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
-      </div>
+  </section>
+
+  <!-- ═══ AKT 8 · ODDZWONIMY — zamknięcie ═══ -->
+  <section class="callback-section lp-close" id="oddzwonimy" data-sc-act="flow">
+    <div class="callback-inner" data-sc-in>
+      <div id="ai-callback"></div>
+      <script src="https://ai-recepcjonista-backend.vercel.app/callback.js" async
+        data-color="#b76b74"
+        data-title="Wolisz rozmowę telefoniczną? Oddzwonimy!"
+        data-text="Zostaw numer, a nasza asystentka Ania zadzwoni do Ciebie w ciągu chwili."></script>
     </div>
   </section>
 
-  <!-- KOGO WSPIERAMY (intro) -->
-  <section class="ih-services-intro">
-    <h2 class="ih-services-title" data-ih-anim>Kogo wspieramy</h2>
-  </section>
-
-  <!-- KARTA 1 — Kobiety w ciąży -->
-  <section class="ih-card">
-    <div class="ih-card-media" data-ih-clip>
-      <img src="intro-media/ciaza.png" alt="Lekarka badająca kobietę w ciąży" onerror="this.style.display='none'">
-    </div>
-    <div class="ih-card-veil"></div>
-    <div class="ih-card-content">
-      <div data-ih-anim>
-        <h3 class="ih-card-title"><em>Kobiety</em><br>w ciąży</h3>
-        <p class="ih-card-desc">Pacjentki hospitalizowane na oddziale patologii ciąży, kobiety w ciąży powikłanej oraz mamy po porodzie i w okresie połogu.</p>
-      </div>
-      <a href="/o-nas#path" class="ih-btn ih-btn-light" data-ih-anim><span>Więcej</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M6 18L18 6M18 6H9M18 6v9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
-    </div>
-  </section>
-
-  <!-- KARTA 2 — Wcześniaki i rodziny -->
-  <section class="ih-card">
-    <div class="ih-card-media" data-ih-clip>
-      <img src="intro-media/raczka.png" alt="Dłoń mamy trzymająca rączkę noworodka" onerror="this.style.display='none'">
-    </div>
-    <div class="ih-card-veil"></div>
-    <div class="ih-card-content">
-      <div data-ih-anim>
-        <h3 class="ih-card-title"><em>Wcześniaki</em><br>i rodziny</h3>
-        <p class="ih-card-desc">Wcześniaki i noworodki wymagające specjalistycznej opieki oraz rodzice dzieci długo hospitalizowanych w oddziale neonatologii.</p>
-      </div>
-      <a href="/o-nas#path" class="ih-btn ih-btn-light" data-ih-anim><span>Więcej</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M6 18L18 6M18 6H9M18 6v9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════════════════════════
-       UKRYTE — sekcja „Realne Wsparcie" oraz kinetyczny final (animacja przenoszenia napisu).
-       ABY PRZYWROCIC: skasuj linie otwierajaca komentarz (tuz powyzej, zaczyna sie od &lt;!--)
-       oraz linie zamykajaca komentarz na samym dole tego bloku. Reszta zadziala bez zmian —
-       skrypt animacji (techScroll / checkKin) ma zabezpieczenia i pomija te sekcje,
-       gdy ich nie ma w kodzie.
-
-  REALNE WSPARCIE
-  <section class="ih-tech" id="ihTechSection">
-    <div class="ih-tech-bg" aria-hidden="true"></div>
-    <div class="ih-tech-glow" aria-hidden="true"></div>
-    <h2 class="ih-tech-title" id="ihTechTitle">Realne Wsparcie</h2>
-    <div class="ih-tech-bar">
-      <span>Bezpieczeństwo</span>
-      <span class="mid">Opieka okołoporodowa:<br><b>Empatia</b></span>
-      <span>Nadzieja</span>
-    </div>
-  </section>
-
-  KINETYCZNY FINAŁ
-  <section class="ih-kinetic">
-    <div class="ih-kinetic-stage">
-      <span class="ih-kin anchor" data-ih-kin>Realne Wsparcie</span>
-      <span class="ih-kin" data-ih-kin>dla Mamy</span>
-      <span class="ih-kin" data-ih-kin><em>i</em> Dziecka</span>
-      <span class="ih-kin" data-ih-kin>od pierwszych chwil</span>
-    </div>
-  </section>
-  ═══════════════════════════════════════════════════════════════════ -->
-
-  <div class="ih-hint" id="ihHint"><span>Przewiń</span><svg width="34" height="10" viewBox="0 0 34 10" fill="none"><path d="M0 5h31M27 1l5 4-5 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
-
-</div>
-
-<!-- ═══ 01 START (sekcja informacyjna — 4 karty) ═══ -->
-<section id="home" class="home-info">
-  <div class="home-info-inner">
-    <p class="home-eyebrow reveal">Poznaj serwis</p>
-    <h2 class="home-title reveal">Realne wsparcie dla <em>Mamy i Dziecka</em> od pierwszych chwil</h2>
-    <p class="home-lead reveal">Wybierz sekcję, która najbardziej Cię interesuje. Opowiemy, kim jesteśmy, co robimy i jak możesz pomóc.</p>
-
-    <div class="home-grid">
-      <a class="home-card reveal" href="/o-nas">
-        <div class="hc-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 12 0v1"/></svg></div>
-        <div class="hc-title">O nas</div>
-        <div class="hc-desc">Kim jesteśmy, dlaczego powstaliśmy i komu pomagamy każdego dnia.</div>
-        <span class="hc-go">Poznaj nas →</span>
-      </a>
-      <a class="home-card reveal" href="/dzialania#projects">
-        <div class="hc-ic"><svg viewBox="0 0 24 24"><path d="M20.8 5.6a4.5 4.5 0 0 0-7-.6L12 6.6 10.2 5a4.5 4.5 0 0 0-7 .6 4.6 4.6 0 0 0 .6 5.8l7.2 7.1a1.4 1.4 0 0 0 2 0l7.2-7.1a4.6 4.6 0 0 0 .6-5.8Z"/></svg></div>
-        <div class="hc-title">Nasze projekty</div>
-        <div class="hc-desc">Blisko Dziecka, Ciche Noce i Akademia Rodzica. Realne wsparcie na oddziale.</div>
-        <span class="hc-go">Zobacz projekty →</span>
-      </a>
-      <a class="home-card reveal" href="/o-nas#path">
-        <div class="hc-ic"><svg viewBox="0 0 24 24"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg></div>
-        <div class="hc-title">Ścieżka wsparcia</div>
-        <div class="hc-desc">Od ciąży, przez pobyt na oddziale, po bezpieczny powrót do domu.</div>
-        <span class="hc-go">Sprawdź ścieżkę →</span>
-      </a>
-      <a class="home-card reveal" href="/pomoc#donate">
-        <div class="hc-ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.4-7-10a4.2 4.2 0 0 1 7-3 4.2 4.2 0 0 1 7 3c0 5.6-7 10-7 10Z"/></svg></div>
-        <div class="hc-title">Pomóż nam</div>
-        <div class="hc-desc">Twoje wsparcie to realna zmiana dla wcześniaków i ich rodzin.</div>
-        <span class="hc-go">Wesprzyj →</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ DLA PRZYSZŁYCH MAM ═══ -->
-<section class="mama-support" id="dla-mam">
-  <div class="mama-support-inner reveal">
-    <div class="ms-text">
-      <p class="ms-eyebrow">Dla przyszłych mam</p>
-      <h2 class="ms-title">Spodziewasz się dziecka? <em>Jesteśmy przy Tobie.</em></h2>
-      <p class="ms-lead">Ciąża potrafi budzić wiele pytań i obaw. Nie musisz przechodzić przez to sama. Działamy na co dzień przy oddziale i jesteśmy z Tobą od pierwszych chwil.</p>
-      <div class="ms-actions">
-        <a href="/o-nas#path" class="ms-btn">Zobacz, jak wspieramy mamy</a>
-      </div>
-    </div>
-    <div class="ms-media">
-      <img src="intro-media/mama-okno.jpg" alt="Kobieta w ciąży stojąca przy oknie w porannym świetle, obejmująca dłońmi brzuch" loading="lazy" onerror="this.closest('.ms-media').style.display='none'">
-    </div>
-  </div>
-</section>
-<!-- ═══ GALERIA · Z SERCA ═══ -->
-<section class="art-gallery">
-  <div class="art-gallery-inner">
-    <p class="section-eyebrow reveal">Z serca</p>
-    <h2 class="section-heading reveal">Dla każdej mamy i każdego dziecka</h2>
-    <p class="section-sub reveal">Bo za każdą liczbą i każdym programem stoi prawdziwa rodzina, miłość i nadzieja.</p>
-    <div class="art-gallery-grid">
-      <figure class="art-card reveal"><img src="intro-media/rys-mama-serce.png" alt="Rysunek: mama tuląca dziecko w sercu" loading="lazy" onerror="this.closest('.art-card').style.display='none'"><figcaption>Bliskość od pierwszych chwil</figcaption></figure>
-      <figure class="art-card reveal" style="transition-delay:.1s"><img src="intro-media/rys-zespol-serca.png" alt="Rysunek: zespół medyczny z sercami" loading="lazy" onerror="this.closest('.art-card').style.display='none'"><figcaption>Opieka pełna serca</figcaption></figure>
-      <figure class="art-card reveal" style="transition-delay:.2s"><img src="intro-media/rys-drzewo-serc.png" alt="Rysunek: rodzina pod drzewem pełnym serc" loading="lazy" onerror="this.closest('.art-card').style.display='none'"><figcaption>Wsparcie dla całej rodziny</figcaption></figure>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ BIG HEADLINE (between hero & about) ═══ -->
-<div class="big-headline-section">
-  <img class="bh-bg-img" src="intro-media/swiatlo-serce.png" alt="" aria-hidden="true" loading="lazy">
-  <div class="big-headline-inner">
-    <p class="big-headline-eyebrow">Dołącz do nas</p>
-    <div class="headline-line"><span class="headline-line-inner">Lepsza opieka.</span></div>
-    <div class="headline-line"><span class="headline-line-inner rose">Większy komfort.</span></div>
-    <div class="headline-line"><span class="headline-line-inner muted">Bliżej rodziny.</span></div>
-    <p class="big-headline-sub">Każdego dnia jesteśmy blisko mam, noworodków, wcześniaków i ich rodzin. Twoje wsparcie sprawia, że ta obecność jest możliwa. Poznaj nas i zobacz, co robimy.</p>
-    <div class="big-headline-pillars">
-      <div class="bh-pillar">
-        <div class="bh-pillar-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.8 5.6a4.5 4.5 0 0 0-7-.6L12 6.6 10.2 5a4.5 4.5 0 0 0-7 .6 4.6 4.6 0 0 0 .6 5.8l7.2 7.1a1.4 1.4 0 0 0 2 0l7.2-7.1a4.6 4.6 0 0 0 .6-5.8Z"/></svg></div>
-        <div class="bh-pillar-txt"><b>Bliskość</b><span>rodzic przy dziecku</span></div>
-      </div>
-      <div class="bh-pillar">
-        <div class="bh-pillar-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 22s-7-4.4-7-10a4.2 4.2 0 0 1 7-3 4.2 4.2 0 0 1 7 3c0 5.6-7 10-7 10Z"/><path d="M9 12h2l1-2 1.5 4 1-2h2"/></svg></div>
-        <div class="bh-pillar-txt"><b>Spokój</b><span>cisza i bezpieczeństwo</span></div>
-      </div>
-      <div class="bh-pillar">
-        <div class="bh-pillar-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M21 21v-2a4 4 0 0 0-3-3.9"/></svg></div>
-        <div class="bh-pillar-txt"><b>Rodzina</b><span>wsparcie dla całej rodziny</span></div>
-      </div>
-    </div>
-    <div class="bh-cta-wrap">
-      <a href="/o-nas" class="bh-cta primary">Poznaj nas →</a>
-      <a href="/dzialania#projects" class="bh-cta ghost">Zobacz nasze projekty</a>
-    </div>
-  </div>
-</div>
-
-<!-- ═══ ODDZWONIMY ═══ -->
-<section class="callback-section" id="oddzwonimy">
-  <div class="callback-inner reveal">
-    <div id="ai-callback"></div>
-    <script src="https://ai-recepcjonista-backend.vercel.app/callback.js" async
-      data-color="#b76b74"
-      data-title="Wolisz rozmowę telefoniczną? Oddzwonimy!"
-      data-text="Zostaw numer, a nasza asystentka Ania zadzwoni do Ciebie w ciągu chwili."></script>
-  </div>
-</section>
+</main>
 
 <footer>
-  <!-- TODO: uzupełnij prawdziwy telefon i nr konta -->
   <div class="footer-inner">
     <div class="footer-col footer-brand">
       <span class="footer-logo"><img src="logo-mama.svg" width="40" height="40" alt="Serce Mamy"/>Serce Mamy</span>
@@ -378,200 +316,10 @@
     <span class="footer-legal">KRS 0001238780 · NIP 7123512149 · REGON 544639494 · Nr konta: 52&nbsp;1140&nbsp;2004&nbsp;0000&nbsp;3802&nbsp;8671&nbsp;6776</span>
   </div>
 </footer>
+
 <script src="app.js" defer></script>
-<!-- ═══ HERO TECH — siatka cząsteczek w tle ═══ -->
-<script>
-(function(){
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-
-  /* ── SIATKA CZĄSTECZEK (canvas constellation) ── */
-  var cv = document.getElementById('heroNet');
-  if (cv && !reduce) {
-    var ctx = cv.getContext('2d');
-    var W = 0, H = 0;
-    function size(){ W = cv.width = cv.offsetWidth; H = cv.height = cv.offsetHeight; }
-    size(); window.addEventListener('resize', size);
-    var N = Math.min(70, Math.max(34, Math.round(window.innerWidth / 22)));
-    var ps = [];
-    for (var i = 0; i < N; i++) {
-      ps.push({
-        x: Math.random(), y: Math.random(),
-        vx: (Math.random() - 0.5) * 0.00042, vy: (Math.random() - 0.5) * 0.00042,
-        r: 1 + Math.random() * 1.9,
-        warm: Math.random() < 0.3
-      });
-    }
-    var mx = -1, my = -1;
-    window.addEventListener('pointermove', function(e){
-      var r = cv.getBoundingClientRect();
-      mx = (e.clientX - r.left); my = (e.clientY - r.top);
-    }, { passive: true });
-    var LINK = 130;
-    function frame(){
-      var rect = cv.getBoundingClientRect();
-      if (rect.bottom > 0 && rect.top < window.innerHeight && W > 0) {
-        ctx.clearRect(0, 0, W, H);
-        for (var i = 0; i < N; i++) {
-          var p = ps[i];
-          p.x += p.vx; p.y += p.vy;
-          if (p.x < -0.02) p.x = 1.02; if (p.x > 1.02) p.x = -0.02;
-          if (p.y < -0.02) p.y = 1.02; if (p.y > 1.02) p.y = -0.02;
-        }
-        for (var a = 0; a < N; a++) {
-          var pa = ps[a], ax = pa.x * W, ay = pa.y * H;
-          for (var b = a + 1; b < N; b++) {
-            var pb = ps[b], dx = ax - pb.x * W, dy = ay - pb.y * H;
-            var d2 = dx * dx + dy * dy;
-            if (d2 < LINK * LINK) {
-              var al = (1 - Math.sqrt(d2) / LINK) * 0.30;
-              ctx.strokeStyle = (pa.warm && pb.warm)
-                ? 'rgba(207,141,148,' + al + ')'
-                : 'rgba(95,158,150,' + al + ')';
-              ctx.lineWidth = 1;
-              ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(pb.x * W, pb.y * H); ctx.stroke();
-            }
-          }
-          if (mx >= 0) {
-            var mdx = ax - mx, mdy = ay - my, md2 = mdx * mdx + mdy * mdy;
-            if (md2 < 170 * 170) {
-              var mal = (1 - Math.sqrt(md2) / 170) * 0.38;
-              ctx.strokeStyle = 'rgba(116,173,165,' + mal + ')';
-              ctx.lineWidth = 1;
-              ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(mx, my); ctx.stroke();
-            }
-          }
-        }
-        for (var k = 0; k < N; k++) {
-          var q = ps[k];
-          ctx.fillStyle = q.warm ? 'rgba(207,141,148,0.55)' : 'rgba(95,158,150,0.5)';
-          ctx.beginPath(); ctx.arc(q.x * W, q.y * H, q.r, 0, 6.2832); ctx.fill();
-        }
-      }
-      requestAnimationFrame(frame);
-    }
-    frame();
-  }
-})();
-</script>
-<!-- ═══ INTRO — kinowy scroll (poziomy pin, parallax, descend-and-land, kinetyka) ═══ -->
-<script>
-(function(){
-  var intro = document.getElementById('intro');
-  if (!intro) return;
-  var track   = document.getElementById('ihTrack');
-  var pinWrap = document.getElementById('ihPinWrap');
-  if (!track || !pinWrap) return;
-  var hint     = document.getElementById('ihHint');
-  var goal     = document.getElementById('ihGoal');
-  var pSlide   = document.getElementById('ihPortraitSlide');
-  var pPar     = document.getElementById('ihPortraitPar');
-  var techTitle= document.getElementById('ihTechTitle');
-  var techSec  = document.getElementById('ihTechSection');
-  var clamp = function(v,a,b){ return Math.max(a, Math.min(b, v)); };
-  var lerp  = function(a,b,t){ return a + (b-a)*t; };
-
-  var mobile = window.matchMedia('(max-width: 820px)');
-  if (mobile.matches) {
-    var rev = Array.prototype.slice.call(intro.querySelectorAll('[data-ih-anim],[data-ih-clip]'));
-    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }); }, {threshold:0.12});
-    rev.forEach(function(el){ io.observe(el); });
-    return;
-  }
-
-  // ---- pomiar poziomego pinu ----
-  var maxX = 0;
-  var SCROLL_SPEED = 0.72; // <1 = krótszy pierwszy scroll (poziomy pan kończy się szybciej)
-  function measure(){ maxX = Math.max(0, track.scrollWidth - window.innerWidth); pinWrap.style.height = (window.innerHeight + maxX * SCROLL_SPEED) + 'px'; }
-  measure();
-  window.addEventListener('resize', measure);
-  window.addEventListener('load', measure);
-  requestAnimationFrame(measure);
-  requestAnimationFrame(function(){ requestAnimationFrame(measure); });
-  if (window.ResizeObserver) { new ResizeObserver(measure).observe(track); }
-  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(measure); }
-
-  // ---- reveals (poziomo w track, pionowo poza) ----
-  var reveals = Array.prototype.slice.call(intro.querySelectorAll('[data-ih-anim],[data-ih-clip]'));
-  function checkReveals(){
-    var wW = window.innerWidth, wH = window.innerHeight;
-    for (var i = reveals.length - 1; i >= 0; i--){
-      var el = reveals[i], r = el.getBoundingClientRect();
-      var inTrack = track.contains(el);
-      var visible = inTrack ? (r.left < wW*0.82 && r.right > 0) : (r.top < wH*0.88 && r.bottom > 0);
-      if (visible){ el.classList.add('in'); reveals.splice(i,1); }
-    }
-  }
-
-  // ---- płynny scroll poziomy ----
-  var target = 0, current = 0, raf = null;
-  function tick(){
-    current = lerp(current, target, 0.1);
-    if (Math.abs(current - target) < 0.4) current = target;
-    track.style.transform = 'translate3d(' + (-current) + 'px,0,0)';
-    checkReveals();
-    if (current !== target){ raf = requestAnimationFrame(tick); } else { raf = null; }
-  }
-
-  // ---- parallax portretu ----
-  function portrait(){
-    if (!goal || !pSlide) return;
-    var r = goal.getBoundingClientRect(), vh = window.innerHeight;
-    if (r.top < vh*0.82){ pSlide.style.opacity = '1'; pSlide.style.transform = 'none'; }
-    var p = clamp((vh - r.top) / (vh + r.height), 0, 1);
-    var travel = Math.max(360, r.height*0.62);
-    if (pPar) pPar.style.transform = 'translateY(' + (p*travel - 40).toFixed(1) + 'px)';
-  }
-
-  // ---- „Realne Wsparcie": zjeżdża i ląduje na kinetycznym napisie ----
-  var kinTarget = intro.querySelector('[data-ih-kin]');
-  function techScroll(){
-    if (!techTitle || !techSec || !kinTarget) return;
-    var y = window.scrollY || window.pageYOffset;
-    var vh = window.innerHeight, vw = window.innerWidth;
-    var secTop = techSec.getBoundingClientRect().top + y;
-    var secH = techSec.offsetHeight;
-    var kr = kinTarget.getBoundingClientRect();
-    var kinTop = kr.top + y;
-    var kinCx = kr.left + kr.width/2;
-    var full = Math.max(0, kinTop - secTop);
-    var yStart = secTop;
-    var yEnd = kinTop - vh*0.40;
-    var p = clamp((y - yStart) / Math.max(1, yEnd - yStart), 0, 1);
-    var ty = full*p;
-    var dx = (kinCx - vw/2)*p;
-    var sc = 1 - 0.22*p;
-    techTitle.style.transform = 'translate(calc(-50% + ' + dx.toFixed(1) + 'px), ' + ty.toFixed(1) + 'px) scale(' + sc.toFixed(3) + ')';
-    var crossed = ty > secH - 40;
-    techTitle.style.color = crossed ? '#324d48' : '#f4f9f7';
-    techTitle.style.textShadow = crossed ? 'none' : '0 2px 40px rgba(0,0,0,0.3)';
-  }
-
-  // ---- kinetyczny finał ----
-  var kin = Array.prototype.slice.call(intro.querySelectorAll('[data-ih-kin]'));
-  var kinDone = false;
-  function checkKin(){
-    if (kinDone || !kin.length) return;
-    if (kin[0].getBoundingClientRect().top < window.innerHeight*0.82){
-      kinDone = true;
-      kin.forEach(function(el,i){ if (i===0) return; el.style.animation = 'ihKineticUp 1s cubic-bezier(.22,1,.36,1) ' + (i*0.12) + 's both'; });
-    }
-  }
-
-  function onScroll(){
-    var y = window.scrollY || window.pageYOffset;
-    maxX = Math.max(0, track.scrollWidth - window.innerWidth);
-    target = clamp(y / SCROLL_SPEED, 0, maxX);
-    if (!raf) raf = requestAnimationFrame(tick);
-    if (hint) hint.style.opacity = y > 40 ? '0' : '1';
-    checkReveals(); checkKin(); portrait(); techScroll();
-  }
-  window.addEventListener('scroll', onScroll, { passive: true });
-
-  onScroll();
-  requestAnimationFrame(function(){ checkReveals(); checkKin(); portrait(); techScroll(); });
-  if (hint) hint.style.opacity = '1';
-})();
-</script>
+<script src="scrollcraft.js" defer></script>
+<script src="landing.js" defer></script>
 <!-- Chat agent — asystentka Ania -->
 <script src="https://ai-recepcjonista-backend.vercel.app/widget.js" async
   data-agent-id="agent_0401kwvbyyqcenqrj67h2r77071p"

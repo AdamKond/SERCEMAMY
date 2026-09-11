@@ -1855,3 +1855,91 @@ body { font-size: 16.5px; line-height: 1.7; }
   .callback-section .aicb input[type=text],
   .callback-section .aicb button { width: 100%; }
 }
+
+/* loader pomijany przy kolejnych wejściach w sesji (klasa ustawiana inline w <head>) */
+.no-loader #page-loader { display: none; }
+
+/* ══════════════════════════════════════════════════════════════
+   PODSTRONY 2026 — dopieszczenie (spójność ze stroną główną)
+   Jeden atrament nagłówków, kursywa jako jedyne wyróżnienie,
+   stonowane etykiety, mniejsze promienie, bez gadżetów.
+   ══════════════════════════════════════════════════════════════ */
+.pl-logo { animation: none; }
+.nav-cta svg { animation: none; }
+.sm-divider .mark svg { animation: none; }
+.blog-soon-badge .dot { animation: none; box-shadow: none; }
+.page-hero-logo { display: none; }
+
+/* hero podstron */
+.page-hero { padding-top: clamp(40px, 6vh, 80px); }
+.page-hero-eyebrow { color: #4f7d76; font-size: 11px; letter-spacing: .22em; }
+.page-hero-title {
+  font-family: var(--font-serif); font-weight: 600; text-transform: none;
+  font-size: clamp(2.4rem, 5.4vw, 4.4rem); line-height: 1.04; letter-spacing: -.015em; margin-top: .8rem;
+}
+.page-hero-title .l1 { color: var(--dark); }
+.page-hero-title .l2 { color: var(--dark); font-style: italic; font-weight: 400; }
+.page-hero-lead { font-size: clamp(16px, 1.2vw, 18px); color: #4d625c; max-width: 62ch; }
+.page-hero-lead b { font-weight: 600; }
+.page-hero-media { border-radius: 12px; box-shadow: 0 24px 60px -24px rgba(90,60,45,.28); }
+
+/* etykiety i nagłówki sekcji */
+.section-eyebrow, .porady-eyebrow, .times-eyebrow { color: #4f7d76; letter-spacing: .22em; font-size: 11px; }
+.section-eyebrow::before { height: 1px; background: rgba(79,125,118,.45); }
+.section-heading { color: var(--dark); letter-spacing: -.012em; }
+.section-sub { color: #4d625c; }
+
+/* karty: jeden promień, spokojniejsze cienie, bez kolorowych pasków i znaków wodnych */
+.path-card, .spec-panel, .spec-panel::after, .blog-card, .cert-card, .carousel-slide, .carousel-viewport,
+.about-bento-main, .about-feat, .about-bento-photo, .about-bento-art, .fact-card, .blog-soon-note,
+.donate-cta-card, .contact-form-card, .infographic-stats-block, .porady-card, .pub-stats, .donate-stats,
+.page-hero-media, .callback-section .aicb { border-radius: 12px !important; }
+.path-card::before { display: none; }
+.path-card { padding-left: 2rem; border-width: 1px; }
+.path-card:hover { transform: translateY(-2px); border-color: var(--rose-dim2); }
+.path-card-num { color: rgba(46,84,78,.28); font-family: var(--font-serif); font-size: 1.1rem; letter-spacing: .04em; }
+.cert-body::after { display: none; }
+.cert-top-bar { height: 3px; }
+.cert-amount { font-family: var(--font-tight); font-weight: 600; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.spec-accent::before { display: none; }
+.about-bento-main::before { display: none; }
+.about-feat:hover, .blog-card:hover, .cert-card:hover, .fact-card:hover { transform: translateY(-2px) !important; }
+.fact-card::before { display: none; }
+.fact-card:hover .fact-card-icon { transform: none; background: var(--rose-dim) !important; border-color: var(--rose-dim2) !important; }
+.fact-card:hover .fact-card-icon svg { stroke: var(--rose) !important; }
+.fact-card:hover .fact-card-title { color: var(--dark) !important; }
+
+/* liczby: jeden krój dla wszystkich statystyk */
+.donate-stat-num, .pub-stat-num, .infographic-stat-num { font-family: var(--font-serif) !important; letter-spacing: 0; color: var(--dark) !important; font-weight: 600; }
+
+/* „Bezpieczna ciąża": serif zamiast plakatowego kroju, łagodniejszy wachlarz, bez napisu w tle */
+.porady-h2 { font-family: var(--font-serif); font-weight: 600; letter-spacing: -.012em; text-transform: none; font-size: clamp(1.8rem, 3.6vw, 3rem); color: var(--dark); }
+.porady-sub { font-style: normal; color: #4d625c; }
+.porady-bg-word { display: none; }
+.porady-card { border-color: var(--border); }
+@media (min-width: 769px) {
+  .porady-section.revealed .porady-card:nth-child(1){ transform: rotate(-3deg) translateY(-12px); }
+  .porady-section.revealed .porady-card:nth-child(2){ transform: rotate(-1.5deg) translateY(-5px); }
+  .porady-section.revealed .porady-card:nth-child(3){ transform: rotate(0deg) translateY(0); }
+  .porady-section.revealed .porady-card:nth-child(4){ transform: rotate(1.5deg) translateY(6px); }
+  .porady-section.revealed .porady-card:nth-child(5){ transform: rotate(3deg) translateY(14px); }
+}
+.porady-hint { display: none; }
+
+/* cytaty i pasy */
+.times-line { font-size: clamp(1.3rem, 2.6vw, 2.1rem); }
+.carousel-slide-quote::before { color: rgba(46,84,78,.22); }
+
+/* przyciski w treści: jeden styl (ciemna zieleń) */
+.spec-cta-link, .path-card-cta, .blog-card-link, .pub-link { color: var(--dark); }
+.spec-cta-link:hover { color: var(--rose); }
+.btn-form { background: var(--dark); }
+.btn-form:hover { background: var(--dark2); }
+.btn-white { color: var(--dark); }
+.spec-tag:hover { background: var(--dark); border-color: var(--dark); color: #fff; }
+
+/* nav: znak aktywnej zakładki bez cienia */
+.nav-links a.active { box-shadow: none; }
+
+/* stopka: hairline nad */
+footer { border-top: 1px solid rgba(255,255,255,0.06); }
