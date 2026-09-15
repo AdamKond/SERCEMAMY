@@ -1855,3 +1855,53 @@ body { font-size: 16.5px; line-height: 1.7; }
   .callback-section .aicb input[type=text],
   .callback-section .aicb button { width: 100%; }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   LIFTING 2026-09 — subtelny ruch (scroll-craft), bez zmian treści
+   ══════════════════════════════════════════════════════════════ */
+:root { --sc-canvas: #fdfbf8; --sc-surface: #fff; --sc-ink: #324d48; --sc-ink-soft: #5d716b; --sc-accent: #b76b74; --sc-accent-ink: #fff; }
+.no-loader #page-loader { display: none; }
+.pl-logo { animation: none; }
+.nav-cta svg { animation: none; }
+
+/* pojawianie sekcji: 14 px i 620 ms zamiast 28 px, jeden łagodny ease-out */
+.reveal, .reveal-l, .reveal-r { transform: translate3d(0, 14px, 0); transition: opacity .62s cubic-bezier(.23,1,.32,1), transform .62s cubic-bezier(.23,1,.32,1); }
+.reveal-scale { transform: translate3d(0, 14px, 0) scale(.98); transition: opacity .62s cubic-bezier(.23,1,.32,1), transform .62s cubic-bezier(.23,1,.32,1); }
+.spec-panel.reveal, .blog-card.reveal-scale, .about-bento-main.reveal-l, .about-feat.reveal-r { transform: translate3d(0, 14px, 0); }
+
+/* nawigacja: przezroczysta na górze, matowa po przewinięciu */
+nav#navbar { background: rgba(253,251,248,0); border-bottom-color: transparent; box-shadow: none; transition: background .45s cubic-bezier(.23,1,.32,1), border-color .45s, box-shadow .45s; }
+html.is-scrolled nav#navbar { background: rgba(253,251,248,.94); border-bottom-color: rgba(95,158,150,.2); box-shadow: 0 1px 0 rgba(46,84,78,.04); }
+.nav-links-wrap { background: rgba(255,255,255,.6); }
+@media (max-width: 900px) { nav#navbar { background: rgba(253,251,248,.94); border-bottom-color: rgba(95,158,150,.2); } }
+
+/* hero: linie nagłówka wyjeżdżają spod maski (zamiast maszyny do pisania), krótsze opóźnienia po krótszym loaderze */
+.ih-h1 .t-line { display: block; overflow: hidden; padding-bottom: .08em; margin-bottom: -.08em; }
+.ih-h1 .t-in { display: block; transform: translate3d(0, 112%, 0); animation: ihMaskUp 1.05s cubic-bezier(.23,1,.32,1) both; }
+.ih-h1 .t-line:nth-child(1) .t-in { animation-delay: .95s; }
+.ih-h1 .t-line:nth-child(2) .t-in { animation-delay: 1.05s; }
+.ih-h1 .t-line:nth-child(3) .t-in { animation-delay: 1.15s; }
+.ih-h1 .t-line:nth-child(4) .t-in { animation-delay: 1.25s; }
+.ih-hero .ih-kicker { animation-delay: .8s; }
+.ih-hero .ih-lead { animation-delay: 1.55s; }
+.ih-footnote { animation-delay: 1.75s !important; }
+.ih-hint { display: none; }
+
+/* hero: wideo lekko przybliża się w miarę przewijania (--sc-p publikuje silnik) */
+.ih-hero-video { transform: scale(calc(1 + var(--sc-p, 0) * .14)); transform-origin: 50% 40%; will-change: transform; }
+
+/* „Dla przyszłych mam": zdjęcie płynie wolniej niż strona (paralaksa zamiast Ken Burns) */
+.ms-media img { animation: none !important; position: absolute; left: 0; top: -9%; width: 100%; height: 118%; max-width: none; will-change: transform; }
+
+/* ciemna sekcja: serce ze światła rozjaśnia się i unosi w miarę przewijania */
+.big-headline-section .bh-bg-img { opacity: calc(.06 + var(--sc-p, 0) * .22); filter: blur(6px) saturate(1.05); transform: translate3d(0, calc((var(--sc-p, 0) - .5) * -50px), 0) scale(1.1); transition: none; }
+
+/* karty hub / galeria: spokojniejszy hover */
+.home-card:hover { transform: translateY(-3px); }
+.art-card:hover { transform: translateY(-3px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ih-h1 .t-in { animation: none; transform: none; }
+  .ih-hero-video { transform: none; }
+  .big-headline-section .bh-bg-img { opacity: .2; transform: none; }
+}

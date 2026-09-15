@@ -1,48 +1,24 @@
 (function(){
   'use strict';
 
-  /* LOADER */
-  window.addEventListener('load', function(){
-    setTimeout(function(){ var l=document.getElementById('page-loader'); if(l) l.classList.add('loaded'); }, 1300);
-  });
-
-  /* TYPEWRITER — hero „wypisuje się" */
+  /* LOADER — krótki (min. 650 ms), pomijany przy kolejnych wejściach w sesji */
   (function(){
-    var h1 = document.getElementById('ihType');
-    if(!h1) return;
-    var lineEls = [].slice.call(h1.querySelectorAll('.t-line'));
-    if(!lineEls.length) return;
-    if(window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
-    var seq = [];
-    lineEls.forEach(function(le, li){
-      [].slice.call(le.childNodes).forEach(function(n){
-        var em = n.nodeType === 1 && n.tagName === 'EM';
-        var br = n.nodeType === 1 && n.tagName === 'SPAN';
-        var txt = n.textContent || '';
-        Array.prototype.forEach.call(txt, function(ch){ seq.push({ li: li, ch: ch, em: em, br: br }); });
-      });
-      le.textContent = '';
-    });
-    var caret = document.createElement('span'); caret.className = 'ih-caret';
-    var i = 0;
-    function step(){
-      if(i >= seq.length){ setTimeout(function(){ if(caret.parentNode) caret.parentNode.removeChild(caret); }, 2600); return; }
-      var s = seq[i++], el = lineEls[s.li];
-      if(s.em){
-        var last = el.lastChild;
-        if(last && last.nodeType === 1 && last.tagName === 'EM'){ last.textContent += s.ch; }
-        else { var em = document.createElement('em'); em.textContent = s.ch; el.appendChild(em); }
-      } else if(s.br){
-        var sp = document.createElement('span'); sp.className = 't-brand'; sp.textContent = s.ch; el.appendChild(sp);
-      } else {
-        el.appendChild(document.createTextNode(s.ch));
-      }
-      el.appendChild(caret);
-      setTimeout(step, s.ch === ' ' ? 45 : (55 + Math.random()*45));
+    var l=document.getElementById('page-loader');
+    var t0=Date.now(), done=false;
+    function go(){
+      if(done) return; done=true;
+      if(l) l.classList.add('loaded');
+      document.documentElement.classList.add('is-loaded');
+      try{ sessionStorage.setItem('sm-seen','1'); }catch(e){}
     }
-    lineEls[0].appendChild(caret);
-    setTimeout(step, 1500);
+    if(!l || document.documentElement.classList.contains('no-loader')){ go(); return; }
+    var ready = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+    ready.then(function(){ setTimeout(go, Math.max(0, 650-(Date.now()-t0))); });
+    setTimeout(go, 3500);
   })();
+
+  /* SCROLL-CRAFT — silnik prowadzi data-sc-* (tylko tam, gdzie załadowany) */
+  if(window.ScrollCraft){ try{ ScrollCraft.mount(document.body); }catch(e){} }
 
   /* FLOATING DECO — fade in after load */
   window.addEventListener('load', function(){
@@ -128,17 +104,20 @@
       _raf=false;
       var sy=window.scrollY, tot=document.documentElement.scrollHeight-window.innerHeight;
       if(spEl) spEl.style.width=(sy/tot*100)+'%';
+      document.documentElement.classList.toggle('is-scrolled', sy>24);
       var thr=(heEl?heEl.offsetHeight:window.innerHeight)*0.4;
       if(fcEl) fcEl.classList.toggle('visible',sy>thr);
       if(nvEl) nvEl.classList.toggle('visible',sy>thr);
-      /* nav active */
-      var ids=['home','about','path','projects','stories','blog','donate','contact'];
-      var secs=ids.map(function(id){ return document.getElementById(id); }).filter(Boolean);
-      var links=document.querySelectorAll('.nav-links a');
-      var cur='home';
-      secs.forEach(function(s){ if(sy>=s.offsetTop-90) cur=s.id; });
-      if(sy+window.innerHeight>=document.documentElement.scrollHeight-60) cur='contact';
-      links.forEach(function(a){ a.classList.toggle('active',a.getAttribute('href')==='#'+cur); });
+      /* nav active — tylko gdy nawigacja używa kotwic (#sekcja) */
+      var links=document.querySelectorAll('.nav-links a[href^="#"]');
+      if(links.length){
+        var ids=['home','about','path','projects','stories','blog','donate','contact'];
+        var secs=ids.map(function(id){ return document.getElementById(id); }).filter(Boolean);
+        var cur='home';
+        secs.forEach(function(s){ if(sy>=s.offsetTop-90) cur=s.id; });
+        if(sy+window.innerHeight>=document.documentElement.scrollHeight-60) cur='contact';
+        links.forEach(function(a){ a.classList.toggle('active',a.getAttribute('href')==='#'+cur); });
+      }
     });
   }
   window.addEventListener('scroll',onScroll,{passive:true});

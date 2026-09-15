@@ -10,7 +10,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Inter+Tight:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <link rel="stylesheet" href="scrollcraft.css" />
   <link rel="stylesheet" href="style.css" />
+  <script>try{if(sessionStorage.getItem('sm-seen'))document.documentElement.classList.add('no-loader');}catch(e){}</script>
   <!-- SEO:start -->
   <link rel="canonical" href="https://serce-mamy.com/" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -118,7 +120,7 @@
 <div id="intro">
 
   <!-- PINNED HORIZONTAL (Hero + „Tam, gdzie medycyna…") -->
-  <div class="ih-pinwrap" id="ihPinWrap">
+  <div class="ih-pinwrap" id="ihPinWrap" data-sc-act="flow">
     <div class="ih-sticky">
       <div class="ih-track" id="ihTrack">
 
@@ -141,11 +143,11 @@
           </svg>
           <div class="ih-hero-content">
             <div class="ih-kicker"><span></span>Stowarzyszenie Serce Mamy<span></span></div>
-            <h1 class="ih-h1" id="ihType">
-              <span class="t-line">Wspieramy</span>
-              <span class="t-line"><span class="t-brand">mamy,&nbsp;noworodki</span></span>
-              <span class="t-line t-conn">i</span>
-              <span class="t-line"><em>wcześniaki</em></span>
+            <h1 class="ih-h1">
+              <span class="t-line"><span class="t-in">Wspieramy</span></span>
+              <span class="t-line"><span class="t-in"><span class="t-brand">mamy,&nbsp;noworodki</span></span></span>
+              <span class="t-line t-conn"><span class="t-in">i</span></span>
+              <span class="t-line"><span class="t-in"><em>wcześniaki</em></span></span>
             </h1>
             <p class="ih-lead">Od pierwszych chwil życia wspieramy kobiety w ciąży, mamy po porodzie, wcześniaki i noworodki oraz ich rodziny.</p>
           </div>
@@ -302,7 +304,7 @@
 </section>
 
 <!-- ═══ DLA PRZYSZŁYCH MAM ═══ -->
-<section class="mama-support" id="dla-mam">
+<section class="mama-support" id="dla-mam" data-sc-act="flow">
   <div class="mama-support-inner reveal">
     <div class="ms-text">
       <p class="ms-eyebrow">Dla przyszłych mam</p>
@@ -313,7 +315,7 @@
       </div>
     </div>
     <div class="ms-media">
-      <img src="intro-media/opt/mama-okno.jpg" alt="Kobieta w ciąży stojąca przy oknie w porannym świetle, obejmująca dłońmi brzuch" loading="lazy" onerror="this.closest('.ms-media').style.display='none'">
+      <img data-sc-parallax="-0.6" src="intro-media/opt/mama-okno.jpg" alt="Kobieta w ciąży stojąca przy oknie w porannym świetle, obejmująca dłońmi brzuch" loading="lazy" onerror="this.closest('.ms-media').style.display='none'">
     </div>
   </div>
 </section>
@@ -332,7 +334,7 @@
 </section>
 
 <!-- ═══ BIG HEADLINE (between hero & about) ═══ -->
-<div class="big-headline-section">
+<div class="big-headline-section" data-sc-act="flow">
   <img class="bh-bg-img" src="intro-media/opt/swiatlo-serce.jpg" alt="" aria-hidden="true" loading="lazy">
   <div class="big-headline-inner">
     <p class="big-headline-eyebrow">Dołącz do nas</p>
@@ -340,7 +342,7 @@
     <div class="headline-line"><span class="headline-line-inner rose">Większy komfort.</span></div>
     <div class="headline-line"><span class="headline-line-inner muted">Bliżej rodziny.</span></div>
     <p class="big-headline-sub">Każdego dnia jesteśmy blisko mam, noworodków, wcześniaków i ich rodzin. Twoje wsparcie sprawia, że ta obecność jest możliwa. Poznaj nas i zobacz, co robimy.</p>
-    <div class="big-headline-pillars">
+    <div class="big-headline-pillars" data-sc-in data-sc-stagger="90">
       <div class="bh-pillar">
         <div class="bh-pillar-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.8 5.6a4.5 4.5 0 0 0-7-.6L12 6.6 10.2 5a4.5 4.5 0 0 0-7 .6 4.6 4.6 0 0 0 .6 5.8l7.2 7.1a1.4 1.4 0 0 0 2 0l7.2-7.1a4.6 4.6 0 0 0 .6-5.8Z"/></svg></div>
         <div class="bh-pillar-txt"><b>Bliskość</b><span>rodzic przy dziecku</span></div>
@@ -354,7 +356,7 @@
         <div class="bh-pillar-txt"><b>Rodzina</b><span>wsparcie dla całej rodziny</span></div>
       </div>
     </div>
-    <div class="bh-cta-wrap">
+    <div class="bh-cta-wrap" data-sc-in data-sc-stagger="90">
       <a href="/o-nas" class="bh-cta primary">Poznaj nas →</a>
       <a href="/dzialania#projects" class="bh-cta ghost">Zobacz nasze projekty</a>
     </div>
@@ -402,6 +404,7 @@
     <span class="footer-legal">KRS 0001238780 · NIP 7123512149 · REGON 544639494 · Nr konta: 52&nbsp;1140&nbsp;2004&nbsp;0000&nbsp;3802&nbsp;8671&nbsp;6776</span>
   </div>
 </footer>
+<script src="scrollcraft.js" defer></script>
 <script src="app.js" defer></script>
 <!-- ═══ HERO TECH — siatka cząsteczek w tle ═══ -->
 <script>
