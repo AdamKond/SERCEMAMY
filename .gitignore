@@ -17,3 +17,4 @@ poczatkowa sekcja/
 node_modules/
 
 .vercel
+.env*

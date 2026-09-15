@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /adriannakondracka/
 
-Sitemap: https://serce-mamy.vercel.app/sitemap.xml
+Sitemap: https://serce-mamy.com/sitemap.xml
