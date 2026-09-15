@@ -1,4 +1,18 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "serce-mamy.vercel.app" }],
+      "destination": "https://serce-mamy.com/$1",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.serce-mamy.com" }],
+      "destination": "https://serce-mamy.com/$1",
+      "permanent": true
+    }
+  ]
 }
