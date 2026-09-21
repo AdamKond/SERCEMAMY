@@ -2,131 +2,177 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wizytówka | Stowarzyszenie Serce Mamy</title>
-  <meta name="description" content="Kontakt do Stowarzyszenia Serce Mamy w Lublinie: telefon, e-mail, adres, strona. Zapisz kontakt w telefonie jednym kliknięciem." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Serce Mamy — wizytówka</title>
+  <meta name="description" content="Kontakt do Stowarzyszenia Serce Mamy w Lublinie. Zapisz kontakt, zadzwoń, napisz." />
   <link rel="canonical" href="https://serce-mamy.com/wizytowka" />
-  <meta property="og:title" content="Stowarzyszenie Serce Mamy — wizytówka" />
-  <meta property="og:description" content="Dla każdej mamy i każdego dziecka. Zapisz kontakt, zadzwoń, napisz." />
+  <meta property="og:title" content="Stowarzyszenie Serce Mamy" />
+  <meta property="og:description" content="Dla każdej mamy i każdego dziecka." />
   <meta property="og:url" content="https://serce-mamy.com/wizytowka" />
   <meta property="og:image" content="https://serce-mamy.com/seo/icon-192.png" />
-  <meta name="theme-color" content="#5f9e96" />
+  <meta name="theme-color" content="#fbfbf9" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#101413" media="(prefers-color-scheme: dark)" />
   <link rel="icon" href="seo/icon-32.png" sizes="32x32" />
   <link rel="apple-touch-icon" href="seo/icon-180.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
-    :root{ --teal:#5f9e96; --teal-dark:#2e544e; --rose:#b76b74; --cream:#fdfbf8; --muted:#5d716b; --line:#e6e1d9; --ease:cubic-bezier(.16,1,.3,1); }
+    :root{
+      --bg:#fbfbf9; --surface:rgba(255,255,255,.72); --surface-solid:#ffffff; --hair:rgba(46,84,78,.10);
+      --ink:#161d1c; --ink-2:#4b5a57; --ink-3:#8a9693;
+      --teal:#5f9e96; --teal-ink:#2e544e; --rose:#b76b74;
+      --cta:#1c2a28; --cta-ink:#ffffff;
+      --shadow:0 1px 2px rgba(20,30,28,.04), 0 12px 40px rgba(20,30,28,.06);
+      --r:22px; --ease:cubic-bezier(.2,.8,.2,1);
+    }
+    @media (prefers-color-scheme:dark){
+      :root{ --bg:#101413; --surface:rgba(255,255,255,.05); --surface-solid:#181e1d; --hair:rgba(255,255,255,.09);
+        --ink:#f3f5f4; --ink-2:#b5bfbc; --ink-3:#77837f; --cta:#f3f5f4; --cta-ink:#111615;
+        --shadow:0 1px 2px rgba(0,0,0,.3), 0 12px 40px rgba(0,0,0,.35); }
+    }
     *{ box-sizing:border-box; margin:0; padding:0; }
-    html,body{ min-height:100%; }
-    body{ font-family:'Inter',system-ui,sans-serif; color:var(--teal-dark); background:
-      radial-gradient(60vw 40vh at 100% 0%, rgba(183,107,116,.12), transparent 70%),
-      radial-gradient(60vw 40vh at 0% 100%, rgba(95,158,150,.14), transparent 70%), var(--cream);
-      display:flex; align-items:center; justify-content:center; padding:24px 16px 48px; -webkit-font-smoothing:antialiased; }
-    .card{ width:100%; max-width:420px; background:#fff; border:1px solid var(--line); border-radius:28px; box-shadow:0 20px 60px rgba(140,110,95,.14), 0 2px 8px rgba(95,158,150,.08); overflow:hidden; animation:rise .7s var(--ease); }
-    @keyframes rise{ from{ opacity:0; transform:translateY(16px);} to{ opacity:1; transform:none;} }
-    .hero{ padding:36px 28px 22px; text-align:center; background:linear-gradient(180deg,#f3f8f7 0%,#fff 100%); }
-    .hero img{ width:112px; height:112px; display:block; margin:0 auto 16px; filter:drop-shadow(0 10px 24px rgba(95,158,150,.28)); }
-    .kicker{ font-size:11.5px; letter-spacing:.24em; text-transform:uppercase; color:var(--muted); font-weight:600; }
-    h1{ font-family:'Playfair Display',serif; font-weight:600; font-size:34px; line-height:1.05; margin:6px 0 8px; letter-spacing:-.01em; }
-    .tag{ font-family:'Playfair Display',serif; font-style:italic; color:var(--rose); font-size:16px; }
-    .lead{ color:var(--muted); font-size:14px; line-height:1.55; margin-top:14px; }
-    .actions{ padding:8px 20px 6px; display:grid; gap:10px; }
-    .btn{ display:flex; align-items:center; gap:14px; padding:14px 16px; border-radius:16px; border:1px solid var(--line); background:#fff; color:var(--teal-dark); text-decoration:none; font-weight:500; font-size:15px; transition:transform .25s var(--ease), box-shadow .25s, border-color .2s; cursor:pointer; font-family:inherit; width:100%; text-align:left; }
-    .btn:hover{ transform:translateY(-2px); box-shadow:0 10px 26px rgba(140,110,95,.12); border-color:#d8d0c4; }
-    .btn:active{ transform:none; }
-    .btn .ic{ width:40px; height:40px; border-radius:12px; background:#eaf3f1; color:var(--teal); display:grid; place-items:center; flex:none; }
-    .btn .ic svg{ width:20px; height:20px; stroke:currentColor; fill:none; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round; }
-    .btn small{ display:block; font-size:12.5px; color:var(--muted); font-weight:400; margin-top:1px; }
-    .btn.primary{ background:var(--teal); border-color:var(--teal); color:#fff; box-shadow:0 10px 26px rgba(95,158,150,.32); }
-    .btn.primary .ic{ background:rgba(255,255,255,.18); color:#fff; }
-    .btn.primary small{ color:rgba(255,255,255,.82); }
-    .btn.rose{ background:var(--rose); border-color:var(--rose); color:#fff; box-shadow:0 10px 26px rgba(183,107,116,.3); }
-    .btn.rose .ic{ background:rgba(255,255,255,.18); color:#fff; } .btn.rose small{ color:rgba(255,255,255,.85); }
-    .row2{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-    .row2 .btn{ padding:12px 14px; font-size:14px; }
-    .foot{ padding:18px 24px 26px; text-align:center; }
-    .foot .addr{ font-size:13.5px; color:var(--muted); line-height:1.6; }
-    .foot .addr b{ color:var(--teal-dark); font-weight:600; }
-    .qr{ margin:16px auto 0; width:132px; height:132px; padding:10px; background:#fff; border:1px solid var(--line); border-radius:16px; display:none; }
-    .qr.on{ display:block; }
+    html{ -webkit-text-size-adjust:100%; }
+    body{ font-family:'Inter',-apple-system,BlinkMacSystemFont,'SF Pro Text',system-ui,sans-serif; background:var(--bg); color:var(--ink); min-height:100dvh; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden; }
+    .aic-bubble{ display:none !important; }
+
+    /* tło: dwie miękkie plamy, mocno rozmyte */
+    .bg{ position:fixed; inset:0; z-index:-1; overflow:hidden; pointer-events:none; }
+    .bg i{ position:absolute; border-radius:50%; filter:blur(70px); opacity:.55; }
+    .bg .a{ width:52vmax; height:52vmax; left:-18vmax; top:-22vmax; background:radial-gradient(circle,#dcebe8 0%,rgba(220,235,232,0) 70%); }
+    .bg .b{ width:46vmax; height:46vmax; right:-16vmax; bottom:-18vmax; background:radial-gradient(circle,#f1e2e3 0%,rgba(241,226,227,0) 70%); }
+    @media (prefers-color-scheme:dark){ .bg i{ opacity:.35; } .bg .a{ background:radial-gradient(circle,#1f3a36 0%,rgba(31,58,54,0) 70%);} .bg .b{ background:radial-gradient(circle,#3a2528 0%,rgba(58,37,40,0) 70%);} }
+
+    .page{ max-width:460px; margin:0 auto; padding:max(28px,env(safe-area-inset-top)) 20px calc(40px + env(safe-area-inset-bottom)); }
+
+    /* hero */
+    .hero{ text-align:center; padding:26px 8px 30px; }
+    .logo{ width:104px; height:104px; margin:0 auto 22px; display:block; filter:drop-shadow(0 14px 28px rgba(95,158,150,.28)); }
+    .kicker{ font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); }
+    h1{ font-family:'Inter Tight','SF Pro Display',Inter,sans-serif; font-weight:700; font-size:44px; line-height:1.02; letter-spacing:-.035em; margin:8px 0 10px; color:var(--ink); }
+    .tag{ font-size:17px; color:var(--ink-2); letter-spacing:-.01em; }
+
+    /* animacje wejścia */
+    .up{ opacity:0; transform:translateY(14px); animation:up .8s var(--ease) forwards; }
+    .d1{ animation-delay:.05s } .d2{ animation-delay:.15s } .d3{ animation-delay:.25s } .d4{ animation-delay:.35s } .d5{ animation-delay:.45s }
+    @keyframes up{ to{ opacity:1; transform:none; } }
+    @media (prefers-reduced-motion:reduce){ .up{ animation:none; opacity:1; transform:none; } }
+
+    /* przyciski główne */
+    .cta{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:0 0 26px; }
+    .pill{ display:inline-flex; align-items:center; justify-content:center; gap:9px; height:54px; border-radius:999px; font:600 16px/1 'Inter',sans-serif; letter-spacing:-.01em; text-decoration:none; border:0; cursor:pointer; transition:transform .25s var(--ease), background .2s, box-shadow .25s; -webkit-tap-highlight-color:transparent; }
+    .pill:active{ transform:scale(.97); }
+    .pill svg{ width:19px; height:19px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    .pill.solid{ background:var(--cta); color:var(--cta-ink); box-shadow:0 8px 24px rgba(28,42,40,.18); }
+    .pill.solid:hover{ box-shadow:0 12px 30px rgba(28,42,40,.24); transform:translateY(-1px); }
+    .pill.soft{ background:var(--surface); color:var(--ink); border:1px solid var(--hair); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); }
+    .pill.soft:hover{ background:var(--surface-solid); }
+
+    /* grupy (iOS inset grouped list) */
+    .label{ font-size:12.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); margin:0 0 8px 14px; }
+    .group{ background:var(--surface); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); border:1px solid var(--hair); border-radius:var(--r); box-shadow:var(--shadow); overflow:hidden; margin-bottom:22px; }
+    .row{ display:flex; align-items:center; gap:14px; padding:15px 16px 15px 16px; text-decoration:none; color:inherit; position:relative; transition:background .15s; -webkit-tap-highlight-color:transparent; border:0; background:none; width:100%; font:inherit; text-align:left; cursor:pointer; }
+    .row + .row::before{ content:""; position:absolute; left:64px; right:0; top:0; height:1px; background:var(--hair); }
+    .row:hover{ background:rgba(46,84,78,.04); }
+    @media (prefers-color-scheme:dark){ .row:hover{ background:rgba(255,255,255,.04); } }
+    .row:active{ background:rgba(46,84,78,.07); }
+    .ic{ width:36px; height:36px; border-radius:11px; display:grid; place-items:center; flex:none; color:#fff; }
+    .ic svg{ width:18px; height:18px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    .ic.tel{ background:linear-gradient(160deg,#6fb0a7,#4f8f86); } .ic.mail{ background:linear-gradient(160deg,#c98089,#ad606a); }
+    .ic.web{ background:linear-gradient(160deg,#5c6f6b,#3f524e); } .ic.ig{ background:linear-gradient(160deg,#d38d95,#b76b74); }
+    .ic.pin{ background:linear-gradient(160deg,#8fa39f,#6f8581); } .ic.ania{ background:linear-gradient(160deg,#2e544e,#1c2a28); }
+    .txt{ flex:1; min-width:0; }
+    .txt b{ display:block; font-weight:600; font-size:16px; letter-spacing:-.01em; line-height:1.25; }
+    .txt span{ display:block; font-size:13.5px; color:var(--ink-2); margin-top:2px; overflow-wrap:anywhere; line-height:1.35; }
+    .chev{ width:16px; height:16px; color:var(--ink-3); flex:none; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    .badge{ font-size:11px; font-weight:600; color:var(--teal-ink); background:rgba(95,158,150,.14); padding:3px 8px; border-radius:999px; letter-spacing:.02em; flex:none; }
+    @media (prefers-color-scheme:dark){ .badge{ color:#9ed2ca; background:rgba(95,158,150,.18); } }
+
+    .foot{ text-align:center; color:var(--ink-3); font-size:12.5px; line-height:1.7; margin-top:8px; }
+    .foot a{ color:inherit; text-decoration:none; border-bottom:1px solid var(--hair); }
+
+    /* arkusz z kodem QR */
+    .dim{ position:fixed; inset:0; background:rgba(16,20,19,.28); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); opacity:0; pointer-events:none; transition:opacity .3s; z-index:20; }
+    .sheet{ position:fixed; left:0; right:0; bottom:0; z-index:21; background:var(--surface-solid); border-radius:28px 28px 0 0; padding:14px 22px calc(28px + env(safe-area-inset-bottom)); transform:translateY(105%); visibility:hidden; transition:transform .45s var(--ease), visibility 0s linear .45s; box-shadow:0 -20px 60px rgba(0,0,0,.12); max-width:520px; margin:0 auto; }
+    .sheet .grab{ width:40px; height:5px; border-radius:3px; background:var(--hair); margin:0 auto 18px; }
+    .sheet h2{ font-family:'Inter Tight',sans-serif; font-weight:700; font-size:22px; letter-spacing:-.02em; text-align:center; }
+    .sheet p{ text-align:center; color:var(--ink-2); font-size:14px; margin:6px 0 18px; }
+    .qr{ width:220px; height:220px; margin:0 auto; padding:16px; background:#fff; border-radius:22px; border:1px solid var(--hair); }
     .qr img{ width:100%; height:100%; display:block; }
-    .links{ margin-top:14px; display:flex; gap:14px; justify-content:center; font-size:12.5px; }
-    .links a, .links button{ color:var(--muted); background:none; border:0; font:inherit; cursor:pointer; text-decoration:underline; text-underline-offset:3px; }
-    .toast{ position:fixed; left:50%; bottom:26px; transform:translate(-50%,16px); background:var(--teal-dark); color:#fff; padding:10px 16px; border-radius:12px; font-size:13.5px; opacity:0; transition:.25s; pointer-events:none; }
+    .sheet .pill{ width:100%; margin-top:18px; }
+    body.sheet-on .dim{ opacity:1; pointer-events:auto; } body.sheet-on .sheet{ transform:none; visibility:visible; transition:transform .45s var(--ease), visibility 0s; }
+    .toast{ position:fixed; left:50%; bottom:calc(28px + env(safe-area-inset-bottom)); transform:translate(-50%,12px); background:var(--cta); color:var(--cta-ink); padding:11px 16px; border-radius:999px; font-size:13.5px; font-weight:500; opacity:0; transition:.25s var(--ease); pointer-events:none; z-index:30; }
     .toast.on{ opacity:1; transform:translate(-50%,0); }
-    @media (prefers-reduced-motion:reduce){ .card{ animation:none; } .btn{ transition:none; } }
   </style>
 </head>
 <body>
-  <main class="card">
-    <section class="hero">
-      <img src="logo-mama.svg" alt="Logo Stowarzyszenia Serce Mamy" width="112" height="112" />
+  <div class="bg" aria-hidden="true"><i class="a"></i><i class="b"></i></div>
+
+  <main class="page">
+    <header class="hero up d1">
+      <img class="logo" src="logo-mama.svg" alt="Logo Stowarzyszenia Serce Mamy" width="104" height="104" />
       <div class="kicker">Stowarzyszenie</div>
       <h1>Serce Mamy</h1>
-      <div class="tag">Dla każdej mamy i każdego dziecka</div>
-      <p class="lead">Wspieramy mamy, noworodki i wcześniaki w Lublinie: sprzęt dla Oddziału Noworodkowego USK nr 1, warsztaty dla rodziców, wsparcie dla rodzin.</p>
-    </section>
+      <p class="tag">Dla każdej mamy i każdego dziecka.</p>
+    </header>
 
-    <section class="actions">
-      <a class="btn primary" href="serce-mamy.vcf" download="Serce-Mamy.vcf">
-        <span class="ic"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg></span>
-        <span>Zapisz kontakt<small>Dodaj Serce Mamy do telefonu jednym dotknięciem</small></span>
-      </a>
-      <a class="btn" href="tel:+48000000000">
-        <span class="ic"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7A2 2 0 0 1 22 16.9z"/></svg></span>
-        <span>Zadzwoń<small>+48 000 000 000</small></span>
-      </a>
-      <a class="btn" href="mailto:sercemamy.stowarzyszenia@gmail.com">
-        <span class="ic"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
-        <span>Napisz e-mail<small>sercemamy.stowarzyszenia@gmail.com</small></span>
-      </a>
-      <button class="btn rose" type="button" id="btn-ania">
-        <span class="ic"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.4A8 8 0 1 1 21 12z"/></svg></span>
-        <span>Porozmawiaj z Anią<small>Asystentka AI odpowiada od razu, 24/7</small></span>
-      </button>
-      <div class="row2">
-        <a class="btn" href="https://serce-mamy.com/">
-          <span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
-          <span>Strona</span>
-        </a>
-        <a class="btn" href="https://instagram.com/sercemamy" target="_blank" rel="noopener">
-          <span class="ic"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></span>
-          <span>Instagram</span>
-        </a>
-      </div>
-    </section>
+    <div class="cta up d2">
+      <a class="pill solid" href="serce-mamy.vcf" download="Serce-Mamy.vcf"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>Zapisz kontakt</a>
+      <button class="pill soft" type="button" id="btn-share"><svg viewBox="0 0 24 24"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/><path d="m16 6-4-4-4 4M12 2v13"/></svg>Udostępnij</button>
+    </div>
 
-    <section class="foot">
-      <div class="addr"><b>ul. Staszica 16</b>, 20-060 Lublin<br>KRS 0001238780</div>
-      <div class="qr" id="qr"><img src="qr-wizytowka.svg" alt="Kod QR prowadzący do tej wizytówki" /></div>
-      <div class="links">
-        <button type="button" id="btn-share">Udostępnij</button>
-        <button type="button" id="btn-qr">Pokaż kod QR</button>
-        <a href="pomoc">Wesprzyj nas</a>
-      </div>
-    </section>
+    <div class="up d3">
+      <div class="label">Kontakt</div>
+      <nav class="group">
+        <a class="row" href="tel:+48000000000"><span class="ic tel"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7A2 2 0 0 1 22 16.9z"/></svg></span><span class="txt"><b>Telefon</b><span>+48 000 000 000</span></span><svg class="chev" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a>
+        <a class="row" href="mailto:sercemamy.stowarzyszenia@gmail.com"><span class="ic mail"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span><span class="txt"><b>E-mail</b><span>sercemamy.stowarzyszenia@gmail.com</span></span><svg class="chev" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a>
+        <a class="row" href="https://maps.apple.com/?q=Staszica+16,+20-060+Lublin" target="_blank" rel="noopener"><span class="ic pin"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span><span class="txt"><b>Adres</b><span>ul. Staszica 16, 20-060 Lublin</span></span><svg class="chev" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a>
+      </nav>
+    </div>
+
+    <div class="up d4">
+      <div class="label">Online</div>
+      <nav class="group">
+        <a class="row" href="https://serce-mamy.com/"><span class="ic web"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span><span class="txt"><b>Strona</b><span>serce-mamy.com</span></span><svg class="chev" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a>
+        <a class="row" href="https://instagram.com/sercemamy" target="_blank" rel="noopener"><span class="ic ig"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></span><span class="txt"><b>Instagram</b><span>@sercemamy</span></span><svg class="chev" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a>
+        <button class="row" type="button" id="btn-ania"><span class="ic ania"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.4A8 8 0 1 1 21 12z"/></svg></span><span class="txt"><b>Porozmawiaj z Anią</b><span>Asystentka odpowiada od razu</span></span><span class="badge">24/7</span></button>
+      </nav>
+    </div>
+
+    <footer class="foot up d5">
+      Stowarzyszenie Serce Mamy · KRS 0001238780<br>
+      <a href="#" id="btn-qr">Pokaż kod QR</a> · <a href="pomoc">Wesprzyj nas</a>
+    </footer>
   </main>
+
+  <div class="dim" id="dim"></div>
+  <section class="sheet" id="sheet" aria-hidden="true">
+    <div class="grab"></div>
+    <h2>Zeskanuj, żeby zapisać</h2>
+    <p>Kod otwiera tę wizytówkę na innym telefonie.</p>
+    <div class="qr"><img src="qr-wizytowka.svg" alt="Kod QR do wizytówki Serce Mamy" /></div>
+    <button class="pill soft" type="button" id="btn-close">Zamknij</button>
+  </section>
   <div class="toast" id="toast"></div>
 
   <script>
     (function () {
       var URL_ = 'https://serce-mamy.com/wizytowka';
-      function toast(m) { var t = document.getElementById('toast'); t.textContent = m; t.classList.add('on'); clearTimeout(t._h); t._h = setTimeout(function () { t.classList.remove('on'); }, 1800); }
-      document.getElementById('btn-share').addEventListener('click', function () {
-        if (navigator.share) { navigator.share({ title: 'Stowarzyszenie Serce Mamy', text: 'Dla każdej mamy i każdego dziecka', url: URL_ }).catch(function () {}); }
-        else if (navigator.clipboard) { navigator.clipboard.writeText(URL_).then(function () { toast('Link skopiowany'); }); }
+      var $ = function (id) { return document.getElementById(id); };
+      function toast(m) { var t = $('toast'); t.textContent = m; t.classList.add('on'); clearTimeout(t._h); t._h = setTimeout(function () { t.classList.remove('on'); }, 1800); }
+      $('btn-share').addEventListener('click', function () {
+        if (navigator.share) navigator.share({ title: 'Stowarzyszenie Serce Mamy', text: 'Dla każdej mamy i każdego dziecka.', url: URL_ }).catch(function () {});
+        else if (navigator.clipboard) navigator.clipboard.writeText(URL_).then(function () { toast('Link skopiowany'); });
       });
-      document.getElementById('btn-qr').addEventListener('click', function () { var q = document.getElementById('qr'); q.classList.toggle('on'); this.textContent = q.classList.contains('on') ? 'Ukryj kod QR' : 'Pokaż kod QR'; });
-      document.getElementById('btn-ania').addEventListener('click', function () {
-        var b = document.querySelector('.aic-bubble');
-        if (!b) { var all = document.querySelectorAll('*'); for (var i = 0; i < all.length && !b; i++) { if (all[i].shadowRoot) b = all[i].shadowRoot.querySelector('.aic-bubble'); } }
-        if (b) b.click(); else location.href = 'pomoc';
-      });
+      function sheet(on) { document.body.classList.toggle('sheet-on', on); $('sheet').setAttribute('aria-hidden', on ? 'false' : 'true'); }
+      $('btn-qr').addEventListener('click', function (e) { e.preventDefault(); sheet(true); });
+      $('btn-close').addEventListener('click', function () { sheet(false); });
+      $('dim').addEventListener('click', function () { sheet(false); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') sheet(false); });
+      $('btn-ania').addEventListener('click', function () { var b = document.querySelector('.aic-bubble'); if (b) b.click(); else location.href = 'pomoc'; });
+      if (/iPhone|iPad|Android/i.test(navigator.userAgent) === false) { var m = document.querySelector('a[href^="https://maps.apple.com"]'); if (m) m.href = 'https://www.google.com/maps/search/?api=1&query=Staszica+16,+20-060+Lublin'; }
     })();
   </script>
-  <!-- Chat agent — asystentka Ania -->
   <script src="https://ai-recepcjonista-backend.vercel.app/widget.js" async
     data-agent-id="agent_0401kwvbyyqcenqrj67h2r77071p"
     data-color="#b76b74"
