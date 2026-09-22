@@ -11,3 +11,6 @@ desktop.ini
 .git
 .gitignore
 intro-media/hero-bg-raw.mp4
+
+# Apple Wallet: źródła i certyfikaty nie są publikowane (publikowany jest tylko gotowy serce-mamy.pkpass)
+wallet/
