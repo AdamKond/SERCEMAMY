@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "passTypeIdentifier": "pass.com.serce-mamy.wizytowka",
   "teamIdentifier": "TEAM_ID_DO_UZUPELNIENIA",
-  "serialNumber": "serce-mamy-wizytowka-003",
+  "serialNumber": "serce-mamy-wizytowka-004",
   "organizationName": "Stowarzyszenie Serce Mamy",
   "description": "Wizytówka Stowarzyszenia Serce Mamy",
   "logoText": "Serce Mamy",
@@ -28,9 +28,9 @@
         "value": "+48 000 000 000"
       },
       {
-        "key": "www",
-        "label": "STRONA",
-        "value": "serce-mamy.com",
+        "key": "adr",
+        "label": "ADRES",
+        "value": "Staszica 16, Lublin",
         "textAlignment": "PKTextAlignmentRight"
       }
     ],
@@ -41,9 +41,9 @@
         "value": "sercemamy.stowarzyszenia@gmail.com"
       },
       {
-        "key": "adr",
-        "label": "ADRES",
-        "value": "Staszica 16, Lublin",
+        "key": "www",
+        "label": "STRONA",
+        "value": "serce-mamy.com",
         "textAlignment": "PKTextAlignmentRight"
       }
     ],
