@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "passTypeIdentifier": "pass.com.serce-mamy.wizytowka",
   "teamIdentifier": "TEAM_ID_DO_UZUPELNIENIA",
-  "serialNumber": "serce-mamy-wizytowka-001",
+  "serialNumber": "serce-mamy-wizytowka-002",
   "organizationName": "Stowarzyszenie Serce Mamy",
   "description": "Wizytówka Stowarzyszenia Serce Mamy",
   "logoText": "",
@@ -13,26 +13,84 @@
   "suppressStripShine": true,
   "generic": {
     "primaryFields": [
-      { "key": "name", "label": "STOWARZYSZENIE", "value": "Serce Mamy" }
+      {
+        "key": "name",
+        "label": "STOWARZYSZENIE",
+        "value": "Serce Mamy"
+      }
     ],
     "secondaryFields": [
-      { "key": "tel", "label": "TELEFON", "value": "+48 000 000 000" },
-      { "key": "www", "label": "STRONA", "value": "serce-mamy.com", "textAlignment": "PKTextAlignmentRight" }
+      {
+        "key": "tel",
+        "label": "TELEFON",
+        "value": "+48 000 000 000"
+      },
+      {
+        "key": "www",
+        "label": "STRONA",
+        "value": "serce-mamy.com",
+        "textAlignment": "PKTextAlignmentRight"
+      }
     ],
     "auxiliaryFields": [
-      { "key": "mail", "label": "E-MAIL", "value": "sercemamy.stowarzyszenia@gmail.com" }
+      {
+        "key": "mail",
+        "label": "E-MAIL",
+        "value": "sercemamy.stowarzyszenia@gmail.com"
+      }
     ],
     "backFields": [
-      { "key": "misja", "label": "Dla każdej mamy i każdego dziecka", "value": "Wspieramy mamy, noworodki i wcześniaki w Lublinie: sprzęt dla Oddziału Noworodkowego USK nr 1, warsztaty dla rodziców, wsparcie dla rodzin." },
-      { "key": "adres", "label": "Adres", "value": "ul. Staszica 16, 20-060 Lublin" },
-      { "key": "telb", "label": "Telefon", "value": "+48 000 000 000", "dataDetectorTypes": ["PKDataDetectorTypePhoneNumber"] },
-      { "key": "mailb", "label": "E-mail", "value": "sercemamy.stowarzyszenia@gmail.com" },
-      { "key": "wizytowka", "label": "Wizytówka online", "value": "https://serce-mamy.com/wizytowka", "dataDetectorTypes": ["PKDataDetectorTypeLink"] },
-      { "key": "ania", "label": "Asystentka Ania (czat 24/7)", "value": "https://serce-mamy.com/pomoc", "dataDetectorTypes": ["PKDataDetectorTypeLink"] },
-      { "key": "krs", "label": "KRS", "value": "0001238780" }
+      {
+        "key": "misja",
+        "label": "Dla każdej mamy i każdego dziecka",
+        "value": "Wspieramy mamy, noworodki i wcześniaki w Lublinie: sprzęt dla Oddziału Noworodkowego USK nr 1, warsztaty dla rodziców, wsparcie dla rodzin."
+      },
+      {
+        "key": "adres",
+        "label": "Adres",
+        "value": "ul. Staszica 16, 20-060 Lublin"
+      },
+      {
+        "key": "telb",
+        "label": "Telefon",
+        "value": "+48 000 000 000",
+        "dataDetectorTypes": [
+          "PKDataDetectorTypePhoneNumber"
+        ]
+      },
+      {
+        "key": "mailb",
+        "label": "E-mail",
+        "value": "sercemamy.stowarzyszenia@gmail.com"
+      },
+      {
+        "key": "wizytowka",
+        "label": "Wizytówka online",
+        "value": "https://serce-mamy.com/wizytowka",
+        "dataDetectorTypes": [
+          "PKDataDetectorTypeLink"
+        ]
+      },
+      {
+        "key": "ania",
+        "label": "Asystentka Ania (czat 24/7)",
+        "value": "https://serce-mamy.com/pomoc",
+        "dataDetectorTypes": [
+          "PKDataDetectorTypeLink"
+        ]
+      },
+      {
+        "key": "krs",
+        "label": "KRS",
+        "value": "0001238780"
+      }
     ]
   },
   "barcodes": [
-    { "format": "PKBarcodeFormatQR", "message": "https://serce-mamy.com/wizytowka", "messageEncoding": "iso-8859-1", "altText": "serce-mamy.com/wizytowka" }
+    {
+      "format": "PKBarcodeFormatQR",
+      "message": "https://serce-mamy.com/wizytowka",
+      "messageEncoding": "iso-8859-1"
+    }
   ]
 }
