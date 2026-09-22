@@ -2,23 +2,25 @@
   "formatVersion": 1,
   "passTypeIdentifier": "pass.com.serce-mamy.wizytowka",
   "teamIdentifier": "TEAM_ID_DO_UZUPELNIENIA",
-  "serialNumber": "serce-mamy-wizytowka-002",
+  "serialNumber": "serce-mamy-wizytowka-003",
   "organizationName": "Stowarzyszenie Serce Mamy",
   "description": "Wizytówka Stowarzyszenia Serce Mamy",
-  "logoText": "",
+  "logoText": "Serce Mamy",
   "foregroundColor": "rgb(22, 29, 28)",
-  "backgroundColor": "rgb(251, 251, 249)",
+  "backgroundColor": "rgb(255, 255, 255)",
   "labelColor": "rgb(95, 158, 150)",
   "sharingProhibited": false,
   "suppressStripShine": true,
-  "generic": {
-    "primaryFields": [
-      {
-        "key": "name",
-        "label": "STOWARZYSZENIE",
-        "value": "Serce Mamy"
-      }
-    ],
+  "barcodes": [
+    {
+      "format": "PKBarcodeFormatQR",
+      "message": "https://serce-mamy.com/wizytowka",
+      "messageEncoding": "iso-8859-1"
+    }
+  ],
+  "storeCard": {
+    "headerFields": [],
+    "primaryFields": [],
     "secondaryFields": [
       {
         "key": "tel",
@@ -37,6 +39,12 @@
         "key": "mail",
         "label": "E-MAIL",
         "value": "sercemamy.stowarzyszenia@gmail.com"
+      },
+      {
+        "key": "adr",
+        "label": "ADRES",
+        "value": "Staszica 16, Lublin",
+        "textAlignment": "PKTextAlignmentRight"
       }
     ],
     "backFields": [
@@ -85,12 +93,5 @@
         "value": "0001238780"
       }
     ]
-  },
-  "barcodes": [
-    {
-      "format": "PKBarcodeFormatQR",
-      "message": "https://serce-mamy.com/wizytowka",
-      "messageEncoding": "iso-8859-1"
-    }
-  ]
+  }
 }
