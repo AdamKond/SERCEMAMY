@@ -4,15 +4,53 @@
   "redirects": [
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": "serce-mamy.vercel.app" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "serce-mamy.vercel.app"
+        }
+      ],
       "destination": "https://serce-mamy.com/$1",
       "permanent": true
     },
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": "www.serce-mamy.com" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "www.serce-mamy.com"
+        }
+      ],
       "destination": "https://serce-mamy.com/$1",
       "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/serce-mamy.pkpass",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/vnd.apple.pkpass"
+        },
+        {
+          "key": "Content-Disposition",
+          "value": "attachment; filename=\"Serce-Mamy.pkpass\""
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/serce-mamy.vcf",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/vcard; charset=utf-8"
+        }
+      ]
     }
   ]
 }
