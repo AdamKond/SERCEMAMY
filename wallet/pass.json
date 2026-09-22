@@ -25,7 +25,7 @@
       {
         "key": "tel",
         "label": "TELEFON",
-        "value": "+48 000 000 000"
+        "value": "+48 81 532 66 12"
       },
       {
         "key": "adr",
@@ -61,7 +61,7 @@
       {
         "key": "telb",
         "label": "Telefon",
-        "value": "+48 000 000 000",
+        "value": "+48 81 532 66 12",
         "dataDetectorTypes": [
           "PKDataDetectorTypePhoneNumber"
         ]
