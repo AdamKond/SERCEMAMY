@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "passTypeIdentifier": "pass.com.serce-mamy.wizytowka",
   "teamIdentifier": "TEAM_ID_DO_UZUPELNIENIA",
-  "serialNumber": "serce-mamy-wizytowka-004",
+  "serialNumber": "serce-mamy-wizytowka-005",
   "organizationName": "Stowarzyszenie Serce Mamy",
   "description": "Wizytówka Stowarzyszenia Serce Mamy",
   "logoText": "Serce Mamy",
@@ -18,7 +18,7 @@
       "messageEncoding": "iso-8859-1"
     }
   ],
-  "storeCard": {
+  "eventTicket": {
     "headerFields": [],
     "primaryFields": [],
     "secondaryFields": [
