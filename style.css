@@ -1141,6 +1141,20 @@
   .blog-soon-note { flex-direction: column; text-align: center; }
 }
 
+/* Opublikowany artykuł — karta wyróżniona (pełna szerokość, układ poziomy) */
+.blog-card--featured { grid-column: 1 / -1; flex-direction: row; }
+.blog-card--featured .blog-card-img { flex: 0 0 38%; height: auto; min-height: 240px; }
+.blog-card--featured .blog-card-body { padding: clamp(1.75rem,3vw,2.5rem); justify-content: center; }
+.blog-card--featured .blog-card-title { font-size: clamp(1.2rem,1.8vw,1.5rem); }
+.blog-card-img--grad { background: radial-gradient(ellipse 70% 80% at 30% 30%, rgba(116,173,165,0.22) 0%, transparent 70%), linear-gradient(135deg, #eaf3f1 0%, #f7f1ec 55%, #f4e7ea 100%); }
+.blog-card:hover .blog-card-img--grad { background: radial-gradient(ellipse 70% 80% at 30% 30%, rgba(116,173,165,0.32) 0%, transparent 70%), linear-gradient(135deg, #dcebe7 0%, #f3ebe4 55%, #efdde2 100%); }
+.blog-card-img--grad svg { opacity: 0.5; }
+.blog-card:hover .blog-card-img--grad svg { opacity: 0.7; }
+@media (max-width: 680px) {
+  .blog-card--featured { flex-direction: column; }
+  .blog-card--featured .blog-card-img { flex: none; height: 180px; min-height: 0; }
+}
+
 /* ══════════════════════════════════
    HERO — animowany mesh-gradient (odpowiednik shadera z promptu, czysty CSS)
    ══════════════════════════════════ */
