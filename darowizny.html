@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Darowizna online | Stowarzyszenie Serce Mamy</title>
+  <meta name="description" content="Przekaż jednorazową darowiznę online na rzecz Stowarzyszenia Serce Mamy: 20, 30, 50 zł lub własna kwota. Wspierasz mamy, noworodki i wcześniaki w Lublinie.">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Inter+Tight:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <link rel="stylesheet" href="/style.css" />
+  <script>try{if(sessionStorage.getItem('sm-seen'))document.documentElement.classList.add('no-loader');}catch(e){}</script>
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <!-- SEO:start -->
+  <link rel="canonical" href="https://serce-mamy.com/darowizny" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="theme-color" content="#2e544e" />
+  <meta property="og:locale" content="pl_PL" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Stowarzyszenie Serce Mamy" />
+  <meta property="og:title" content="Darowizna online | Stowarzyszenie Serce Mamy" />
+  <meta property="og:description" content="Przekaż jednorazową darowiznę online na rzecz Stowarzyszenia Serce Mamy: 20, 30, 50 zł lub własna kwota. Wspierasz mamy, noworodki i wcześniaki w Lublinie." />
+  <meta property="og:url" content="https://serce-mamy.com/darowizny" />
+  <meta property="og:image" content="https://serce-mamy.com/seo/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Serce Mamy: wspieramy mamy, noworodki i wcześniaki" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Darowizna online | Stowarzyszenie Serce Mamy" />
+  <meta name="twitter:description" content="Przekaż jednorazową darowiznę online na rzecz Stowarzyszenia Serce Mamy: 20, 30, 50 zł lub własna kwota. Wspierasz mamy, noworodki i wcześniaki w Lublinie." />
+  <meta name="twitter:image" content="https://serce-mamy.com/seo/og-image.jpg" />
+  <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+  <link rel="icon" href="/seo/icon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="/seo/icon-180.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Strona główna","item":"https://serce-mamy.com/"},{"@type":"ListItem","position":2,"name":"Wsparcie","item":"https://serce-mamy.com/pomoc"},{"@type":"ListItem","position":3,"name":"Darowizna online","item":"https://serce-mamy.com/darowizny"}]},{"@type":"WebPage","@id":"https://serce-mamy.com/darowizny#webpage","url":"https://serce-mamy.com/darowizny","name":"Darowizna online | Stowarzyszenie Serce Mamy","description":"Przekaż jednorazową darowiznę online na rzecz Stowarzyszenia Serce Mamy: 20, 30, 50 zł lub własna kwota. Wspierasz mamy, noworodki i wcześniaki w Lublinie.","inLanguage":"pl-PL","isPartOf":{"@id":"https://serce-mamy.com/#website"},"about":{"@id":"https://serce-mamy.com/#organization"}}]}</script>
+  <!-- SEO:end -->
+  <style>
+:where(.dn) :root{--green:#274f46;--green-dark:#193d34;--mint:#deebe3;--cream:#faf7f0;--paper:#fff;--rose:#f3d9d1;--rose-dark:#995348;--ink:#253a33;--muted:#596b63;--line:#dce3dc;--radius:20px;--shadow:0 14px 45px #1d423514;color-scheme:light}
+:where(.dn) [hidden]{display:none!important}
+:where(.dn) img{display:block;max-width:100%}
+:where(.dn) a{color:inherit;text-underline-offset:4px}
+:where(.dn) button,:where(.dn) input{font:inherit}
+:where(.dn) button,:where(.dn) a,:where(.dn) input,:where(.dn) summary{-webkit-tap-highlight-color:transparent}
+:where(.dn) button{cursor:pointer}
+:where(.dn) button:disabled{cursor:not-allowed}
+:where(.dn) button:focus-visible,:where(.dn) a:focus-visible,:where(.dn) input:focus-visible,:where(.dn) summary:focus-visible,:where(.dn) [tabindex="-1"]:focus-visible{outline:3px solid var(--blush-deep);outline-offset:5px}
+:where(.dn) h2,:where(.dn) h3,:where(.dn) p{margin-top:0}
+:where(.dn) h2{font-family:var(--font-serif);font-weight:400;letter-spacing:-.035em}
+:where(.dn) h2{font-size:clamp(32px,3.6vw,46px);line-height:1.15;margin-bottom:18px}
+:where(.dn) h3{line-height:1.35}
+:where(.dn) p{margin-bottom:18px}
+:where(.dn) svg.icon{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+:where(.dn) .eyebrow{text-transform:uppercase;font-size:11px;letter-spacing:2px;font-weight:700;color:var(--dark);margin-bottom:20px}
+:where(.dn) .muted{color:var(--muted)}
+:where(.dn) .small{font-size:13px;line-height:1.6}
+:where(.dn) .skip{position:fixed;top:-100px;left:15px;background:white;padding:12px 18px;z-index:20}
+:where(.dn) .skip:focus{top:12px}
+:where(.dn) .btn{display:inline-flex;justify-content:center;align-items:center;gap:12px;min-height:51px;padding:13px 22px;border-radius:8px;border:1px solid var(--dark);background:var(--dark);color:#fff;font-weight:700;font-size:14px;line-height:1.4;text-decoration:none;transition:background .15s}
+:where(.dn) .btn:hover{background:var(--dark2)}
+:where(.dn) .btn:disabled{background:#dfe4e0;border-color:#dfe4e0;color:#55635d}
+:where(.dn) .btn-light{background:transparent;color:var(--dark);border-color:var(--border)}
+:where(.dn) .btn-light:hover{background:var(--rose-dim)}
+
+
+:where(.dn) .intro .lead{font-size:18px;line-height:1.7;max-width:490px}
+:where(.dn) .intro-note{border-left:2px solid var(--rose-dim2);padding:0 0 0 17px;font-size:13px;color:var(--muted);max-width:450px;margin:22px 0 28px}
+:where(.dn) .hero-photo{position:relative;margin:0;border-radius:80px 8px 8px 8px;overflow:hidden;max-width:500px;background:var(--rose-light)}
+:where(.dn) .hero-photo img{width:100%;height:218px;object-fit:cover;object-position:50% 48%}
+:where(.dn) .hero-photo figcaption{background:var(--dark);color:white;padding:13px 21px;font:italic 18px/1.4 var(--font-serif)}
+:where(.dn) .donation-card{background:white;border:1px solid var(--border);border-radius:20px;box-shadow:var(--card-shadow);padding:30px;scroll-margin-top:30px}
+:where(.dn) .card-heading{display:flex;gap:14px;align-items:flex-start;justify-content:space-between}
+:where(.dn) .card-heading h2{font-size:31px;letter-spacing:-.025em;margin-bottom:6px}
+:where(.dn) .card-heading p{font-size:13px;color:var(--muted);margin-bottom:18px}
+:where(.dn) .heart-mark{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--blush-light);color:var(--blush-deep);flex-shrink:0}
+:where(.dn) .steps{display:flex;gap:24px;padding:0 0 18px;margin:0 0 20px;border-bottom:1px solid var(--border);list-style:none;font-size:11px;color:var(--muted)}
+:where(.dn) .steps li{display:flex;align-items:center;gap:7px}
+:where(.dn) .steps span{width:20px;height:20px;border-radius:50%;border:1px solid var(--border);display:grid;place-items:center;font-size:10px}
+:where(.dn) .steps [aria-current=step]{color:var(--dark);font-weight:700}
+:where(.dn) .steps [aria-current=step] span{background:var(--dark);color:white;border-color:var(--dark)}
+:where(.dn) .notice{background:#f6f0df;border-left:3px solid #b39754;padding:10px 12px;border-radius:4px;font-size:12px;line-height:1.5;margin:0 0 18px}
+:where(.dn) .notice:empty{display:none}
+:where(.dn) .notice.sandbox{background:#edf3f9;border-color:#5c82a3}
+:where(.dn) .notice strong{display:block}
+:where(.dn) fieldset{border:0;padding:0;margin:0 0 18px}
+:where(.dn) legend,:where(.dn) .field>span{font-size:13px;font-weight:700;display:block;margin-bottom:9px}
+:where(.dn) .amounts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+:where(.dn) .choice{position:relative;min-width:0}
+:where(.dn) .choice input{position:absolute;opacity:0;width:1px;height:1px}
+:where(.dn) .choice span{display:flex;align-items:center;justify-content:center;height:55px;border:1px solid var(--border);border-radius:8px;color:var(--dark);font-size:19px;font-weight:700;cursor:pointer;white-space:nowrap}
+:where(.dn) .choice:last-child span{font-size:13px}
+:where(.dn) .choice input:checked+span{background:var(--dark);border-color:var(--dark);color:white}
+:where(.dn) .choice input:focus-visible+span{outline:3px solid var(--blush-deep);outline-offset:3px}
+:where(.dn) .choice:hover span{border-color:var(--dark)}
+:where(.dn) .field{display:block;margin:0 0 18px}
+:where(.dn) .field input{width:100%;height:48px;border:1px solid #cfdcd8;border-radius:7px;background:#fff;padding:10px 13px;font-size:16px;color:var(--text)}
+:where(.dn) .field input::placeholder{color:#78857e}
+:where(.dn) .field small{display:block;font-size:11px;line-height:1.6;color:var(--muted);margin-top:7px}
+:where(.dn) .custom-wrap{margin:14px 0 0}
+:where(.dn) .check{display:flex;align-items:flex-start;gap:10px;font-size:12px;line-height:1.7;margin:18px 0 14px}
+:where(.dn) .check input{width:19px;height:19px;flex:0 0 19px;accent-color:var(--dark);margin:2px 0}
+:where(.dn) .privacy{font-size:11px;line-height:1.65;color:var(--muted);margin:0 0 19px}
+:where(.dn) .privacy a,:where(.dn) .check a{font-weight:700}
+:where(.dn) .full{width:100%}
+:where(.dn) .payment-caption{text-align:center;font-size:11px;color:var(--muted);margin:13px 0 0;line-height:1.5}
+:where(.dn) .payment-caption strong{font-size:15px;color:var(--dark)}
+:where(.dn) .error{font-size:13px;color:#773e35;background:#fcf0ed;padding:12px;border:1px solid #e7bfb5;border-radius:6px;line-height:1.55;margin:12px 0}
+:where(.dn) .honeypot{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+:where(.dn) .review-title{font:22px/1.3 var(--font-serif);margin-bottom:19px}
+:where(.dn) .summary-list{margin:0 0 20px}
+:where(.dn) .summary-list>div{padding:12px 0;border-bottom:1px solid var(--border)}
+:where(.dn) .summary-list dt{font-size:11px;color:var(--muted);margin-bottom:3px}
+:where(.dn) .summary-list dd{margin:0;font-size:14px;overflow-wrap:anywhere;line-height:1.5}
+:where(.dn) .summary-list .total{display:flex;align-items:center;justify-content:space-between;gap:12px}
+:where(.dn) .summary-list .total dt{font-size:13px;color:var(--text);max-width:170px}
+:where(.dn) .summary-list .total dd{font:34px/1.2 var(--font-serif);color:var(--dark);white-space:nowrap}
+:where(.dn) .edit{margin-top:10px}
+:where(.dn) .trustbar{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:24px 0}
+:where(.dn) .trust-items{display:grid;grid-template-columns:repeat(3,1fr);gap:25px}
+:where(.dn) .trust-item{display:flex;align-items:center;gap:14px;font-size:13px;color:var(--dark)}
+:where(.dn) .trust-item strong{display:block;font-size:13px}
+:where(.dn) .trust-item span{font-size:11px;color:var(--muted)}
+
+:where(.dn) .section-head{max-width:650px;margin-bottom:36px}
+:where(.dn) .section-head p:last-child{color:var(--muted)}
+:where(.dn) .purpose-list{display:grid;grid-template-columns:repeat(3,1fr);gap:38px}
+:where(.dn) .purpose{border-top:1px solid var(--rose-dim2);padding-top:25px}
+:where(.dn) .purpose .num{font:italic 24px var(--font-serif);color:var(--blush-deep);margin-bottom:17px}
+:where(.dn) .purpose h3{font:25px/1.2 var(--font-serif);letter-spacing:-.02em;margin-bottom:13px;max-width:300px}
+:where(.dn) .purpose p{font-size:14px;color:var(--muted);margin-bottom:0}
+:where(.dn) .purpose-foot{font-size:12px;color:var(--muted);margin-top:30px;max-width:810px}
+:where(.dn) .how{background:#f8f3ee}
+:where(.dn) .how-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:80px}
+:where(.dn) .how-intro p{max-width:380px;color:var(--muted);font-size:15px}
+:where(.dn) .how-steps{list-style:none;margin:0;padding:0;counter-reset:step}
+:where(.dn) .how-steps li{counter-increment:step;position:relative;padding:0 0 27px 55px}
+:where(.dn) .how-steps li:last-child{padding-bottom:0}
+:where(.dn) .how-steps li:before{content:'0' counter(step);position:absolute;left:0;top:0;color:var(--dark);font:italic 23px var(--font-serif)}
+:where(.dn) .how-steps strong{display:block;font-size:17px;margin-bottom:6px}
+:where(.dn) .how-steps p{margin:0;font-size:13px;line-height:1.7;color:var(--muted)}
+:where(.dn) .faq-layout{display:grid;grid-template-columns:1fr 1.4fr;gap:70px}
+:where(.dn) .faq-list details{border-bottom:1px solid var(--border);padding:18px 0}
+:where(.dn) .faq-list details:first-child{border-top:1px solid var(--border)}
+:where(.dn) summary{cursor:pointer;list-style:none}
+:where(.dn) .faq-list summary{display:flex;justify-content:space-between;gap:15px;font-size:15px;font-weight:700;line-height:1.5}
+:where(.dn) .faq-list summary:after{content:'+';color:var(--dark);font-size:20px;font-weight:400;line-height:1}
+:where(.dn) .faq-list details[open]>summary:after{content:'−'}
+:where(.dn) summary::-webkit-details-marker{display:none}
+:where(.dn) .faq-list p{font-size:14px;color:var(--muted);margin:16px 25px 4px 0}
+:where(.dn) .documents{background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+:where(.dn) .docs-top{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:30px}
+:where(.dn) .docs-top .section-head{margin-bottom:0}
+:where(.dn) .legal{border:1px solid var(--border);border-radius:10px;margin:12px 0;background:#fff;scroll-margin-top:24px}
+:where(.dn) .legal>summary{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:23px 26px}
+:where(.dn) .legal>summary h3{font:24px/1.3 var(--font-serif);letter-spacing:-.02em;margin:0}
+:where(.dn) .legal>summary .doc-index{display:block;font-size:10px;letter-spacing:1.7px;font-weight:700;color:var(--muted);margin-bottom:5px;text-transform:uppercase}
+:where(.dn) .legal>summary:after{content:'+';font-size:25px;flex:none}
+:where(.dn) .legal[open]>summary:after{content:'−'}
+:where(.dn) .legal[open]>summary{border-bottom:1px solid var(--border);background:#f8f3ee;border-radius:10px 10px 0 0}
+:where(.dn) .legal-body{padding:28px 35px 34px;max-width:960px;margin-inline:auto}
+:where(.dn) .legal-body h4{font-size:18px;line-height:1.4;margin:30px 0 14px;color:var(--dark)}
+:where(.dn) .legal-body h4:first-child{margin-top:0}
+:where(.dn) .legal-body p{font-size:15px;line-height:1.8;overflow-wrap:anywhere;margin-bottom:18px}
+:where(.dn) .legal-body a{overflow-wrap:anywhere}
+:where(.dn) .back-form{display:inline-flex;gap:10px;align-items:center;font-weight:700;font-size:12px;margin-top:15px}
+:where(.dn) .contact{display:grid;grid-template-columns:1fr 1fr;gap:90px}
+:where(.dn) .contact-intro p{font-size:15px;color:var(--muted);max-width:440px}
+:where(.dn) .contact-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:25px}
+:where(.dn) .address{border-left:1px solid var(--border);padding-left:45px}
+:where(.dn) .address h3{font:27px var(--font-serif);margin-bottom:20px}
+:where(.dn) .address p{font-size:14px;margin-bottom:18px}
+:where(.dn) .ids{display:flex;gap:25px;flex-wrap:wrap;margin:0}
+:where(.dn) .ids div{font-size:12px}
+:where(.dn) .ids dt{font-size:10px;font-weight:700;letter-spacing:1px;color:var(--muted)}
+:where(.dn) .ids dd{margin:0}
+:where(.dn) .payment-result{border:1px solid var(--border);background:#fff;border-radius:14px;padding:28px;margin:30px auto 0;scroll-margin-top:25px}
+:where(.dn) .payment-result h2{font-size:30px;margin-bottom:10px}
+:where(.dn) .payment-result p{max-width:760px;font-size:14px}
+:where(.dn) .payment-result .actions{display:flex;gap:10px;flex-wrap:wrap}
+:where(.dn) .result-ref{font-family:monospace;word-break:break-all}
+@media(max-width:1050px){:where(.dn) .donation-card{padding:26px}:where(.dn) .how-grid{gap:45px}:where(.dn) .faq-layout{gap:40px}:where(.dn) .contact{gap:45px}}
+@media(max-width:800px){:where(.dn) .hero-photo img{height:270px}:where(.dn) .hero-photo figcaption{font-size:14px;padding:15px}:where(.dn) .intro .lead{font-size:16px}:where(.dn) .intro-note{margin-bottom:0}:where(.dn) .donation-card{max-width:600px;width:100%;margin:auto;padding:30px}:where(.dn) .trust-items{gap:18px}:where(.dn) .trust-item{align-items:flex-start;gap:10px}:where(.dn) .purpose-list{gap:24px}:where(.dn) .purpose h3{font-size:23px}:where(.dn) .how-grid,:where(.dn) .faq-layout,:where(.dn) .contact{grid-template-columns:1fr;gap:30px}:where(.dn) .how-intro p{max-width:600px}:where(.dn) .address{border-left:0;border-top:1px solid var(--border);padding:28px 0 0}:where(.dn) .docs-top{align-items:start;flex-direction:column}}
+@media(max-width:540px){:where(.dn) .eyebrow{font-size:10px;letter-spacing:1.6px;margin-bottom:17px}:where(.dn) .intro .lead{font-size:16px}:where(.dn) .intro-note{margin:20px 0 24px}:where(.dn) .hero-photo{display:none}:where(.dn) .donation-card{padding:24px 20px;border-radius:15px}:where(.dn) .card-heading h2{font-size:29px}:where(.dn) .notice{font-size:12px}:where(.dn) .check{font-size:12px}:where(.dn) .privacy{font-size:12px}:where(.dn) .field small{font-size:12px}:where(.dn) .payment-caption{font-size:12px}:where(.dn) .steps{font-size:12px;gap:17px}:where(.dn) .choice span{font-size:19px;height:53px}:where(.dn) .choice:last-child span{font-size:12px}:where(.dn) .amounts{gap:6px}:where(.dn) .trust-items{grid-template-columns:1fr;gap:18px}:where(.dn) .trustbar{padding:25px 0}:where(.dn) .trust-item span{font-size:12px}:where(.dn) .trust-item strong{font-size:14px}:where(.dn) .section-head{margin-bottom:26px}:where(.dn) .purpose-list{grid-template-columns:1fr;gap:27px}:where(.dn) .purpose{display:grid;grid-template-columns:35px minmax(0,1fr);column-gap:12px;padding-top:22px}:where(.dn) .purpose .num{grid-row:1/3}:where(.dn) .purpose h3{max-width:none;font-size:25px;margin-bottom:12px}:where(.dn) .purpose p{grid-column:2}:where(.dn) .purpose-foot{font-size:13px}:where(.dn) .how-steps li{padding-left:46px}:where(.dn) .how-steps p{font-size:14px}:where(.dn) .faq-list summary{font-size:16px}:where(.dn) .faq-list p{font-size:15px}:where(.dn) .legal>summary{padding:19px 18px;gap:14px}:where(.dn) .legal>summary h3{font-size:21px}:where(.dn) .legal-body{padding:24px 20px}:where(.dn) .legal-body p{font-size:16px;line-height:1.75}:where(.dn) .legal-body h4{font-size:19px}:where(.dn) .contact-links{flex-direction:column;align-items:stretch}:where(.dn) .contact-links .btn{font-size:14px;overflow-wrap:anywhere}:where(.dn) .ids{gap:18px}:where(.dn) .summary-list .total dd{font-size:29px}:where(.dn) .payment-result{padding:23px}:where(.dn) .docs-top .btn{width:100%}}
+/* ── Darowizny: dopasowanie do systemu wizualnego serce-mamy.com ── */
+:where(.dn) h2{font-family:var(--font-serif);font-weight:700;letter-spacing:-.012em;color:var(--text)}
+:where(.dn) .wrap{width:100%;max-width:1200px;margin-inline:auto;padding-inline:clamp(20px,5vw,60px)}
+:where(.dn) .section{padding-block:clamp(60px,8vw,100px)}
+:where(.dn) .eyebrow{font-size:11px;letter-spacing:.22em;color:var(--rose)}
+:where(.dn) .btn{border-radius:999px;background:var(--rose);border-color:var(--rose);font-family:var(--font-body);letter-spacing:.04em;font-size:13px;box-shadow:0 6px 22px rgba(95,158,150,.28);transition:background .2s ease,transform .2s ease,box-shadow .2s ease}
+:where(.dn) .btn:hover{background:#3f7068;border-color:#3f7068;transform:translateY(-1px)}
+:where(.dn) .btn:disabled{background:#e6ecea;border-color:#e6ecea;color:#5d716b;box-shadow:none;transform:none}
+:where(.dn) .btn-light{background:transparent;color:var(--dark);border:1.5px solid var(--rose-dim2);box-shadow:none}
+:where(.dn) .btn-light:hover{background:var(--rose-dim);border-color:var(--rose);color:var(--dark)}
+:where(.dn) .choice span{border-radius:14px;color:var(--dark)}
+:where(.dn) .choice input:checked+span{background:var(--rose);border-color:var(--rose);color:#fff;box-shadow:0 6px 18px rgba(95,158,150,.28)}
+:where(.dn) .choice:hover span{border-color:var(--rose)}
+:where(.dn) .steps [aria-current=step]{color:var(--dark)}
+:where(.dn) .steps [aria-current=step] span{background:var(--rose);border-color:var(--rose)}
+:where(.dn) .field input{border-radius:12px}
+:where(.dn) .field input:focus{outline:none;border-color:var(--rose);box-shadow:0 0 0 3px var(--rose-dim2)}
+:where(.dn) .check input{accent-color:var(--rose)}
+:where(.dn) .donation-card{border-color:var(--border2);box-shadow:var(--card-shadow-hover)}
+:where(.dn) .notice{background:var(--blush-light);border-left-color:var(--blush)}
+:where(.dn) .payment-caption strong,:where(.dn) .summary-list .total dd{color:var(--dark)}
+:where(.dn) .heart-mark{background:var(--blush-dim);color:var(--blush-deep)}
+:where(.dn) .trust-item{color:var(--dark)}
+:where(.dn) .trust-item svg.icon{color:var(--rose)}
+:where(.dn) .how-steps li:before,:where(.dn) .purpose .num{color:var(--blush-deep)}
+:where(.dn) .faq-list summary:after{color:var(--rose)}
+:where(.dn) .legal{border-radius:var(--radius);border-color:var(--border2);box-shadow:var(--card-shadow)}
+:where(.dn) .legal[open]>summary{border-radius:var(--radius) var(--radius) 0 0}
+:where(.dn) .legal-body h4{color:var(--dark);font-family:var(--font-serif)}
+:where(.dn) .legal-body a,:where(.dn) .faq-list a,:where(.dn) .privacy a,:where(.dn) .check a,:where(.dn) .small a{color:var(--blush-deep)}
+:where(.dn) .documents{background:#fff;border-color:var(--border2)}
+:where(.dn) .payment-result{max-width:1080px;margin:30px auto 0;border-radius:var(--radius)}
+:where(.dn) .hero-photo{border-radius:80px 18px 18px 18px;box-shadow:var(--card-shadow)}
+:where(.dn) .hero-photo figcaption{background:var(--dark)}
+.dn-hero{display:grid;grid-template-columns:minmax(0,1fr) 450px;gap:clamp(32px,5vw,64px);align-items:start;padding-bottom:clamp(40px,6vw,70px)}
+.dn-hero .page-hero-title{font-size:clamp(2.4rem,4.1vw,3.6rem)}
+:where(.dn) .legal>summary .doc-index{font-family:var(--font-body);color:var(--rose)}
+.dn-hero .page-hero-lead{max-width:52ch}
+.dn-hero .intro-note{margin:1.4rem 0 1.8rem}
+@media(max-width:1050px){.dn-hero{grid-template-columns:minmax(0,1fr) 410px}}
+@media(max-width:800px){.dn-hero{grid-template-columns:minmax(0,1fr)}.dn-hero .donation-card{max-width:600px;width:100%;margin:auto}}
+@media(max-width:540px){:where(.dn) .hero-photo{display:none}}
+@media print{#navbar,footer,#page-loader,.fdl,#scroll-progress,.page-name-vert,.page-top-spacer,.callback-section,.dn-hero,.trustbar,.purpose-section,.how,.faq-section,.contact,.docs-top .btn,.back-form,.skip,.payment-result{display:none!important}.legal{border:0;box-shadow:none;break-before:page}.legal:first-of-type{break-before:auto}.legal-body p{font-size:10.5pt;line-height:1.5}@page{size:A4;margin:18mm}}
+
+  </style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></symbol><symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol><symbol id="i-check" viewBox="0 0 24 24"><path d="M20 7 10 17l-5-5"/></symbol><symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2"/></symbol><symbol id="i-document" viewBox="0 0 24 24"><path d="M14 2H5v20h14V7l-5-5Zm0 0v6h5M8 12h8m-8 4h6"/></symbol></svg>
+
+<!-- FLOATING MICRO-DECO layer -->
+<div class="fdl" aria-hidden="true">
+  <div class="fdl-el" style="top:18%;left:6%;animation:microFloat 6.2s ease-in-out infinite;animation-delay:0s">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+  </div>
+  <div class="fdl-el pk" style="top:34%;left:92%;animation:microFloat 8s ease-in-out infinite;animation-delay:1.2s">
+    <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+  </div>
+  <div class="fdl-el" style="top:62%;left:4%;animation:microFloat 7.4s ease-in-out infinite;animation-delay:2.5s">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"/></svg>
+  </div>
+  <div class="fdl-el pk" style="top:78%;left:96%;animation:microFloat 9s ease-in-out infinite;animation-delay:0.8s">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+  </div>
+  <div class="fdl-el" style="top:50%;left:88%;animation:microFloat 6.8s ease-in-out infinite;animation-delay:3.5s">
+    <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor" opacity="0.6"><circle cx="12" cy="12" r="10"/></svg>
+  </div>
+</div>
+
+<!-- LOADER -->
+<div id="page-loader">
+  <div class="pl-mark">
+    <svg class="pl-ring" viewBox="0 0 102 102" aria-hidden="true">
+      <circle cx="51" cy="51" r="47"/>
+      <path d="M51 4a47 47 0 0 1 47 47"/>
+    </svg>
+    <img class="pl-logo" src="/logo-mama.svg" alt="Serce Mamy" width="56" height="56" />
+  </div>
+  <div class="pl-brand">Serce Mamy</div>
+  <div class="pl-sub">Stowarzyszenie</div>
+  <div class="pl-bar"><div class="pl-bar-fill"></div></div>
+</div>
+
+<div id="scroll-progress"></div>
+
+<div class="page-name-vert" id="pageNameVert">SERCE MAMY</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="/">
+    <img class="nav-logo-img" src="/logo-mama.svg" width="40" height="40" alt="Logo stowarzyszenia Serce Mamy" />
+    <div class="nav-logo-text">
+      <span class="nav-logo-main">Serce Mamy</span>
+      <span class="nav-logo-sub">Stowarzyszenie</span>
+    </div>
+  </a>
+  <div class="nav-links-wrap">
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/">Główna</a></li>
+      <li class="has-sub">
+        <a href="/o-nas">O nas <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <ul class="subnav">
+          <li><a href="/o-nas">Kim jesteśmy</a></li>
+          <li><a href="/o-nas#path">Ścieżka wsparcia</a></li>
+          <li><a href="/o-nas#stories">Historie rodzin</a></li>
+        </ul>
+      </li>
+      <li class="has-sub">
+        <a href="/dzialania">Działania <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <ul class="subnav">
+          <li><a href="/dzialania#projects">Nasze projekty</a></li>
+          <li><a href="/dzialania#blog">Blog</a></li>
+        </ul>
+      </li>
+      <li class="has-sub">
+        <a href="/pomoc" class="active">Wsparcie <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <ul class="subnav">
+          <li><a href="/pomoc#donate">Pomóż nam</a></li>
+          <li><a href="/darowizny">Darowizna online</a></li>
+          <li><a href="/pomoc#contact">Kontakt</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <a class="nav-cta" href="/pomoc#donate"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.4-7-10a4.2 4.2 0 0 1 7-3 4.2 4.2 0 0 1 7 3c0 5.6-7 10-7 10Z"/></svg>Wesprzyj nas</a>
+  <div class="nav-toggle" id="navToggle"><span></span><span></span><span></span></div>
+</nav>
+<div class="page-top-spacer"></div>
+<main class="dn">
+<a class="skip" href="#donate">Przejdź do formularza darowizny</a>
+<section class="payment-result" id="payment-result" hidden tabindex="-1" aria-labelledby="result-title"><p class="eyebrow">Status Twojej darowizny</p><h2 id="result-title">Sprawdzamy status wpłaty</h2><p id="result-message" role="status">Potwierdzenie płatności pobierzemy z systemu Stowarzyszenia.</p><p class="result-ref" id="result-ref"></p><div class="actions"><button type="button" class="btn" id="refresh-status">Sprawdź ponownie</button><a class="btn btn-light" href="#contact">Kontakt w sprawie wpłaty</a></div></section>
+<header class="page-hero dn-hero">
+<section class="intro" aria-labelledby="main-title">
+<p class="page-hero-eyebrow">Wsparcie · Darowizna online</p>
+<h1 class="page-hero-title" id="main-title"><span class="l1">Dobro zaczyna się</span><span class="l2">od małego gestu</span></h1>
+<p class="page-hero-lead">Pomóż nam być blisko mam, noworodków i wcześniaków. Twoja darowizna wspiera działania, które ułatwiają rodzinom <b>czas pobytu w szpitalu</b>.</p>
+<p class="intro-note">Wybierz kwotę, która jest dla Ciebie odpowiednia. Każda wpłata jest dobrowolna i jednorazowa.</p>
+<figure class="hero-photo"><img loading="eager" decoding="async" src="/intro-media/opt/wloczka-serce.jpg" width="1800" height="1350" alt="Serce ułożone z miękkiej, jasnej włóczki"><figcaption>Z małych gestów powstaje wielkie wsparcie.</figcaption></figure>
+</section>
+<section class="donation-card" id="donate" aria-labelledby="donation-title">
+<div class="card-heading"><div><h2 id="donation-title">Twoja darowizna</h2><p>Na cele statutowe Stowarzyszenia Serce Mamy.</p></div><span class="heart-mark"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg></span></div>
+<ol class="steps" aria-label="Etapy darowizny"><li id="step-one" aria-current="step"><span>1</span>Kwota i dane</li><li id="step-two"><span>2</span>Podsumowanie</li></ol>
+<div class="notice" id="payment-notice" role="status"><strong>Wpłaty online nie są jeszcze aktywne.</strong>Możesz wybrać kwotę i sprawdzić podsumowanie.</div>
+<form id="donation-form" novalidate>
+<fieldset><legend>Wybierz kwotę darowizny</legend><div class="amounts">
+<label class="choice"><input type="radio" name="amount" value="20"><span>20 zł</span></label>
+<label class="choice"><input type="radio" name="amount" value="30" checked><span>30 zł</span></label>
+<label class="choice"><input type="radio" name="amount" value="50"><span>50 zł</span></label>
+<label class="choice"><input type="radio" name="amount" value="custom"><span>Inna kwota</span></label>
+</div><label class="field custom-wrap" id="custom-wrap" hidden><span>Wpisz własną kwotę w złotych</span><input id="custom-amount" name="customAmount" inputmode="decimal" maxlength="12" autocomplete="off" placeholder="np. 75,50" aria-describedby="amount-help"><small id="amount-help">Od 1 do 10 000 zł. Możesz podać grosze po przecinku.</small></label></fieldset>
+<label class="field"><span>Twój adres e-mail</span><input type="email" id="email" name="email" required maxlength="50" autocomplete="email" placeholder="twoj@email.pl" aria-describedby="email-help"><small id="email-help">Do obsługi płatności. Bez zapisywania do newslettera.</small></label>
+<label class="honeypot" aria-hidden="true">Strona internetowa<input id="website" tabindex="-1" autocomplete="off"></label>
+<label class="check"><input type="checkbox" id="accept" required><span>Zapoznałem się z <a href="#regulamin" data-legal="regulamin">regulaminem darowizn i usług elektronicznych</a> i akceptuję jego treść.</span></label>
+<p class="privacy">Administratorem danych jest Stowarzyszenie „Serce Mamy”. Dane służą obsłudze darowizny i płatności. <a href="#polityka-prywatnosci" data-legal="polityka-prywatnosci">Polityka prywatności i Twoje prawa</a>.</p>
+<div id="form-error" class="error" role="alert" hidden></div>
+<button type="submit" id="review-button" class="btn full" disabled>Przejdź do podsumowania <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+</form>
+<section id="review" hidden tabindex="-1" aria-labelledby="review-title"><h3 id="review-title" class="review-title">Sprawdź swoją darowiznę</h3><dl class="summary-list"><div><dt>Odbiorca</dt><dd>Stowarzyszenie „Serce Mamy”</dd></div><div><dt>Cel</dt><dd>Działalność statutowa na rzecz mam, noworodków, wcześniaków i ich rodzin.</dd></div><div><dt>Twój adres e-mail</dt><dd id="review-email"></dd></div><div class="total"><dt>Jednorazowa darowizna</dt><dd id="review-amount"></dd></div></dl><p class="small muted">Metodę płatności wybierzesz na stronie Paynow. Dostępność BLIK-a, przelewu online lub karty zależy od metod aktywnych dla Stowarzyszenia.</p><div id="pay-error" class="error" role="alert" hidden></div><button id="pay" type="button" class="btn full" disabled>Płatność Paynow nieaktywna</button><button id="edit" type="button" class="btn btn-light full edit">Zmień kwotę lub dane</button><p class="small muted" id="payment-help" style="margin:13px 0 0">Pieniądze nie zostały pobrane. W sprawie darowizny możesz <a href="#contact">skontaktować się ze Stowarzyszeniem</a>.</p></section>
+<p class="payment-caption">Jednorazowa wpłata w PLN · operator płatności <strong>paynow</strong></p>
+<noscript><div class="notice" style="margin-top:20px">Do formularza online potrzebny jest JavaScript. Możesz skontaktować się z nami: <a href="mailto:sercemamy.stowarzyszenie@gmail.com">sercemamy.stowarzyszenie@gmail.com</a>. Dokumenty poniżej są dostępne bez JavaScript.</div></noscript>
+</section></header>
+<div class="trustbar"><div class="wrap trust-items">
+<div class="trust-item"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg><div><strong>Darowizna na cele statutowe</strong><span>Pomoc mamom, dzieciom i rodzinom.</span></div></div>
+<div class="trust-item"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><div><strong>Jedna wpłata, Twoja decyzja</strong><span>Bez subskrypcji i kolejnych obciążeń.</span></div></div>
+<div class="trust-item"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg><div><strong>Płatność na stronie operatora</strong><span>Danych karty i kodu BLIK nie wpisujesz tutaj.</span></div></div>
+</div></div>
+<section class="section purpose-section wrap" id="jak-pomagamy" aria-labelledby="purpose-title"><div class="section-head"><p class="eyebrow">Czemu służy Twoje wsparcie</p><h2 id="purpose-title">Więcej bliskości.<br>Lepsze warunki opieki.</h2><p>Długi pobyt w szpitalu to trudny czas dla całej rodziny. Chcemy pomagać tam, gdzie codzienna troska spotyka się z konkretnymi potrzebami.</p></div><div class="purpose-list">
+<article class="purpose"><div class="num">01</div><h3>Wsparcie mam<br>i ich rodzin</h3><p>Działania na rzecz kobiet długo przebywających na oddziale patologii ciąży oraz rodziców noworodków i wcześniaków.</p></article>
+<article class="purpose"><div class="num">02</div><h3>Sprzęt, wyposażenie<br>i codzienny komfort</h3><p>Wyposażenie i materiały wspierające opiekę okołoporodową oraz bardziej przyjazne warunki pobytu w szpitalu.</p></article>
+<article class="purpose"><div class="num">03</div><h3>Wiedza i pomoc<br>dla rodziców</h3><p>Materiały edukacyjne, warsztaty, spotkania i działania profilaktyczne dla mam i rodziców najmłodszych dzieci.</p></article>
+</div><p class="purpose-foot">Formularz służy do wspierania ogólnej działalności statutowej. Opisane obszary są przykładami pomocy; wybór kwoty nie oznacza zakupu konkretnego produktu ani usługi.</p></section>
+<section class="how section" aria-labelledby="how-title"><div class="wrap how-grid"><div class="how-intro"><p class="eyebrow">Prosta droga do pomocy</p><h2 id="how-title">Twoja decyzja.<br>Trzy krótkie kroki.</h2><p>Wspierasz Stowarzyszenie dobrowolną darowizną. Nie ma koszyka, dostawy ani kosztów wysyłki.</p><a class="btn btn-light" href="#donate">Przejdź do formularza <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div><ol class="how-steps"><li><strong>Wybierz kwotę</strong><p>Zaznacz 20, 30 lub 50 zł albo wpisz własną kwotę. Podaj e-mail i zaakceptuj regulamin.</p></li><li><strong>Sprawdź podsumowanie</strong><p>Zobacz kwotę, dane odbiorcy i cel darowizny. Przed rozpoczęciem płatności możesz poprawić dane.</p></li><li><strong>Przekaż darowiznę przez Paynow</strong><p>Po uruchomieniu wpłat przycisk przekieruje Cię do operatora. Tam wybierzesz dostępną metodę i zatwierdzisz płatność.</p></li></ol></div></section>
+<section class="faq-section section wrap" aria-labelledby="faq-title"><div class="faq-layout"><div><p class="eyebrow">Warto wiedzieć</p><h2 id="faq-title">Pytania przed<br>przekazaniem darowizny</h2><p class="muted small">Potrzebujesz wyjaśnienia?<br><a href="mailto:sercemamy.stowarzyszenie@gmail.com">sercemamy.stowarzyszenie@gmail.com</a></p></div><div class="faq-list">
+<details><summary>Czy darowizna jest jednorazowa?</summary><p>Tak. Formularz dotyczy jednej wpłaty. Nie uruchamia subskrypcji ani automatycznych, kolejnych obciążeń.</p></details>
+<details><summary>Jaką kwotę mogę przekazać?</summary><p>Możesz wybrać 20, 30 lub 50 zł albo własną kwotę od 1 do 10 000 zł. W sprawie większej darowizny prosimy o <a href="#contact">kontakt</a>.</p></details>
+<details><summary>Jakie metody płatności będą dostępne?</summary><p>Metodę wybierzesz na stronie Paynow. Widoczne będą wyłącznie metody uruchomione dla Stowarzyszenia, np. BLIK, przelew online lub karta. Strona nie pobiera danych karty ani kodu BLIK.</p></details>
+<details><summary>Czy mogę otrzymać potwierdzenie darowizny?</summary><p>Tak. Napisz na <a href="mailto:sercemamy.stowarzyszenie@gmail.com">sercemamy.stowarzyszenie@gmail.com</a>. Po weryfikacji zaksięgowania Stowarzyszenie uzgodni dane potrzebne do wystawienia potwierdzenia.</p></details>
+<details><summary>Co zrobić, jeśli pomylę kwotę lub płatność się powtórzy?</summary><p>Zgłoś sprawę Stowarzyszeniu, podając datę, kwotę i identyfikator wpłaty, jeżeli go znasz. Nie przesyłaj danych karty ani kodów bankowych. Szczegóły opisują <a href="#zwroty-reklamacje" data-legal="zwroty-reklamacje">zasady zwrotów i reklamacji</a>.</p></details>
+<details><summary>Czy wpłata daje prawo do produktu lub usługi?</summary><p>Nie. Jest to dobrowolna darowizna na cele statutowe. Nie stanowi zakupu i nie wiąże się ze świadczeniem wzajemnym ani gwarancją konkretnego rezultatu zdrowotnego.</p></details>
+</div></div></section>
+<section class="documents section" id="dokumenty" aria-labelledby="docs-title"><div class="wrap"><div class="docs-top"><div class="section-head"><p class="eyebrow">Zasady przekazywania darowizn</p><h2 id="docs-title">Dokumenty dla darczyńców</h2><p>Pełna treść jest dostępna przed wpłatą. Rozwiń wybrany dokument, aby się z nim zapoznać.</p></div><button type="button" class="btn btn-light" id="print-documents" hidden><svg class="icon" aria-hidden="true"><use href="#i-document"/></svg>Drukuj dokumenty</button></div>
+<details class="legal" id="regulamin"><summary><h3><span class="doc-index">01 · Zasady darowizn</span><span data-source="2">Regulamin darowizn i usług elektronicznych</span></h3></summary><div class="legal-body">
+<h4 data-source="3">1 Postanowienia ogólne</h4>
+<p data-source="4">Organizatorem serwisu serce-mamy.com, usługodawcą i odbiorcą darowizn jest Stowarzyszenie „Serce Mamy”, ul. Stanisława Staszica 16, 20-081 Lublin, KRS 0001238780, NIP 7123512149, REGON 544639494, dalej „Stowarzyszenie”. Kontakt dotyczący serwisu, darowizn, zwrotów i reklamacji: <a href="mailto:sercemamy.stowarzyszenie@gmail.com">sercemamy.stowarzyszenie@gmail.com</a>, tel. +48 81 532 66 12. Korespondencję pocztową należy kierować na wskazany adres siedziby.</p>
+<p data-source="5">Regulamin określa zasady nieodpłatnego korzystania z serwisu i formularza darowizn oraz przekazywania jednorazowych darowizn pieniężnych. Jest dostępny bezpłatnie przed rozpoczęciem wpłaty; można zapisać stronę lub wydrukować jej treść.</p>
+<p data-source="6">Darczyńcą może być osoba fizyczna mająca zdolność do dokonania darowizny albo osoba prawna lub jednostka organizacyjna reprezentowana przez uprawnioną osobę. Osoba o ograniczonej zdolności do czynności prawnych powinna uzyskać zgodę przedstawiciela ustawowego, jeżeli wymagają tego przepisy.</p>
+<h4 data-source="7">2 Cel i charakter darowizny</h4>
+<p data-source="8">Darowizny są przeznaczane na cele statutowe Stowarzyszenia, w szczególności wspieranie opieki okołoporodowej, mam, noworodków i wcześniaków oraz ich rodzin, wyposażenia placówek medycznych i działań edukacyjnych.</p>
+<p data-source="9">Wpłata jest dobrowolnym, nieodpłatnym przysporzeniem na rzecz Stowarzyszenia w rozumieniu art. 888 § 1 Kodeksu cywilnego. Nie stanowi zapłaty za produkt, usługę medyczną, konsultację, członkostwo ani dostęp do treści. Darczyńca nie otrzymuje świadczenia wzajemnego.</p>
+<p data-source="10">Formularz przyjmuje darowizny na ogólną działalność statutową. Przedstawione w serwisie przykłady projektów i ich budżetów pokazują możliwe obszary wsparcia, a nie towary, ceny lub gwarantowany zakup konkretnego przedmiotu za daną wpłatę. Darowizna na ściśle określony cel wymaga odrębnego uzgodnienia ze Stowarzyszeniem przed wpłatą.</p>
+<p data-source="11">Wpłata ma charakter jednorazowy. Nie powoduje uruchomienia płatności cyklicznych ani automatycznego obciążania rachunku w przyszłości.</p>
+<h4 data-source="12">3 Usługi elektroniczne</h4>
+<p data-source="13">Serwis umożliwia przeglądanie informacji, wybór kwoty darowizny, wypełnienie formularza, sprawdzenie podsumowania i rozpoczęcie płatności u operatora. Korzystanie z tych funkcji jest bezpłatne i nie wymaga założenia konta.</p>
+<p data-source="14">Do korzystania z formularza potrzebne są urządzenie z dostępem do Internetu, aktualna przeglądarka obsługująca JavaScript i połączenia HTTPS, obsługa niezbędnych plików sesyjnych oraz działający adres e-mail. Operator płatności może wymagać dostępu do bankowości, aplikacji bankowej lub instrumentu płatniczego odpowiedniego do wybranej metody.</p>
+<p data-source="15">Umowa o korzystanie z danej usługi elektronicznej jest zawierana przez rozpoczęcie jej używania i kończy się po zakończeniu korzystania, zamknięciu formularza lub opuszczeniu serwisu. Zamknięcie strony nie cofa wcześniej zleconej i wykonanej płatności ani dokonanej darowizny.</p>
+<p data-source="16">Zabronione jest przekazywanie treści bezprawnych, cudzych danych bez podstawy prawnej, fałszywych informacji oraz działania zakłócające funkcjonowanie serwisu. Nie należy podawać w formularzu darowizny danych o zdrowiu, dokumentacji medycznej ani danych kart płatniczych.</p>
+<p data-source="17">Korzystanie z Internetu wiąże się z ryzykiem podszywania się pod strony i przechwycenia danych na niezabezpieczonym urządzeniu. Należy korzystać z aktualnego oprogramowania i sprawdzać adres serwisu oraz operatora przed autoryzacją płatności. Stowarzyszenie nigdy nie prosi e-mailem o hasło do banku, kod BLIK ani kod zabezpieczający kartę.</p>
+<h4 data-source="18">4 Kwoty i przebieg wpłaty</h4>
+<p data-source="19">Darczyńca wybiera 20 zł, 30 zł, 50 zł albo wpisuje własną kwotę. Walutą jest polski złoty (PLN). Własna kwota może wynosić od 1,00 zł do 10 000,00 zł, z dokładnością do jednego grosza. Jest to limit formularza Stowarzyszenia; w sprawie większej darowizny prosimy o kontakt.</p>
+<p data-source="20">Darczyńca podaje adres e-mail, zapoznaje się z regulaminem i go akceptuje. Informacja o przetwarzaniu danych jest udostępniona przy formularzu. Akceptacja regulaminu nie jest zgodą na marketing ani newsletter.</p>
+<p data-source="21">Przed przekierowaniem do operatora wyświetlane jest podsumowanie z odbiorcą, celem, kwotą i adresem e-mail. Do momentu rozpoczęcia płatności można poprawić dane. Przycisk „Przekazuję [kwota] przez Paynow” uruchamia proces płatności.</p>
+<p data-source="22">Darczyńca wybiera metodę płatności i wykonuje wymagane przez operatora czynności autoryzacyjne. Może przerwać proces przed autoryzacją. Samo wybranie kwoty lub przejście do podsumowania nie oznacza pobrania środków.</p>
+<p data-source="23">Stowarzyszenie przyjmuje darowiznę przez przyjęcie świadczenia pieniężnego. Darowizna dokonana bez formy aktu notarialnego staje się ważna z chwilą spełnienia przyrzeczonego świadczenia, zgodnie z art. 890 § 1 Kodeksu cywilnego.</p>
+<h4 data-source="24">5 Płatności przez Paynow</h4>
+<p data-source="25">Płatności elektroniczne obsługuje Paynow, którego dostawcą jest mElements S.A. z siedzibą w Warszawie. Aktualne dokumenty operatora są dostępne pod adresem <a href="https://www.paynow.pl/regulaminy">https://www.paynow.pl/regulaminy</a>. Stowarzyszenie jest odbiorcą darowizny, a operator realizuje usługę płatniczą.</p>
+<p data-source="26">Darczyńca może skorzystać z metod udostępnionych w bramce Paynow dla Stowarzyszenia, w szczególności BLIK, szybkich przelewów internetowych oraz płatności kartą, o ile zostały aktywowane. Wiążąca lista dostępnych metod jest wyświetlana przed autoryzacją. Serwis nie obiecuje dostępności nieaktywnej metody.</p>
+<p data-source="27">Stowarzyszenie nie dolicza darczyńcy opłaty za użycie formularza ani kosztu dostawy. Ewentualne opłaty banku lub dostawcy instrumentu płatniczego wynikają z umowy darczyńcy z tym podmiotem. Koszty obsługi Paynow po stronie Stowarzyszenia wynikają z jego umowy z operatorem; nie oznacza to obietnicy, że operator świadczy usługę bez prowizji.</p>
+<p data-source="28">Za potwierdzoną w systemie uznaje się płatność, której realizację potwierdził Paynow. Sam powrót z bramki na stronę Stowarzyszenia lub parametr adresu strony nie stanowi potwierdzenia wpłaty. Przy opóźnieniu potwierdzenia należy sprawdzić status i historię rachunku, zanim ponowi się wpłatę.</p>
+<p data-source="29">Dane karty oraz kod BLIK są podawane wyłącznie w środowisku operatora lub banku. Stowarzyszenie nie wymaga ich w swoim formularzu. Na prośbę darczyńcy Stowarzyszenie udostępni potwierdzenie otrzymanej darowizny po weryfikacji jej zaksięgowania; zakres danych potrzebnych do tego potwierdzenia zostanie uzgodniony indywidualnie.</p>
+<h4 data-source="30">6 Realizacja i brak dostawy</h4>
+<p data-source="31">Przedmiotem wpłaty jest darowizna pieniężna. Nie dochodzi do wysyłki towarów, wydania produktu cyfrowego ani odpłatnego wykonania usługi dla darczyńcy. Sposoby, terminy i koszty dostawy towarów nie mają zastosowania.</p>
+<p data-source="32">Środki po przyjęciu są wykorzystywane na cele statutowe, z uwzględnieniem potrzeb, planu działań i zasad gospodarowania majątkiem Stowarzyszenia. Wpłata nie gwarantuje indywidualnemu darczyńcy dostępu do pomocy medycznej ani określonego rezultatu zdrowotnego.</p>
+<h4 data-source="33">7 Zwroty i pomyłki</h4>
+<p data-source="34">W przypadku omyłkowej kwoty, podwójnego obciążenia, nieautoryzowanej wpłaty lub innego problemu prosimy niezwłocznie zgłosić sprawę na <a href="mailto:sercemamy.stowarzyszenie@gmail.com">sercemamy.stowarzyszenie@gmail.com</a> albo pisemnie na adres Stowarzyszenia. Nie ustanawiamy krótkiego terminu, po którym darczyńca traci ustawowe uprawnienia.</p>
+<p data-source="35">Zgłoszenie powinno zawierać adres do odpowiedzi, datę, kwotę, identyfikator transakcji, jeżeli jest znany, opis problemu i oczekiwany sposób rozwiązania. Nie należy przesyłać danych karty, haseł, kodów autoryzacyjnych ani pełnego wyciągu bankowego, jeśli wystarcza potwierdzenie konkretnej wpłaty.</p>
+<p data-source="36">Stowarzyszenie weryfikuje zgłoszenie i informuje o wyniku w ciągu 14 dni od jego otrzymania. Jeśli potrzebne są dodatkowe informacje, zwraca się o nie niezwłocznie; nie ogranicza to terminów i uprawnień wynikających z bezwzględnie obowiązujących przepisów.</p>
+<p data-source="37">Jeżeli zwrot jest należny na podstawie prawa lub zostanie uzgodniony ze Stowarzyszeniem, Stowarzyszenie zleca go bez zbędnej zwłoki, nie później niż w ciągu 14 dni od uznania zgłoszenia i ustalenia danych niezbędnych do zwrotu. Termin faktycznego uznania rachunku zależy również od operatora i banku; nie uchybia to terminom wynikającym z prawa.</p>
+<p data-source="38">Zwrot następuje co do zasady za pośrednictwem Paynow, z użyciem pierwotnej metody płatności. Inny sposób może być uzgodniony po zweryfikowaniu uprawnienia osoby żądającej zwrotu. Stowarzyszenie nie pobiera własnej opłaty manipulacyjnej za należny zwrot.</p>
+<p data-source="39">Darowizna nie jest zakupem w sklepie internetowym. Regulamin nie ustanawia odrębnego, bezwarunkowego prawa do zwrotu każdej darowizny w ciągu 14 dni. Nie wyłącza to uprawnień wynikających z przepisów o darowiźnie, wadach oświadczenia woli, świadczeniu nienależnym, transakcjach nieautoryzowanych ani innych przepisów bezwzględnie obowiązujących.</p>
+<h4 data-source="40">8 Reklamacje</h4>
+<p data-source="41">Reklamacje dotyczące działania serwisu, przyjęcia lub ewidencji darowizny składa się na <a href="mailto:sercemamy.stowarzyszenie@gmail.com">sercemamy.stowarzyszenie@gmail.com</a> albo na adres siedziby. Dla sprawnego wyjaśnienia prosimy podać dane wskazane w części dotyczącej zwrotów. Reklamacja jest bezpłatna.</p>
+<p data-source="42">Stowarzyszenie udziela odpowiedzi w ciągu 14 dni od otrzymania reklamacji, e-mailem albo uzgodnionym kanałem. Odpowiedź zawiera stanowisko i sposób dalszego postępowania. W razie potrzeby Stowarzyszenie współpracuje z operatorem płatności.</p>
+<p data-source="43">Reklamacje dotyczące usługi płatniczej można również kierować do właściwego dostawcy usług płatniczych zgodnie z jego regulaminem. Zgłoszenie do Stowarzyszenia nie pozbawia darczyńcy prawa do reklamacji w banku lub u operatora ani do dochodzenia roszczeń przed właściwym organem lub sądem.</p>
+<h4 data-source="44">9 Dane osobowe i zmiany regulaminu</h4>
+<p data-source="45">Zasady przetwarzania danych, prawa osób i zasady dotyczące cookies opisuje polityka prywatności dostępna w serwisie. Dane darczyńców nie są publikowane bez odrębnej podstawy prawnej.</p>
+<p data-source="46">Do darowizny stosuje się wersję regulaminu udostępnioną i zaakceptowaną przy rozpoczynaniu jej przekazania. Zmiany regulaminu mogą dotyczyć przyszłego korzystania z serwisu i przyszłych wpłat; nie zmieniają wstecz zasad dokonanej darowizny.</p>
+<p data-source="47">W sprawach nieuregulowanych stosuje się prawo polskie, w szczególności Kodeks cywilny, przepisy o świadczeniu usług drogą elektroniczną, ochronie danych osobowych i usługach płatniczych. Regulamin nie ogranicza ochrony przysługującej darczyńcy na podstawie bezwzględnie obowiązujących przepisów.</p>
+<p data-source="48">Regulamin obowiązuje od 16.11.2026</p>
+<a class="back-form" href="#donate">← Wróć do formularza darowizny</a></div></details>
+<details class="legal" id="polityka-prywatnosci"><summary><h3><span class="doc-index">02 · Dane i prywatność</span><span data-source="50">Polityka prywatności i plików cookies</span></h3></summary><div class="legal-body">
+<h4 data-source="51">1 Administrator i kontakt</h4>
+<p data-source="52">Administratorem danych osobowych użytkowników serwisu serce-mamy.com jest Stowarzyszenie „Serce Mamy”, ul. Stanisława Staszica 16, 20-081 Lublin, KRS 0001238780, NIP 7123512149, REGON 544639494. W sprawach danych osobowych, realizacji praw i pytań o prywatność można kontaktować się: <a href="mailto:sercemamy.stowarzyszenie@gmail.com">sercemamy.stowarzyszenie@gmail.com</a>, tel. +48 81 532 66 12 albo listownie na adres siedziby.</p>
+<p data-source="53">Inspektor ochrony danych nie został wyznaczony.</p>
+<h4 data-source="54">2 Dane i cele przetwarzania</h4>
+<p data-source="55">Darowizny i formularz: przetwarzamy adres e-mail, kwotę i walutę, cel wpłaty, identyfikatory i statusy transakcji, czas rozpoczęcia wpłaty oraz zapis akceptacji wersji regulaminu. Dane są potrzebne do wykonania czynności zmierzających do zawarcia i wykonania umowy darowizny oraz obsługi usług elektronicznych (art. 6 ust. 1 lit. b RODO).</p>
+<p data-source="56">Rozliczenia: przetwarzamy dane z potwierdzeń płatności, rozrachunków bankowych i dokumentacji księgowej w zakresie wymaganym przepisami o rachunkowości i podatkach (art. 6 ust. 1 lit. c RODO). Bank lub operator może przekazać dodatkowe dane wpłacającego wynikające z dokumentów rozliczeniowych, np. imię, nazwisko i identyfikację rachunku.</p>
+<p data-source="57">Kontakt, reklamacje i roszczenia: wykorzystujemy dane kontaktowe, treść korespondencji oraz informacje o sprawie, aby odpowiedzieć, wyjaśnić płatność, ustalić, dochodzić lub bronić roszczeń. Podstawą jest art. 6 ust. 1 lit. f RODO, tj. uzasadniony interes w prowadzeniu korespondencji, obsłudze spraw i ochronie praw; jeżeli obowiązek rozpatrzenia zgłoszenia wynika z prawa, także art. 6 ust. 1 lit. c RODO.</p>
+<p data-source="58">Bezpieczeństwo: serwer może zapisywać adres IP, czas, adres żądanej strony, informacje o przeglądarce i błędach. Moduł wpłat wykorzystuje również pseudonimowy identyfikator sesji oraz skrót adresu IP do ograniczania nadmiernych żądań. Podstawą jest art. 6 ust. 1 lit. f RODO, tj. uzasadniony interes polegający na bezpieczeństwie i dostępności serwisu.</p>
+<p data-source="59">Nie zbieramy w formularzu darowizny danych karty ani kodu BLIK. Nie wykorzystujemy adresu e-mail z tego formularza do newslettera ani marketingu bez odrębnej podstawy prawnej. Darowizna nie jest uzależniona od zgody marketingowej.</p>
+<h4 data-source="60">3 Formularz kontaktowy i dane o zdrowiu</h4>
+<p data-source="61">W zwykłej korespondencji prosimy podawać jedynie dane potrzebne do odpowiedzi. Formularz darowizny nie służy do przekazywania dokumentacji medycznej, numeru PESEL ani informacji o stanie zdrowia mamy lub dziecka.</p>
+<p data-source="62">Procedura zgłaszania potrzeby wsparcia została uregulowana odrębnie.</p>
+<h4 data-source="63">4 Paynow i odbiorcy danych</h4>
+<p data-source="64">W celu wykonania płatności przekazujemy Paynow e-mail, kwotę, walutę, opis i identyfikator wpłaty. Dostawca Paynow, mElements S.A. z siedzibą w Warszawie, przetwarza dane w związku ze świadczeniem usług płatniczych jako odrębny administrator w zakresie określonym przez własne dokumenty. Jego aktualna polityka jest dostępna pod adresem <a href="https://www.paynow.pl/regulaminy">https://www.paynow.pl/regulaminy</a>. Dane mogą otrzymywać banki i podmioty uczestniczące w rozliczeniu wybranej płatności.</p>
+<p data-source="65">Dane mogą być udostępniane upoważnionym osobom działającym w Stowarzyszeniu, dostawcom hostingu, poczty elektronicznej, obsługi informatycznej i księgowej oraz doradcom prawnym, w zakresie potrzebnym do realizacji wskazanych celów. Podmioty przetwarzające na nasze zlecenie działają na podstawie odpowiednich umów. Dane mogą też otrzymać uprawnione organy, jeżeli wymagają tego przepisy.</p>
+<h4 data-source="66">5 Czat i oddzwanianie przez asystentkę AI</h4>
+<p data-source="67">Serwis korzysta lub ma korzystać z funkcji czatu i automatycznego oddzwonienia przez asystentkę AI. Jest to odrębna funkcja od darowizn. Wpłata nie wymaga użycia czatu, rozmowy telefonicznej ani zgody na jej nagranie.</p>
+<h4 data-source="68">6 Przekazywanie poza Europejski Obszar Gospodarczy</h4>
+<p data-source="69">Dane osobowe nie zostaną przekazane poza EOG. </p>
+<h4 data-source="70">7 Okres przechowywania</h4>
+<p data-source="71">Dokumentację darowizn i rozliczeń przechowujemy przez okresy wymagane przepisami księgowymi i podatkowymi, co do zasady 5 lat, liczone od początku roku następującego po roku obrotowym albo od końca roku, w którym upłynął termin płatności podatku — odpowiednio do rodzaju dokumentu. W razie rozbieżności stosujemy właściwy dla danej dokumentacji wymagany okres.</p>
+<p data-source="72">Dane potrzebne do ustalenia, dochodzenia lub obrony roszczeń przechowujemy do upływu właściwego terminu przedawnienia, a gdy wszczęto postępowanie — do jego prawomocnego zakończenia i rozliczenia. Nie oznacza to automatycznego przedłużania retencji wszystkich danych.</p>
+<p data-source="73">Niedokończone próby wpłat w module są przechowywane przez okres niezbędny do wyjaśnienia transakcji, przyjęty organizacyjnie jako 90 dni od rozpoczęcia, chyba że istnieje spór lub obowiązek zachowania danych. Krótkotrwałe liczniki ograniczające żądania wygasają po 15 minutach i są usuwane przy kolejnych żądaniach lub w ramach konserwacji.</p>
+<h4 data-source="74">8 Prawa użytkownika</h4>
+<p data-source="75">Na zasadach określonych w RODO przysługują prawa dostępu do danych i otrzymania ich kopii, sprostowania, usunięcia lub ograniczenia przetwarzania, a w odpowiednich przypadkach także przenoszenia danych. Nie każde prawo ma zastosowanie do każdego celu; np. obowiązek księgowy może uzasadniać zachowanie danych mimo żądania usunięcia.</p>
+<p data-source="76">Wobec przetwarzania opartego na art. 6 ust. 1 lit. f RODO można wnieść sprzeciw z przyczyn związanych ze szczególną sytuacją. Jeżeli przetwarzanie opiera się na zgodzie, można ją wycofać w dowolnym momencie, bez wpływu na zgodność z prawem wcześniejszego przetwarzania.</p>
+<p data-source="77">Wniosek można złożyć przez kontakt wskazany w części 1. Odpowiadamy co do zasady w ciągu miesiąca; w przypadkach określonych w RODO termin może zostać przedłużony, o czym informujemy wraz z przyczyną. Możemy poprosić o informacje niezbędne do zweryfikowania osoby składającej wniosek.</p>
+<p data-source="78">Przysługuje prawo wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych. Informacje o sposobie złożenia skargi są dostępne na <a href="https://uodo.gov.pl">https://uodo.gov.pl</a>.</p>
+<p data-source="79">Podanie e-maila i kwoty jest dobrowolne, ale niezbędne do skorzystania z formularza wpłaty przez Paynow. Brak danych uniemożliwi obsługę wpłaty w tym kanale. Stowarzyszenie nie podejmuje w module darowizn decyzji wywołujących skutki prawne lub podobnie istotnie wpływających na użytkownika wyłącznie w sposób zautomatyzowany i nie stosuje w nim profilowania marketingowego.</p>
+<h4 data-source="80">9 Pliki cookies i podobne technologie</h4>
+<p data-source="81">Cookies to informacje przechowywane w urządzeniu użytkownika. Podobne funkcje mogą spełniać sessionStorage i localStorage. Poniższe zasady odnoszą się także do tych technologii.</p>
+<p data-source="82">Moduł darowizn używa niezbędnego pliku sesyjnego sm_donation, dostawca: Stowarzyszenie, zakres: własna domena, czas: sesja przeglądarki. Służy on zabezpieczeniu formularza, powiązaniu rozpoczętej wpłaty z jej statusem i zapobieganiu nieuprawnionym żądaniom. Ma ustawienia HttpOnly, Secure i SameSite=Lax. Moduł nie dodaje cookies reklamowych ani analitycznych.</p>
+<p data-source="83">Niezbędne technologie służące realizacji usługi żądanej przez użytkownika mogą być stosowane bez odrębnej zgody na podstawie art. 399 ust. 3 Prawa komunikacji elektronicznej. Inne technologie wymagają uprzedniego poinformowania i uzyskania właściwej zgody. Wyłączenie niezbędnych cookies w przeglądarce może uniemożliwić rozpoczęcie lub sprawdzenie wpłaty.</p>
+<h4 data-source="84">10 Aktualizacje</h4>
+<p data-source="85">Polityka obowiązuje od 16.11.2026 r. Zmiany będą publikowane w serwisie z oznaczeniem daty. Zmiana dokumentu nie zastępuje zgody, jeżeli nowy cel lub technologia wymaga jej uzyskania. Wersja: 2026-11-14-v1.</p>
+<a class="back-form" href="#donate">← Wróć do formularza darowizny</a></div></details>
+<details class="legal" id="zwroty-reklamacje"><summary><h3><span class="doc-index">03 · Pomoc w sprawie wpłaty</span><span data-source="87">Zwroty i reklamacje darowizn</span></h3></summary><div class="legal-body">
+<h4 data-source="88">Darowizna i brak dostawy</h4>
+<p data-source="89">Wpłaty na rzecz Stowarzyszenia „Serce Mamy” są jednorazowymi, dobrowolnymi darowiznami na cele statutowe. Nie sprzedajemy w tym module produktów ani usług. Nie występują dostawa, koszt przesyłki ani zwrot towaru.</p>
+<h4 data-source="90">Jak zgłosić pomyłkę lub reklamację</h4>
+<p data-source="91">Napisz na <a href="mailto:sercemamy.stowarzyszenie@gmail.com">sercemamy.stowarzyszenie@gmail.com</a> albo na adres: ul. Stanisława Staszica 16, 20-081 Lublin. Podaj e-mail do odpowiedzi, datę, kwotę, identyfikator wpłaty, jeśli go znasz, oraz opis problemu i oczekiwane rozwiązanie.</p>
+<p data-source="92">Nie podawaj danych karty, kodu BLIK, haseł ani kodów SMS. Jeśli środki pobrano, a status jest niejasny, nie wpłacaj ponownie przed sprawdzeniem transakcji.</p>
+<h4 data-source="93">Odpowiedź i zwrot</h4>
+<p data-source="94">Odpowiadamy w ciągu 14 dni od otrzymania zgłoszenia. Po uznaniu należnego lub uzgodnionego zwrotu i ustaleniu niezbędnych danych zlecamy go bez zbędnej zwłoki, nie później niż w ciągu 14 dni, co do zasady przez Paynow na pierwotny instrument płatniczy. Obowiązujące terminy ustawowe mają pierwszeństwo.</p>
+<p data-source="95">Nie pobieramy własnej opłaty manipulacyjnej za należny zwrot. Regulamin nie wprowadza automatycznego prawa do zwrotu każdej darowizny w ciągu 14 dni i nie ogranicza praw wynikających z przepisów, w tym dotyczących nieautoryzowanej płatności, błędu i świadczenia nienależnego.</p>
+<p data-source="96">Reklamację usługi płatniczej można również złożyć u właściwego operatora lub w banku. Szczegółowe zasady są dostępne w Regulaminie darowizn i usług elektronicznych. Niniejsza informacja ma charakter skrótu tego regulaminu.</p>
+<a class="back-form" href="#donate">← Wróć do formularza darowizny</a></div></details>
+</div></section>
+<section class="contact section wrap" id="contact" aria-labelledby="contact-title"><div class="contact-intro"><p class="eyebrow">Zostańmy w kontakcie</p><h2 id="contact-title">Masz pytanie<br>lub chcesz pomóc inaczej?</h2><p>Zapraszamy osoby prywatne, firmy i instytucje. Porozmawiajmy o wsparciu finansowym, rzeczowym lub organizacyjnym.</p><div class="contact-links"><a class="btn" href="mailto:sercemamy.stowarzyszenie@gmail.com">sercemamy.stowarzyszenie@gmail.com</a><a class="btn btn-light" href="tel:+48815326612">81 532 66 12</a></div></div><div class="address"><h3>Stowarzyszenie „Serce Mamy”</h3><p>ul. Stanisława Staszica 16<br>20-081 Lublin</p><dl class="ids"><div><dt>KRS</dt><dd>0001238780</dd></div><div><dt>NIP</dt><dd>7123512149</dd></div><div><dt>REGON</dt><dd>544639494</dd></div></dl><p class="small muted" style="margin-top:23px">Kontakt w sprawie darowizny, jej potwierdzenia lub pomyłki w płatności: <a href="mailto:sercemamy.stowarzyszenie@gmail.com">sercemamy.stowarzyszenie@gmail.com</a>.</p></div></section>
+</main>
+
+<!-- ═══ ODDZWONIMY ═══ -->
+<section class="callback-section" id="oddzwonimy">
+  <div class="callback-inner reveal">
+    <div id="ai-callback"></div>
+    <script src="https://ai-recepcjonista-backend.vercel.app/callback.js" async
+      data-color="#b76b74"
+      data-title="Wolisz rozmowę telefoniczną? Oddzwonimy!"
+      data-text="Zostaw numer, a nasza asystentka Ania zadzwoni do Ciebie w ciągu chwili."></script>
+  </div>
+</section>
+
+<footer>
+  <!-- TODO: uzupełnij prawdziwy telefon i nr konta -->
+  <div class="footer-inner">
+    <div class="footer-col footer-brand">
+      <span class="footer-logo"><img src="/logo-mama.svg" width="40" height="40" alt="Serce Mamy"/>Serce Mamy</span>
+      <p class="footer-tagline">Wspieramy mamy, wcześniaki i noworodki od pierwszych chwil życia: od ciąży, przez poród, po bezpieczny powrót do domu.</p>
+    </div>
+    <div class="footer-col">
+      <h4 class="footer-h">Kontakt</h4>
+      <ul class="footer-contact">
+        <li><span class="fc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><span>Stowarzyszenie „Serce Mamy"<br>ul. Staszica 16, 20-060 Lublin</span></li>
+        <li><span class="fc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><a href="tel:+48815326612">+48 81 532 66 12</a></li>
+        <li><span class="fc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><a href="mailto:sercemamy.stowarzyszenie@gmail.com">sercemamy.stowarzyszenie@gmail.com</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 class="footer-h">Nawigacja</h4>
+      <div class="footer-links">
+        <a href="/">Główna</a>
+        <a href="/o-nas">O nas</a>
+        <a href="/dzialania">Działania</a>
+        <a href="/pomoc">Wsparcie</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Stowarzyszenie Serce Mamy</span>
+    <span class="footer-legal">KRS 0001238780 · NIP 7123512149 · REGON 544639494 · Nr konta: 52&nbsp;1140&nbsp;2004&nbsp;0000&nbsp;3802&nbsp;8671&nbsp;6776</span>
+  </div>
+</footer>
+<script>
+
+'use strict';
+(() => {
+  const $ = id => document.getElementById(id);
+  const API_PATH = '/api/donations.php';
+  const LEGAL_VERSION = '2026-11-17-v2';
+  const MIN_CENTS = 100, MAX_CENTS = 1000000;
+  const formatter = new Intl.NumberFormat('pl-PL', {style:'currency', currency:'PLN'});
+  const money = cents => formatter.format(cents / 100);
+  const form = $('donation-form');
+  let config = {enabled:false, sandbox:false, csrf:null};
+  let data = null, requestId = null, locked = false, attempted = false;
+  let statusBusy = false;
+  function parseAmount(value) {
+    const text = String(value).trim();
+    if (!/^(?:0|[1-9]\d{0,7})(?:[.,]\d{1,2})?$/.test(text)) return null;
+    const [whole, fraction = ''] = text.replace(',', '.').split('.');
+    const cents = Number(whole) * 100 + Number(fraction.padEnd(2, '0'));
+    return Number.isSafeInteger(cents) && cents >= MIN_CENTS && cents <= MAX_CENTS ? cents : null;
+  }
+  function randomId() {
+    return Array.from(crypto.getRandomValues(new Uint8Array(16)), v => v.toString(16).padStart(2, '0')).join('');
+  }
+  function showError(id, message) { $(id).textContent = message; $(id).hidden = false; }
+  function payLabel() {
+    $('pay').disabled = !config.enabled || locked || !data;
+    $('pay').textContent = config.enabled && data ? `Przekazuję ${money(parseAmount(data.amount))} przez Paynow` : 'Płatność Paynow nieaktywna';
+    $('payment-help').hidden = config.enabled;
+  }
+  async function request(action, options = {}) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), options.method === 'POST' ? 35000 : 10000);
+    try {
+      const response = await fetch(API_PATH + '?' + action, {...options, credentials:'same-origin', cache:'no-store', signal:controller.signal, redirect:'error'});
+      if (!(response.headers.get('content-type') || '').includes('application/json')) throw new Error('Serwer płatności jest obecnie niedostępny.');
+      const result = await response.json();
+      if (!response.ok) throw new Error(typeof result.error === 'string' ? result.error : 'Nie udało się obsłużyć żądania.');
+      return result;
+    } finally { clearTimeout(timer); }
+  }
+  async function loadConfig() {
+    if (!['https:', 'http:'].includes(location.protocol)) return;
+    try {
+      const next = await request('action=config');
+      const canPay = next.enabled === true && typeof next.sandbox === 'boolean' && typeof next.csrf === 'string' && next.csrf.length >= 16
+        && next.legalVersion === LEGAL_VERSION && next.min === MIN_CENTS && next.max === MAX_CENTS;
+      config = {enabled:canPay, sandbox:next.sandbox === true, csrf:canPay ? next.csrf : null};
+      if (canPay && !config.sandbox) $('payment-notice').hidden = true;
+      if (canPay && config.sandbox) {
+        $('payment-notice').classList.add('sandbox');
+        $('payment-notice').textContent = 'Tryb testowy Paynow. Ta wersja nie przyjmuje prawdziwych pieniędzy.';
+      }
+      if (next.enabled === true && !canPay) $('payment-notice').textContent = 'Wpłaty online są chwilowo niedostępne. Możesz sprawdzić podsumowanie lub skontaktować się ze Stowarzyszeniem.';
+      payLabel();
+    } catch (_) {
+      // Brak backendu (np. 404 na stronie statycznej) lub błąd sieci: zostaje komunikat o nieaktywnych wpłatach.
+      config.enabled = false; $('payment-notice').hidden = false; payLabel();
+    }
+  }
+  document.querySelectorAll('[name="amount"]').forEach(input => input.addEventListener('change', () => {
+    const custom = input.value === 'custom';
+    $('custom-wrap').hidden = !custom;
+    $('custom-amount').required = custom;
+    $('custom-amount').setCustomValidity('');
+    $('form-error').hidden = true;
+    if (custom) $('custom-amount').focus();
+  }));
+  $('custom-amount').addEventListener('input', () => $('custom-amount').setCustomValidity(''));
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    $('form-error').hidden = true;
+    const chosen = form.querySelector('[name="amount"]:checked');
+    const cents = parseAmount(chosen.value === 'custom' ? $('custom-amount').value : chosen.value);
+    if (cents === null) {
+      showError('form-error', 'Wpisz kwotę od 1 do 10 000 zł, z maksymalnie dwoma miejscami po przecinku, np. 30,50.');
+      $('custom-amount').focus(); return;
+    }
+    $('email').value = $('email').value.trim();
+    if (!form.reportValidity()) {
+      showError('form-error', 'Podaj poprawny adres e-mail i zaakceptuj regulamin.'); return;
+    }
+    if ($('website').value) { showError('form-error', 'Nie udało się przygotować formularza. Odśwież stronę.'); return; }
+    try { requestId = randomId(); } catch (_) { showError('form-error', 'Ta przeglądarka nie obsługuje bezpiecznego rozpoczęcia wpłaty. Otwórz stronę w aktualnej przeglądarce.'); return; }
+    data = {amount:(cents / 100).toFixed(2), email:$('email').value, accepted:true, legalVersion:LEGAL_VERSION, website:''};
+    attempted = false;
+    $('edit').disabled = false;
+    $('review-email').textContent = data.email;
+    $('review-amount').textContent = money(cents);
+    $('pay-error').hidden = true;
+    form.hidden = true; $('review').hidden = false;
+    $('step-one').removeAttribute('aria-current'); $('step-two').setAttribute('aria-current', 'step');
+    payLabel(); $('review').focus({preventScroll:true});
+    $('donate').scrollIntoView({behavior:'auto', block:'start'});
+  });
+  $('edit').addEventListener('click', () => {
+    if (locked || attempted) return;
+    $('review').hidden = true; form.hidden = false; data = null; requestId = null;
+    $('step-two').removeAttribute('aria-current'); $('step-one').setAttribute('aria-current', 'step');
+    $('email').focus({preventScroll:true});
+  });
+  $('pay').addEventListener('click', async () => {
+    if (!config.enabled || !data || locked) return;
+    locked = true; attempted = true; $('pay').disabled = true; $('edit').disabled = true;
+    $('pay-error').hidden = true; $('pay').textContent = 'Łączymy z Paynow…';
+    try {
+      const result = await request('action=create', {method:'POST', headers:{'Content-Type':'application/json','X-CSRF-Token':config.csrf}, body:JSON.stringify({...data, requestId})});
+      if (typeof result.redirectUrl !== 'string') throw new Error('Operator nie zwrócił adresu płatności.');
+      const url = new URL(result.redirectUrl);
+      const allowedHosts = config.sandbox ? ['paywall.sandbox.paynow.pl','api.sandbox.paynow.pl'] : ['paywall.paynow.pl','api.paynow.pl'];
+      if (url.protocol !== 'https:' || !allowedHosts.includes(url.hostname) || url.username || url.password || url.port) throw new Error('Nieprawidłowy adres operatora płatności.');
+      location.assign(url.href);
+    } catch (error) {
+      const message = error.name === 'AbortError' || error instanceof TypeError ? 'Nie otrzymaliśmy odpowiedzi serwera płatności.' : error.message;
+      showError('pay-error', message + ' Możesz ponowić tę samą próbę. Jeśli rachunek został obciążony, nie rozpoczynaj nowej darowizny — skontaktuj się ze Stowarzyszeniem.');
+      locked = false; payLabel();
+      $('pay').textContent = 'Ponów tę samą próbę płatności';
+      // requestId i dane pozostają identyczne po niejednoznacznym błędzie.
+    }
+  });
+  const legalIds = new Set(['regulamin','polityka-prywatnosci','zwroty-reklamacje']);
+  function openLegal(id, focus) {
+    if (!legalIds.has(id)) return;
+    const section = $(id); section.open = true;
+    if (focus) { section.scrollIntoView({behavior:'auto', block:'start'}); section.querySelector('summary').focus({preventScroll:true}); }
+  }
+  document.querySelectorAll('[data-legal]').forEach(link => link.addEventListener('click', () => openLegal(link.dataset.legal, false)));
+  window.addEventListener('hashchange', () => openLegal(location.hash.slice(1), true));
+  openLegal(location.hash.slice(1), true);
+  let printState = null;
+  function preparePrint() { if (printState) return; printState = Array.from(legalIds, id => [id, $(id).open]); legalIds.forEach(id => $(id).open = true); }
+  function restorePrint() { if (!printState) return; printState.forEach(([id, state]) => $(id).open = state); printState = null; }
+  window.addEventListener('beforeprint', preparePrint); window.addEventListener('afterprint', restorePrint);
+  $('print-documents').hidden = false;
+  $('print-documents').addEventListener('click', () => { preparePrint(); window.print(); });
+  const paymentId = new URLSearchParams(location.search).get('id');
+  async function checkStatus() {
+    if (statusBusy || !/^SM-[a-f0-9]{32}$/.test(paymentId || '')) return;
+    statusBusy = true; $('refresh-status').disabled = true;
+    try {
+      if (!['https:','http:'].includes(location.protocol)) throw new Error();
+      const result = await request('action=status&id=' + encodeURIComponent(paymentId));
+      const statuses = {
+        confirmed:['Dziękujemy za darowiznę.', 'Paynow potwierdził przyjęcie płatności. Twoje wsparcie pomaga nam działać na rzecz mam, dzieci i ich rodzin.'],
+        pending:['Czekamy na potwierdzenie.', 'Sam powrót z Paynow nie oznacza jeszcze zakończenia płatności. Sprawdź status ponownie za chwilę i historię rachunku przed kolejną wpłatą.'],
+        unsuccessful:['Wpłata nie została potwierdzona.', 'Sprawdź historię rachunku. Jeśli środki zostały pobrane, nie wpłacaj ponownie i skontaktuj się ze Stowarzyszeniem.']
+      };
+      if (!Object.hasOwn(statuses, result.state) || typeof result.sandbox !== 'boolean') throw new Error();
+      const [title, message] = statuses[result.state];
+      $('result-title').textContent = (result.sandbox ? 'Test: ' : '') + title;
+      $('result-message').textContent = (result.sandbox ? 'To była płatność testowa, bez przekazania prawdziwych pieniędzy. ' : '') + message;
+      if (result.state === 'confirmed') $('refresh-status').hidden = true;
+    } catch (_) {
+      $('result-title').textContent = 'Nie możemy teraz potwierdzić wpłaty.';
+      $('result-message').textContent = 'Sesja lub usługa sprawdzania statusu jest niedostępna. Sprawdź historię rachunku i potwierdzenie Paynow. Jeśli środki pobrano, skontaktuj się ze Stowarzyszeniem przed ponowną wpłatą.';
+    } finally { statusBusy = false; $('refresh-status').disabled = false; }
+  }
+  $('refresh-status').addEventListener('click', checkStatus);
+  if (paymentId) {
+    $('payment-result').hidden = false;
+    if (/^SM-[a-f0-9]{32}$/.test(paymentId)) { $('result-ref').textContent = 'Identyfikator: ' + paymentId; checkStatus(); }
+    else { $('result-title').textContent = 'Nieprawidłowy identyfikator wpłaty.'; $('result-message').textContent = 'Sprawdź adres strony lub skontaktuj się ze Stowarzyszeniem. Sam adres strony nie jest potwierdzeniem płatności.'; $('refresh-status').hidden = true; }
+    $('payment-result').focus({preventScroll:true});
+  }
+  window.addEventListener('pageshow', event => { if (event.persisted) { locked = false; payLabel(); } });
+  $('review-button').disabled = false;
+  loadConfig();
+})();
+</script>
+<script src="/app.js" defer></script>
+<!-- Chat agent — asystentka Ania -->
+<script src="https://ai-recepcjonista-backend.vercel.app/widget.js" async
+  data-agent-id="agent_0401kwvbyyqcenqrj67h2r77071p"
+  data-color="#b76b74"
+  data-title="Serce Mamy"
+  data-subtitle="Asystentka Ania — odpowiada od razu"
+  data-questions="Jak mogę wesprzeć stowarzyszenie?||Moje dziecko jest na oddziale, gdzie znajdę pomoc?||Czym jest Akademia Rodzica?"></script>
+</body>
+</html>
